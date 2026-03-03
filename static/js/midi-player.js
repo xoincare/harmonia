@@ -48,6 +48,8 @@ function buildRegionGrid() {
 function showHome() {
   document.getElementById('home-view').style.display = '';
   document.getElementById('region-view').style.display = 'none';
+  const tlv = document.getElementById('timeline-view');
+  if (tlv) tlv.style.display = 'none';
   window.scrollTo(0, 0);
 }
 
@@ -59,6 +61,8 @@ function showRegion(regionId) {
 
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('region-view').style.display = '';
+  const tlv = document.getElementById('timeline-view');
+  if (tlv) tlv.style.display = 'none';
 
   // Set hero
   document.getElementById('region-emoji').textContent = region.emoji;
@@ -446,14 +450,20 @@ function handleGlobalSearch(query) {
   for (const region of catalog.regions) {
     for (const group of region.groups) {
       for (const track of group.tracks) {
-        if (track.title.toLowerCase().includes(query)) {
+        const titleMatch = track.title.toLowerCase().includes(query);
+        const titleKoMatch = track.title_ko && track.title_ko.toLowerCase().includes(query);
+        const countryEnMatch = track.country_en && track.country_en.toLowerCase().includes(query);
+        const countryKoMatch = track.country_ko && track.country_ko.includes(query);
+        if (titleMatch || titleKoMatch || countryEnMatch || countryKoMatch) {
+          const subtitle = track.country_ko ? `${track.country_ko} (${track.country_en})` : '';
           results.push({
-            title: track.title,
-            regionName: region.name,
+            title: track.title_ko ? `${track.title_ko} (${track.title})` : track.title,
+            regionName: subtitle || region.name,
             regionId: region.id,
             emoji: region.emoji,
             file: track.file,
-            group: group.name
+            group: group.name,
+            origTitle: track.title
           });
         }
         if (results.length >= 20) break;
@@ -469,13 +479,14 @@ function handleGlobalSearch(query) {
   }
 
   resultsEl.style.display = '';
-  resultsEl.innerHTML = results.map((r, i) =>
-    `<div class="search-result-item" onclick="searchResultClick('${r.regionId}', '${encodeURIComponent(r.title)}')">
+  resultsEl.innerHTML = results.map((r, i) => {
+    const clickTitle = r.origTitle || r.title;
+    return `<div class="search-result-item" onclick="searchResultClick('${r.regionId}', '${encodeURIComponent(clickTitle)}')">
       <span class="sr-emoji">${r.emoji}</span>
       <span class="sr-title">${r.title}</span>
       <span class="sr-region">${r.regionName}</span>
-    </div>`
-  ).join('');
+    </div>`;
+  }).join('');
 }
 
 function searchResultClick(regionId, encodedTitle) {
@@ -501,6 +512,62 @@ document.addEventListener('click', (e) => {
     results.style.display = 'none';
   }
 });
+
+// === Timeline View ===
+function showTimeline() {
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('region-view').style.display = 'none';
+  document.getElementById('timeline-view').style.display = '';
+  buildTimeline();
+  window.scrollTo(0, 0);
+}
+
+function buildTimeline() {
+  const container = document.getElementById('timeline-content');
+  if (!container || !catalog || !catalog.timeline) return;
+
+  const events = catalog.timeline.sort((a, b) => a.year - b.year);
+
+  let html = '';
+  let lastYear = null;
+
+  for (const ev of events) {
+    const yearStr = ev.year < 0 ? `BC ${Math.abs(ev.year)}` : `${ev.year}`;
+    const sideClass = ev.side === 'korea' ? 'tl-left' : 'tl-right';
+    const highlight = ev.title.includes('★') ? ' tl-highlight' : '';
+
+    // Play button if track exists
+    let playBtn = '';
+    if (ev.trackTitle) {
+      const escaped = ev.trackTitle.replace(/'/g, "\\'");
+      playBtn = `<button class="tl-play-btn" onclick="timelinePlay('${ev.regionId}', '${escaped}')">▶ 듣기</button>`;
+    }
+
+    html += `
+      <div class="tl-item ${sideClass}${highlight}">
+        <div class="tl-year">${yearStr}</div>
+        <div class="tl-card">
+          <div class="tl-side-label">${ev.side === 'korea' ? '🇰🇷 한국' : '🌍 세계'}</div>
+          <h3 class="tl-title">${ev.title}</h3>
+          <p class="tl-desc">${ev.desc}</p>
+          ${playBtn}
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+  observeFadeIns();
+}
+
+function timelinePlay(regionId, trackTitle) {
+  if (!catalog) return;
+  showRegion(regionId);
+  setTimeout(() => {
+    const idx = allTracks.findIndex(t => t.title === trackTitle);
+    if (idx >= 0) loadTrackByIndex(idx);
+  }, 200);
+}
 
 // === Init ===
 document.addEventListener('DOMContentLoaded', loadCatalog);
