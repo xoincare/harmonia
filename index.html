@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>하모니아 Harmonia — 세계 음악의 역사</title>
-  <meta name="description" content="고대 그리스부터 동아시아까지, 세계 음악을 듣고 배우세요. 745곡 MIDI 웹 플레이어. Harmonia = 그리스 신화의 조화의 여신.">
+  <meta name="description" content="고대 그리스부터 동아시아까지, 세계 음악을 듣고 배우세요. MIDI 웹 플레이어. Harmonia = 그리스 신화의 조화의 여신.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
@@ -13,20 +13,20 @@
 
 <!-- Navigation -->
 <nav class="nav">
-  <a href="#" class="nav-logo" onclick="showHome(); return false;">🎵 Harmonia</a>
+  <a href="#" class="nav-logo" onclick="Harmonia.showHome(); return false;">🎵 Harmonia</a>
   <ul class="nav-links">
-    <li><a href="#" onclick="showHome(); return false;">홈</a></li>
-    <li><a href="#" onclick="showRegion('korean'); return false;">한국</a></li>
-    <li><a href="#regions" onclick="showHome(); return false;">세계음악</a></li>
-    <li><a href="#" onclick="showTimeline(); return false;">연표</a></li>
+    <li><a href="#" onclick="Harmonia.showHome(); return false;">홈</a></li>
+    <li><a href="#" onclick="Harmonia.showRegion('korean'); return false;">한국</a></li>
+    <li><a href="#regions" onclick="Harmonia.showHome(); return false;">세계음악</a></li>
+    <li><a href="#" onclick="Harmonia.showTimeline(); return false;">연표</a></li>
   </ul>
-  <button class="nav-menu-btn" onclick="toggleMobileMenu()" aria-label="메뉴">☰</button>
+  <button class="nav-menu-btn" onclick="Harmonia.toggleMobile()" aria-label="메뉴">☰</button>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#" onclick="showHome(); closeMobileMenu(); return false;">🏠 홈</a>
-  <a href="#" onclick="showRegion('korean'); closeMobileMenu(); return false;">🇰🇷 한국 전통음악</a>
-  <a href="#" onclick="showHome(); closeMobileMenu(); return false;">🌍 세계음악</a>
-  <a href="#" onclick="showTimeline(); closeMobileMenu(); return false;">📜 연표</a>
+  <a href="#" onclick="Harmonia.showHome(); Harmonia.closeMobile(); return false;">🏠 홈</a>
+  <a href="#" onclick="Harmonia.showRegion('korean'); Harmonia.closeMobile(); return false;">🇰🇷 한국 전통음악</a>
+  <a href="#" onclick="Harmonia.showHome(); Harmonia.closeMobile(); return false;">🌍 세계음악</a>
+  <a href="#" onclick="Harmonia.showTimeline(); Harmonia.closeMobile(); return false;">📜 연표</a>
 </div>
 
 <!-- Home View -->
@@ -38,12 +38,12 @@
   <p class="hero-tagline">하모니아 — 세계 음악의 역사</p>
   <p class="hero-desc">고대 그리스부터 동아시아까지, 세계 음악을 듣고 배우세요</p>
   <div class="hero-stat">
-    <div><span class="num" id="hero-total">748</span><span class="label">곡 MIDI</span></div>
+    <div><span class="num" id="hero-total">—</span><span class="label">곡 MIDI</span></div>
     <div><span class="num">10</span><span class="label">개 지역</span></div>
     <div><span class="num">3,400+</span><span class="label">년의 음악사</span></div>
   </div>
   <div class="hero-search">
-    <input type="text" id="global-search" placeholder="곡 이름으로 검색..." oninput="handleGlobalSearch(this.value)">
+    <input type="text" id="global-search" placeholder="곡 이름으로 검색..." oninput="Harmonia.handleGlobalSearch(this.value)">
   </div>
   <div id="global-search-results" class="search-results" style="display:none"></div>
 </section>
@@ -60,7 +60,7 @@
 <!-- Region Detail View (hidden by default) -->
 <div id="region-view" style="display:none">
   <section class="region-hero" id="region-hero">
-    <button class="back-btn" onclick="showHome()">← 전체 목록</button>
+    <button class="back-btn" onclick="Harmonia.showHome()">← 전체 목록</button>
     <div class="region-hero-content">
       <span class="region-emoji" id="region-emoji"></span>
       <h1 id="region-name"></h1>
@@ -397,7 +397,7 @@
 <!-- Timeline View -->
 <div id="timeline-view" style="display:none">
   <section class="timeline-hero">
-    <button class="back-btn" onclick="showHome()">← 전체 목록</button>
+    <button class="back-btn" onclick="Harmonia.showHome()">← 전체 목록</button>
     <h1>📜 세계 음악 연표</h1>
     <p class="timeline-hero-sub">한국 🇰🇷 vs 세계 🌍 — 음악사를 한눈에 비교하며 들어보세요</p>
     <div class="tl-legend">
@@ -415,16 +415,16 @@
     <span class="bp-region" id="bp-region"></span>
   </div>
   <div class="bp-controls">
-    <button class="bp-btn" id="bp-prev" onclick="playPrevTrack()" title="이전">⏮</button>
-    <button class="bp-btn bp-play" id="bp-play" onclick="togglePlay()">▶</button>
-    <button class="bp-btn" id="bp-next" onclick="playNextTrack()" title="다음">⏭</button>
+    <button class="bp-btn" id="bp-prev" onclick="Harmonia.prevTrack()" title="이전">⏮</button>
+    <button class="bp-btn bp-play" id="bp-play" onclick="Harmonia.togglePlay()">▶</button>
+    <button class="bp-btn" id="bp-next" onclick="Harmonia.nextTrack()" title="다음">⏭</button>
   </div>
-  <div class="bp-progress-wrap" onclick="seekTo(event)">
+  <div class="bp-progress-wrap" onclick="Harmonia.seekTo(event)">
     <div class="bp-progress" id="bp-progress"></div>
   </div>
   <span class="bp-time" id="bp-time">0:00</span>
   <div class="bp-volume">
-    <input type="range" min="0" max="100" value="70" class="bp-volume-slider" id="bp-volume" oninput="setVolume(this.value)">
+    <input type="range" min="0" max="100" value="70" class="bp-volume-slider" id="bp-volume" oninput="Harmonia.setVolume(this.value)">
   </div>
 </div>
 
@@ -441,23 +441,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.js"></script>
 <script src="/static/js/midi-player.js"></script>
-<script>
-// Scroll fade-in animation
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-function observeFadeIns() {
-  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
-}
-observeFadeIns();
-
-// Mobile menu
-function toggleMobileMenu() {
-  document.getElementById('mobile-menu').classList.toggle('open');
-}
-function closeMobileMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
-}
-</script>
 </body>
 </html>

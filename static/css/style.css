@@ -14,6 +14,11 @@
   --primary-dim: rgba(108,99,255,0.15);
   --border: #2a2a3e;
   --player-bg: rgba(0,0,0,0.5);
+  --gold-hover: var(--gold-hover);
+  --world-blue: #6495ed;
+  --world-blue-dim: rgba(100, 149, 237, 0.15);
+  --world-blue-border: rgba(100, 149, 237, 0.3);
+  --gold-highlight: #ffd700;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -326,7 +331,7 @@ a { color: var(--gold); }
   transition: all 0.2s; font-family: inherit;
 }
 .mp-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.mp-btn:hover:not(:disabled) { background: #dbb85c; transform: scale(1.05); }
+.mp-btn:hover:not(:disabled) { background: var(--gold-hover); transform: scale(1.05); }
 .mp-progress-wrap {
   flex: 1; min-width: 100px; height: 6px;
   background: rgba(255,255,255,0.1);
@@ -420,7 +425,7 @@ a { color: var(--gold); }
   width: 36px; height: 36px; font-size: 1rem;
   display: flex; align-items: center; justify-content: center;
 }
-.bp-play:hover { background: #dbb85c; }
+.bp-play:hover { background: var(--gold-hover); }
 .bp-progress-wrap {
   flex: 1; height: 4px; background: rgba(255,255,255,0.1);
   border-radius: 2px; cursor: pointer; min-width: 50px;
@@ -498,7 +503,7 @@ body.player-active footer { padding-bottom: 70px; }
 .tl-legend { display: flex; justify-content: center; gap: 2rem; }
 .tl-legend-item { font-size: 0.95rem; padding: 0.3rem 1rem; border-radius: 20px; }
 .tl-legend-korea { background: rgba(205, 175, 125, 0.15); color: var(--gold); border: 1px solid rgba(205, 175, 125, 0.3); }
-.tl-legend-world { background: rgba(100, 149, 237, 0.15); color: #6495ed; border: 1px solid rgba(100, 149, 237, 0.3); }
+.tl-legend-world { background: var(--world-blue-dim); color: var(--world-blue); border: 1px solid var(--world-blue-border); }
 
 .tl-container {
   max-width: 1000px;
@@ -558,7 +563,7 @@ body.player-active footer { padding-bottom: 70px; }
   border-color: rgba(255,255,255,0.15);
 }
 .tl-left .tl-card { margin-right: auto; margin-left: 0; border-left: 3px solid var(--gold); }
-.tl-right .tl-card { margin-left: auto; margin-right: 0; border-left: 3px solid #6495ed; }
+.tl-right .tl-card { margin-left: auto; margin-right: 0; border-left: 3px solid var(--world-blue); }
 
 .tl-side-label {
   font-size: 0.7rem;
@@ -613,8 +618,8 @@ body.player-active footer { padding-bottom: 70px; }
   padding: 10px 16px 14px;
   margin: 0 0 8px;
   background: rgba(255,215,0,0.06);
-  border-left: 3px solid #ffd700;
-  color: #ccc;
+  border-left: 3px solid var(--gold-highlight);
+  color: var(--text);
   font-size: 0.88rem;
   line-height: 1.6;
   border-radius: 0 6px 6px 0;
@@ -622,12 +627,12 @@ body.player-active footer { padding-bottom: 70px; }
 .mp-track-info {
   display: block;
   font-size: 0.78rem;
-  color: #999;
+  color: var(--text-dim);
   margin-top: 2px;
   padding-left: 20px;
 }
 .mp-track-count {
   font-size: 0.75rem;
-  color: #888;
+  color: var(--text-dim);
   margin-left: 8px;
 }

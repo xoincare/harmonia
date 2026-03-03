@@ -2,616 +2,602 @@
  * Harmonia — World Music MIDI Player
  * Uses Tone.js + @tonejs/midi for web-based MIDI playback
  * Loads catalog.json for multi-region support
+ *
+ * @version 2.0 (refactored)
  */
+;(function () {
+  'use strict';
 
-let catalog = null;
-let currentRegion = null;
-let synths = [];
-let currentMidi = null;
-let isPlaying = false;
-let startTime = 0;
-let progressInterval = null;
-let currentTrackEl = null;
-let allTracks = []; // flat list for next/prev
-let currentTrackIndex = -1;
-let volumeDb = -8;
+  // ─── State ──────────────────────────────────────────────
+  let catalog = null;
+  let currentRegion = null;
+  let synths = [];
+  let currentMidi = null;
+  let isPlaying = false;
+  let startTime = 0;
+  let progressInterval = null;
+  let allTracks = [];
+  let currentTrackIndex = -1;
+  let volumeDb = -8;
 
-// === Catalog Loading ===
-async function loadCatalog() {
-  const resp = await fetch('/catalog.json');
-  catalog = await resp.json();
-  document.getElementById('hero-total').textContent = catalog.totalSongs.toLocaleString();
-  buildRegionGrid();
-}
+  // ─── DOM Helpers ────────────────────────────────────────
+  /** @param {string} id @returns {HTMLElement|null} */
+  function $(id) { return document.getElementById(id); }
 
-// === Region Grid (Home) ===
-function buildRegionGrid() {
-  const grid = document.getElementById('region-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  for (const region of catalog.regions) {
-    const card = document.createElement('div');
-    card.className = 'region-card fade-in';
-    card.onclick = () => showRegion(region.id);
-    card.innerHTML = `
-      <span class="rc-emoji">${region.emoji}</span>
-      <div class="rc-name">${region.name}</div>
-      <div class="rc-count">${region.songCount}곡</div>
-      <div class="rc-desc">${region.description.substring(0, 100)}...</div>
-    `;
-    grid.appendChild(card);
-  }
-  observeFadeIns();
-}
-
-// === Navigation ===
-function showHome() {
-  document.getElementById('home-view').style.display = '';
-  document.getElementById('region-view').style.display = 'none';
-  const tlv = document.getElementById('timeline-view');
-  if (tlv) tlv.style.display = 'none';
-  window.scrollTo(0, 0);
-}
-
-function showRegion(regionId) {
-  if (!catalog) return;
-  const region = catalog.regions.find(r => r.id === regionId);
-  if (!region) return;
-  currentRegion = region;
-
-  document.getElementById('home-view').style.display = 'none';
-  document.getElementById('region-view').style.display = '';
-  const tlv = document.getElementById('timeline-view');
-  if (tlv) tlv.style.display = 'none';
-
-  // Set hero
-  document.getElementById('region-emoji').textContent = region.emoji;
-  document.getElementById('region-name').textContent = region.name;
-  document.getElementById('region-song-count').textContent = `${region.songCount}곡`;
-  document.getElementById('region-description').textContent = region.description;
-
-  // Korean-specific content
-  const koreanContent = document.getElementById('korean-content');
-  if (regionId === 'korean') {
-    koreanContent.style.display = '';
-  } else {
-    koreanContent.style.display = 'none';
+  /** Safe textContent setter */
+  function setText(id, text) {
+    const el = $(id);
+    if (el) el.textContent = text;
   }
 
-  // Player title
-  document.getElementById('player-title').textContent = `🎧 ${region.emoji} ${region.name} MIDI 플레이어`;
-  document.getElementById('player-subtitle').textContent =
-    `${region.songCount}곡 — 곡을 클릭하면 브라우저에서 바로 재생됩니다`;
+  /** Safe style setter */
+  function setDisplay(id, value) {
+    const el = $(id);
+    if (el) el.style.display = value;
+  }
 
-  // Build player
-  buildPlayerUI(region);
+  /** Safe width setter (for progress bars) */
+  function setWidth(id, pct) {
+    const el = $(id);
+    if (el) el.style.width = pct + '%';
+  }
 
-  window.scrollTo(0, 0);
-  observeFadeIns();
-}
+  // ─── Catalog ────────────────────────────────────────────
+  async function loadCatalog() {
+    try {
+      const resp = await fetch('/catalog.json');
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      catalog = await resp.json();
+      setText('hero-total', (catalog.totalSongs || 0).toLocaleString());
+      buildRegionGrid();
+    } catch (e) {
+      console.error('Failed to load catalog:', e);
+    }
+  }
 
-// === Player UI ===
-function buildPlayerUI(region) {
-  const container = document.getElementById('midi-player-app');
-  if (!container) return;
+  // ─── Region Grid (Home) ─────────────────────────────────
+  function buildRegionGrid() {
+    const grid = $('region-grid');
+    if (!grid || !catalog) return;
+    grid.innerHTML = '';
+    for (const region of catalog.regions) {
+      const card = document.createElement('div');
+      card.className = 'region-card fade-in';
+      card.onclick = () => showRegion(region.id);
+      card.innerHTML = `
+        <span class="rc-emoji">${esc(region.emoji)}</span>
+        <div class="rc-name">${esc(region.name)}</div>
+        <div class="rc-count">${region.songCount || region.songs?.length || 0}곡</div>
+        <div class="rc-desc">${esc((region.description || '').substring(0, 100))}...</div>
+      `;
+      grid.appendChild(card);
+    }
+    observeFadeIns();
+  }
 
-  allTracks = [];
-  let html = `
-    <div class="mp-controls">
-      <div class="mp-now-playing">
-        <div class="mp-title" id="mp-title">곡을 선택하세요</div>
-        <div class="mp-sub" id="mp-sub"></div>
-      </div>
-      <div class="mp-buttons">
-        <button id="mp-prev" class="mp-btn" onclick="playPrevTrack()">⏮</button>
-        <button id="mp-play" class="mp-btn" disabled onclick="togglePlay()">▶ 재생</button>
-        <button id="mp-stop" class="mp-btn" onclick="stopMidi()">⏹</button>
-        <button id="mp-next" class="mp-btn" onclick="playNextTrack()">⏭</button>
-        <div class="mp-progress-wrap" onclick="seekInPlayer(event)">
-          <div class="mp-progress" id="mp-progress"></div>
+  /** Minimal HTML escape */
+  function esc(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ─── Navigation ─────────────────────────────────────────
+  function showHome() {
+    setDisplay('home-view', '');
+    setDisplay('region-view', 'none');
+    setDisplay('timeline-view', 'none');
+    window.scrollTo(0, 0);
+  }
+
+  function showRegion(regionId) {
+    if (!catalog) return;
+    const region = catalog.regions.find(r => r.id === regionId);
+    if (!region) return;
+    currentRegion = region;
+
+    setDisplay('home-view', 'none');
+    setDisplay('region-view', '');
+    setDisplay('timeline-view', 'none');
+
+    setText('region-emoji', region.emoji);
+    setText('region-name', region.name);
+    setText('region-song-count', `${region.songCount || 0}곡`);
+    setText('region-description', region.description || '');
+
+    // Korean-specific content
+    const koreanContent = $('korean-content');
+    if (koreanContent) koreanContent.style.display = regionId === 'korean' ? '' : 'none';
+
+    setText('player-title', `🎧 ${region.emoji} ${region.name} MIDI 플레이어`);
+    setText('player-subtitle', `${region.songCount || 0}곡 — 곡을 클릭하면 브라우저에서 바로 재생됩니다`);
+
+    buildPlayerUI(region);
+    window.scrollTo(0, 0);
+    observeFadeIns();
+  }
+
+  // ─── Player UI ──────────────────────────────────────────
+  function buildPlayerUI(region) {
+    const container = $('midi-player-app');
+    if (!container) return;
+
+    allTracks = [];
+    const parts = [
+      `<div class="mp-controls">
+        <div class="mp-now-playing">
+          <div class="mp-title" id="mp-title">곡을 선택하세요</div>
+          <div class="mp-sub" id="mp-sub"></div>
         </div>
-        <span class="mp-time" id="mp-time">0:00</span>
+        <div class="mp-buttons">
+          <button id="mp-prev" class="mp-btn" onclick="Harmonia.prevTrack()">⏮</button>
+          <button id="mp-play" class="mp-btn" disabled onclick="Harmonia.togglePlay()">▶ 재생</button>
+          <button id="mp-stop" class="mp-btn" onclick="Harmonia.stop()">⏹</button>
+          <button id="mp-next" class="mp-btn" onclick="Harmonia.nextTrack()">⏭</button>
+          <div class="mp-progress-wrap" onclick="Harmonia.seekInPlayer(event)">
+            <div class="mp-progress" id="mp-progress"></div>
+          </div>
+          <span class="mp-time" id="mp-time">0:00</span>
+        </div>
       </div>
-    </div>
-    <div class="mp-search">
-      <input type="text" placeholder="이 지역에서 검색..." oninput="filterTracks(this.value)">
-    </div>
-    <div class="mp-catalog">
-  `;
-
-  let trackIdx = 0;
-  for (const group of region.groups) {
-    const groupTrackStart = trackIdx;
-    html += `<div class="mp-suite">
-      <div class="mp-suite-header" onclick="toggleSuite(this)">
-        <span class="mp-arrow">▶</span> ${group.name}
-        ${group.era ? `<span class="mp-era">${group.era}</span>` : ''}
-        <span class="mp-track-count">${group.tracks.length}곡</span>
+      <div class="mp-search">
+        <input type="text" placeholder="이 지역에서 검색..." oninput="Harmonia.filterTracks(this.value)">
       </div>
-      <div class="mp-suite-list" style="display:none">
-        ${group.history ? `<div class="mp-history">${group.history}</div>` : ''}`;
+      <div class="mp-catalog">`
+    ];
 
-    for (const track of group.tracks) {
-      const encodedFile = encodeURIComponent(track.file);
-      const basePath = region.basePath;
-      allTracks.push({
-        file: track.file,
-        title: track.title,
-        group: group.name,
-        basePath: basePath,
-        info: track.info || '',
-        index: trackIdx
-      });
-      const infoHtml = track.info ? `<div class="mp-track-info">${track.info}</div>` : '';
-      html += `<div class="mp-track" data-idx="${trackIdx}" data-title="${track.title.toLowerCase()}" onclick="loadTrackByIndex(${trackIdx})">
-        <span class="mp-track-icon">♪</span> ${track.title}
-        ${infoHtml}
-        <a href="${basePath}${encodedFile}" download class="mp-dl" title="다운로드" onclick="event.stopPropagation()">⬇</a>
-      </div>`;
-      trackIdx++;
+    let trackIdx = 0;
+    for (const group of (region.groups || [])) {
+      parts.push(`<div class="mp-suite">
+        <div class="mp-suite-header" onclick="Harmonia.toggleSuite(this)">
+          <span class="mp-arrow">▶</span> ${esc(group.name)}
+          ${group.era ? `<span class="mp-era">${esc(group.era)}</span>` : ''}
+          <span class="mp-track-count">${(group.tracks || []).length}곡</span>
+        </div>
+        <div class="mp-suite-list" style="display:none">
+          ${group.history ? `<div class="mp-history">${esc(group.history)}</div>` : ''}`);
+
+      for (const track of (group.tracks || [])) {
+        const encodedFile = encodeURIComponent(track.file);
+        const basePath = region.basePath || '/static/midi/';
+        allTracks.push({
+          file: track.file,
+          title: track.title,
+          group: group.name,
+          basePath,
+          info: track.info || '',
+          index: trackIdx
+        });
+        const infoHtml = track.info ? `<div class="mp-track-info">${esc(track.info)}</div>` : '';
+        parts.push(`<div class="mp-track" data-idx="${trackIdx}" data-title="${esc(track.title.toLowerCase())}" onclick="Harmonia.loadTrack(${trackIdx})">
+          <span class="mp-track-icon">♪</span> ${esc(track.title)}
+          ${infoHtml}
+          <a href="${basePath}${encodedFile}" download class="mp-dl" title="다운로드" onclick="event.stopPropagation()">⬇</a>
+        </div>`);
+        trackIdx++;
+      }
+      parts.push(`</div></div>`);
     }
-    html += `</div></div>`;
+    parts.push(`</div>`);
+    container.innerHTML = parts.join('');
   }
 
-  html += `</div>`;
-  container.innerHTML = html;
-}
-
-function toggleSuite(el) {
-  const list = el.nextElementSibling;
-  const arrow = el.querySelector('.mp-arrow');
-  if (list.style.display === 'none') {
-    list.style.display = 'block';
-    arrow.textContent = '▼';
-  } else {
-    list.style.display = 'none';
-    arrow.textContent = '▶';
-  }
-}
-
-function filterTracks(query) {
-  query = query.toLowerCase().trim();
-  document.querySelectorAll('.mp-track').forEach(el => {
-    const title = el.getAttribute('data-title') || '';
-    el.classList.toggle('hidden', query && !title.includes(query));
-  });
-}
-
-// === Track Loading ===
-async function loadTrackByIndex(idx) {
-  if (idx < 0 || idx >= allTracks.length) return;
-  currentTrackIndex = idx;
-  const track = allTracks[idx];
-
-  // Highlight active track
-  document.querySelectorAll('.mp-track.active').forEach(t => t.classList.remove('active'));
-  const el = document.querySelector(`.mp-track[data-idx="${idx}"]`);
-  if (el) {
-    el.classList.add('active');
-    currentTrackEl = el;
-    // Expand parent suite if collapsed
-    const suiteList = el.closest('.mp-suite-list');
-    if (suiteList && suiteList.style.display === 'none') {
-      suiteList.style.display = 'block';
-      const arrow = suiteList.previousElementSibling.querySelector('.mp-arrow');
-      if (arrow) arrow.textContent = '▼';
-    }
-    // Scroll into view
-    el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  function toggleSuite(el) {
+    const list = el.nextElementSibling;
+    const arrow = el.querySelector('.mp-arrow');
+    if (!list || !arrow) return;
+    const hidden = list.style.display === 'none';
+    list.style.display = hidden ? 'block' : 'none';
+    arrow.textContent = hidden ? '▼' : '▶';
   }
 
-  stopMidi();
-
-  const titleEl = document.getElementById('mp-title');
-  const subEl = document.getElementById('mp-sub');
-  const playBtn = document.getElementById('mp-play');
-  const timeEl = document.getElementById('mp-time');
-
-  titleEl.textContent = track.title;
-  subEl.textContent = track.info ? `${track.group} — ${track.info}` : track.group;
-  playBtn.disabled = true;
-  timeEl.textContent = '로딩...';
-
-  // Update bottom player
-  showBottomPlayer(track.title, currentRegion ? currentRegion.name : '');
-
-  try {
-    const url = `${track.basePath}${encodeURIComponent(track.file)}`;
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
-    currentMidi = new Midi(arrayBuffer);
-    playBtn.disabled = false;
-    const dur = currentMidi.duration;
-    timeEl.textContent = formatTime(0) + ' / ' + formatTime(dur);
-    updateBottomTime(0, dur);
-    // Auto-play
-    playMidi();
-  } catch (e) {
-    timeEl.textContent = '로딩 실패';
-    console.error(e);
-  }
-}
-
-// === Playback ===
-function togglePlay() {
-  if (!currentMidi) return;
-  if (isPlaying) {
-    pauseMidi();
-  } else {
-    playMidi();
-  }
-}
-
-async function playMidi() {
-  if (!currentMidi) return;
-
-  // Ensure audio context is started (requires user gesture)
-  if (Tone.context.state !== 'running') {
-    await Tone.start();
-  }
-
-  synths.forEach(s => s.dispose());
-  synths = [];
-
-  const now = Tone.now() + 0.1;
-  startTime = now;
-
-  currentMidi.tracks.forEach(track => {
-    const synth = new Tone.PolySynth(Tone.Synth, {
-      envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 },
-      oscillator: { type: 'triangle8' }
-    }).toDestination();
-    synth.volume.value = volumeDb;
-    synths.push(synth);
-
-    track.notes.forEach(note => {
-      synth.triggerAttackRelease(
-        note.name,
-        note.duration,
-        note.time + now,
-        note.velocity
-      );
+  function filterTracks(query) {
+    query = (query || '').toLowerCase().trim();
+    document.querySelectorAll('.mp-track').forEach(el => {
+      const title = el.getAttribute('data-title') || '';
+      el.classList.toggle('hidden', !!(query && !title.includes(query)));
     });
-  });
-
-  isPlaying = true;
-  updatePlayButton(true);
-  Tone.Transport.start();
-
-  const totalDur = currentMidi.duration;
-  progressInterval = setInterval(() => {
-    const elapsed = Tone.now() - startTime;
-    const pct = Math.min(elapsed / totalDur * 100, 100);
-
-    const mpProg = document.getElementById('mp-progress');
-    const mpTime = document.getElementById('mp-time');
-    if (mpProg) mpProg.style.width = pct + '%';
-    if (mpTime) mpTime.textContent = formatTime(elapsed) + ' / ' + formatTime(totalDur);
-
-    updateBottomProgress(pct);
-    updateBottomTime(elapsed, totalDur);
-
-    if (elapsed >= totalDur) {
-      stopMidi();
-      // Auto-next
-      playNextTrack();
-    }
-  }, 200);
-}
-
-function pauseMidi() {
-  synths.forEach(s => s.dispose());
-  synths = [];
-  isPlaying = false;
-  clearInterval(progressInterval);
-  updatePlayButton(false);
-}
-
-function stopMidi() {
-  synths.forEach(s => s.dispose());
-  synths = [];
-  isPlaying = false;
-  clearInterval(progressInterval);
-  updatePlayButton(false);
-
-  const mpProg = document.getElementById('mp-progress');
-  const mpTime = document.getElementById('mp-time');
-  const mpPlay = document.getElementById('mp-play');
-  if (mpProg) mpProg.style.width = '0%';
-  if (currentMidi && mpTime) {
-    mpTime.textContent = '0:00 / ' + formatTime(currentMidi.duration);
   }
-  if (mpPlay) mpPlay.disabled = !currentMidi;
 
-  updateBottomProgress(0);
-  if (currentMidi) updateBottomTime(0, currentMidi.duration);
-}
+  // ─── Track Loading ──────────────────────────────────────
+  async function loadTrackByIndex(idx) {
+    if (idx < 0 || idx >= allTracks.length) return;
+    currentTrackIndex = idx;
+    const track = allTracks[idx];
 
-function playNextTrack() {
-  if (allTracks.length === 0) return;
-  const next = (currentTrackIndex + 1) % allTracks.length;
-  loadTrackByIndex(next);
-}
+    // Highlight active track
+    document.querySelectorAll('.mp-track.active').forEach(t => t.classList.remove('active'));
+    const el = document.querySelector(`.mp-track[data-idx="${idx}"]`);
+    if (el) {
+      el.classList.add('active');
+      // Expand parent suite if collapsed
+      const suiteList = el.closest('.mp-suite-list');
+      if (suiteList && suiteList.style.display === 'none') {
+        suiteList.style.display = 'block';
+        const arrow = suiteList.previousElementSibling?.querySelector('.mp-arrow');
+        if (arrow) arrow.textContent = '▼';
+      }
+      el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
 
-function playPrevTrack() {
-  if (allTracks.length === 0) return;
-  const prev = currentTrackIndex <= 0 ? allTracks.length - 1 : currentTrackIndex - 1;
-  loadTrackByIndex(prev);
-}
-
-function setVolume(val) {
-  volumeDb = (val / 100) * 24 - 24; // 0→-24dB, 100→0dB
-  synths.forEach(s => { s.volume.value = volumeDb; });
-}
-
-function seekInPlayer(e) {
-  if (!currentMidi) return;
-  const rect = e.currentTarget.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  // Restart at that position (simple approach: restart entire playback)
-  const seekTime = pct * currentMidi.duration;
-  if (isPlaying) {
     stopMidi();
-    // Replay from offset
-    playMidiFromOffset(seekTime);
+
+    setText('mp-title', track.title);
+    setText('mp-sub', track.info ? `${track.group} — ${track.info}` : track.group);
+    const playBtn = $('mp-play');
+    if (playBtn) playBtn.disabled = true;
+    setText('mp-time', '로딩...');
+
+    showBottomPlayer(track.title, currentRegion ? currentRegion.name : '');
+
+    try {
+      const url = `${track.basePath}${encodeURIComponent(track.file)}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const arrayBuffer = await response.arrayBuffer();
+      currentMidi = new Midi(arrayBuffer);
+      if (playBtn) playBtn.disabled = false;
+      setText('mp-time', formatTime(0) + ' / ' + formatTime(currentMidi.duration));
+      updateBottomTime(0, currentMidi.duration);
+      playMidi();
+    } catch (e) {
+      setText('mp-time', '로딩 실패');
+      console.error('Track load error:', e);
+    }
   }
-}
 
-function seekTo(e) {
-  seekInPlayer(e);
-}
+  // ─── Playback (shared core) ─────────────────────────────
+  /**
+   * Core play function. Schedules all MIDI notes from a given offset.
+   * @param {number} [offset=0] Start position in seconds
+   */
+  async function startPlayback(offset) {
+    if (!currentMidi) return;
+    offset = offset || 0;
 
-function playMidiFromOffset(offset) {
-  if (!currentMidi) return;
+    if (Tone.context.state !== 'running') {
+      await Tone.start();
+    }
 
-  synths.forEach(s => s.dispose());
-  synths = [];
+    disposeSynths();
 
-  const now = Tone.now() + 0.1;
-  startTime = now - offset;
+    const now = Tone.now() + 0.1;
+    startTime = now - offset;
 
-  currentMidi.tracks.forEach(track => {
-    const synth = new Tone.PolySynth(Tone.Synth, {
-      envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 },
-      oscillator: { type: 'triangle8' }
-    }).toDestination();
-    synth.volume.value = volumeDb;
-    synths.push(synth);
+    currentMidi.tracks.forEach(track => {
+      const synth = new Tone.PolySynth(Tone.Synth, {
+        envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 },
+        oscillator: { type: 'triangle8' }
+      }).toDestination();
+      synth.volume.value = volumeDb;
+      synths.push(synth);
 
-    track.notes.forEach(note => {
-      if (note.time >= offset) {
-        synth.triggerAttackRelease(
-          note.name,
-          note.duration,
-          note.time - offset + now,
-          note.velocity
-        );
-      }
+      track.notes.forEach(note => {
+        if (note.time >= offset) {
+          try {
+            synth.triggerAttackRelease(
+              note.name, note.duration,
+              note.time - offset + now, note.velocity
+            );
+          } catch (e) {
+            // Skip invalid notes silently
+          }
+        }
+      });
     });
+
+    isPlaying = true;
+    updatePlayButton(true);
+    Tone.Transport.start();
+
+    const totalDur = currentMidi.duration;
+    clearInterval(progressInterval);
+    progressInterval = setInterval(() => {
+      const elapsed = Tone.now() - startTime;
+      const pct = Math.min(elapsed / totalDur * 100, 100);
+
+      setWidth('mp-progress', pct);
+      setText('mp-time', formatTime(elapsed) + ' / ' + formatTime(totalDur));
+      updateBottomProgress(pct);
+      updateBottomTime(elapsed, totalDur);
+
+      if (elapsed >= totalDur) {
+        stopMidi();
+        playNextTrack();
+      }
+    }, 200);
+  }
+
+  function playMidi() { return startPlayback(0); }
+
+  function pauseMidi() {
+    disposeSynths();
+    isPlaying = false;
+    clearInterval(progressInterval);
+    updatePlayButton(false);
+  }
+
+  function stopMidi() {
+    disposeSynths();
+    isPlaying = false;
+    clearInterval(progressInterval);
+    updatePlayButton(false);
+
+    setWidth('mp-progress', 0);
+    if (currentMidi) {
+      setText('mp-time', '0:00 / ' + formatTime(currentMidi.duration));
+    }
+    const playBtn = $('mp-play');
+    if (playBtn) playBtn.disabled = !currentMidi;
+
+    updateBottomProgress(0);
+    if (currentMidi) updateBottomTime(0, currentMidi.duration);
+  }
+
+  function disposeSynths() {
+    synths.forEach(s => { try { s.dispose(); } catch (_) {} });
+    synths = [];
+  }
+
+  function togglePlay() {
+    if (!currentMidi) return;
+    isPlaying ? pauseMidi() : playMidi();
+  }
+
+  function playNextTrack() {
+    if (allTracks.length === 0) return;
+    loadTrackByIndex((currentTrackIndex + 1) % allTracks.length);
+  }
+
+  function playPrevTrack() {
+    if (allTracks.length === 0) return;
+    loadTrackByIndex(currentTrackIndex <= 0 ? allTracks.length - 1 : currentTrackIndex - 1);
+  }
+
+  function setVolume(val) {
+    volumeDb = (val / 100) * 24 - 24;
+    synths.forEach(s => { try { s.volume.value = volumeDb; } catch (_) {} });
+  }
+
+  function seekInPlayer(e) {
+    if (!currentMidi) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const seekTime = pct * currentMidi.duration;
+    stopMidi();
+    startPlayback(seekTime);
+  }
+
+  // ─── UI Updates ─────────────────────────────────────────
+  function updatePlayButton(playing) {
+    setText('mp-play', playing ? '⏸ 일시정지' : '▶ 재생');
+    setText('bp-play', playing ? '⏸' : '▶');
+  }
+
+  function showBottomPlayer(title, regionName) {
+    const bar = $('bottom-player');
+    if (bar) bar.style.display = 'flex';
+    document.body.classList.add('player-active');
+    setText('bp-title', title);
+    setText('bp-region', regionName);
+  }
+
+  function updateBottomProgress(pct) { setWidth('bp-progress', pct); }
+  function updateBottomTime(elapsed, _total) { setText('bp-time', formatTime(elapsed)); }
+
+  function formatTime(seconds) {
+    if (!seconds || seconds < 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  // ─── Global Search ──────────────────────────────────────
+  function handleGlobalSearch(query) {
+    const resultsEl = $('global-search-results');
+    if (!catalog || !resultsEl || !(query || '').trim()) {
+      if (resultsEl) resultsEl.style.display = 'none';
+      return;
+    }
+
+    query = query.toLowerCase().trim();
+    const results = [];
+    const MAX = 20;
+
+    outer:
+    for (const region of catalog.regions) {
+      for (const group of (region.groups || [])) {
+        for (const track of (group.tracks || [])) {
+          const fields = [track.title, track.title_ko, track.country_en, track.country_ko].filter(Boolean);
+          if (fields.some(f => f.toLowerCase().includes(query))) {
+            const subtitle = track.country_ko ? `${track.country_ko} (${track.country_en || ''})` : '';
+            results.push({
+              title: track.title_ko ? `${track.title_ko} (${track.title})` : track.title,
+              regionName: subtitle || region.name,
+              regionId: region.id,
+              emoji: region.emoji,
+              origTitle: track.title
+            });
+            if (results.length >= MAX) break outer;
+          }
+        }
+      }
+    }
+
+    if (results.length === 0) {
+      resultsEl.style.display = 'none';
+      return;
+    }
+
+    resultsEl.style.display = '';
+    resultsEl.innerHTML = results.map(r =>
+      `<div class="search-result-item" onclick="Harmonia.searchClick('${esc(r.regionId)}', '${esc(encodeURIComponent(r.origTitle))}')">
+        <span class="sr-emoji">${r.emoji}</span>
+        <span class="sr-title">${esc(r.title)}</span>
+        <span class="sr-region">${esc(r.regionName)}</span>
+      </div>`
+    ).join('');
+  }
+
+  function searchResultClick(regionId, encodedTitle) {
+    const title = decodeURIComponent(encodedTitle);
+    const resultsEl = $('global-search-results');
+    const searchEl = $('global-search');
+    if (resultsEl) resultsEl.style.display = 'none';
+    if (searchEl) searchEl.value = '';
+
+    showRegion(regionId);
+    const idx = allTracks.findIndex(t => t.title === title);
+    if (idx >= 0) {
+      setTimeout(() => loadTrackByIndex(idx), 100);
+    }
+  }
+
+  // Close search on outside click
+  document.addEventListener('click', (e) => {
+    const searchArea = document.querySelector('.hero-search');
+    const results = $('global-search-results');
+    if (searchArea && results && !searchArea.contains(e.target)) {
+      results.style.display = 'none';
+    }
   });
 
-  isPlaying = true;
-  updatePlayButton(true);
-  Tone.Transport.start();
-
-  const totalDur = currentMidi.duration;
-  progressInterval = setInterval(() => {
-    const elapsed = Tone.now() - startTime;
-    const pct = Math.min(elapsed / totalDur * 100, 100);
-
-    const mpProg = document.getElementById('mp-progress');
-    const mpTime = document.getElementById('mp-time');
-    if (mpProg) mpProg.style.width = pct + '%';
-    if (mpTime) mpTime.textContent = formatTime(elapsed) + ' / ' + formatTime(totalDur);
-
-    updateBottomProgress(pct);
-    updateBottomTime(elapsed, totalDur);
-
-    if (elapsed >= totalDur) {
-      stopMidi();
-      playNextTrack();
-    }
-  }, 200);
-}
-
-// === UI Updates ===
-function updatePlayButton(playing) {
-  const mpPlay = document.getElementById('mp-play');
-  const bpPlay = document.getElementById('bp-play');
-  if (mpPlay) mpPlay.textContent = playing ? '⏸ 일시정지' : '▶ 재생';
-  if (bpPlay) bpPlay.textContent = playing ? '⏸' : '▶';
-}
-
-function showBottomPlayer(title, regionName) {
-  const bar = document.getElementById('bottom-player');
-  bar.style.display = 'flex';
-  document.body.classList.add('player-active');
-  document.getElementById('bp-title').textContent = title;
-  document.getElementById('bp-region').textContent = regionName;
-}
-
-function updateBottomProgress(pct) {
-  const el = document.getElementById('bp-progress');
-  if (el) el.style.width = pct + '%';
-}
-
-function updateBottomTime(elapsed, total) {
-  const el = document.getElementById('bp-time');
-  if (el) el.textContent = formatTime(elapsed);
-}
-
-function formatTime(seconds) {
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60);
-  return m + ':' + (s < 10 ? '0' : '') + s;
-}
-
-// === Global Search ===
-function handleGlobalSearch(query) {
-  const resultsEl = document.getElementById('global-search-results');
-  if (!catalog || !query.trim()) {
-    resultsEl.style.display = 'none';
-    return;
+  // ─── Timeline ───────────────────────────────────────────
+  function showTimeline() {
+    setDisplay('home-view', 'none');
+    setDisplay('region-view', 'none');
+    setDisplay('timeline-view', '');
+    buildTimeline();
+    window.scrollTo(0, 0);
   }
 
-  query = query.toLowerCase().trim();
-  const results = [];
+  function buildTimeline() {
+    const container = $('timeline-content');
+    if (!container || !catalog || !catalog.timeline) return;
 
-  for (const region of catalog.regions) {
-    for (const group of region.groups) {
-      for (const track of group.tracks) {
-        const titleMatch = track.title.toLowerCase().includes(query);
-        const titleKoMatch = track.title_ko && track.title_ko.toLowerCase().includes(query);
-        const countryEnMatch = track.country_en && track.country_en.toLowerCase().includes(query);
-        const countryKoMatch = track.country_ko && track.country_ko.includes(query);
-        if (titleMatch || titleKoMatch || countryEnMatch || countryKoMatch) {
-          const subtitle = track.country_ko ? `${track.country_ko} (${track.country_en})` : '';
-          results.push({
-            title: track.title_ko ? `${track.title_ko} (${track.title})` : track.title,
-            regionName: subtitle || region.name,
-            regionId: region.id,
-            emoji: region.emoji,
-            file: track.file,
-            group: group.name,
-            origTitle: track.title
-          });
-        }
-        if (results.length >= 20) break;
+    const events = [...catalog.timeline].sort((a, b) => a.year - b.year);
+    const parts = [];
+
+    for (const ev of events) {
+      const yearStr = ev.year < 0 ? `BC ${Math.abs(ev.year)}` : `${ev.year}`;
+      const sideClass = ev.side === 'korea' ? 'tl-left' : 'tl-right';
+      const highlight = (ev.title || '').includes('★') ? ' tl-highlight' : '';
+
+      let playBtn = '';
+      if (ev.trackTitle && ev.regionId) {
+        // Use data attributes for robust matching
+        const safeTitle = esc(ev.trackTitle);
+        const safeRegion = esc(ev.regionId);
+        playBtn = `<button class="tl-play-btn" data-region="${safeRegion}" data-track="${safeTitle}" onclick="Harmonia.timelinePlay(this)">▶ 듣기</button>`;
       }
-      if (results.length >= 20) break;
-    }
-    if (results.length >= 20) break;
-  }
 
-  if (results.length === 0) {
-    resultsEl.style.display = 'none';
-    return;
-  }
-
-  resultsEl.style.display = '';
-  resultsEl.innerHTML = results.map((r, i) => {
-    const clickTitle = r.origTitle || r.title;
-    return `<div class="search-result-item" onclick="searchResultClick('${r.regionId}', '${encodeURIComponent(clickTitle)}')">
-      <span class="sr-emoji">${r.emoji}</span>
-      <span class="sr-title">${r.title}</span>
-      <span class="sr-region">${r.regionName}</span>
-    </div>`;
-  }).join('');
-}
-
-function searchResultClick(regionId, encodedTitle) {
-  const title = decodeURIComponent(encodedTitle);
-  document.getElementById('global-search-results').style.display = 'none';
-  document.getElementById('global-search').value = '';
-
-  // Navigate to region then find and play track
-  showRegion(regionId);
-
-  // Find track index
-  const idx = allTracks.findIndex(t => t.title === title);
-  if (idx >= 0) {
-    setTimeout(() => loadTrackByIndex(idx), 100);
-  }
-}
-
-// Close search results when clicking outside
-document.addEventListener('click', (e) => {
-  const searchArea = document.querySelector('.hero-search');
-  const results = document.getElementById('global-search-results');
-  if (searchArea && results && !searchArea.contains(e.target)) {
-    results.style.display = 'none';
-  }
-});
-
-// === Timeline View ===
-function showTimeline() {
-  document.getElementById('home-view').style.display = 'none';
-  document.getElementById('region-view').style.display = 'none';
-  document.getElementById('timeline-view').style.display = '';
-  buildTimeline();
-  window.scrollTo(0, 0);
-}
-
-function buildTimeline() {
-  const container = document.getElementById('timeline-content');
-  if (!container || !catalog || !catalog.timeline) return;
-
-  const events = catalog.timeline.sort((a, b) => a.year - b.year);
-
-  let html = '';
-  let lastYear = null;
-
-  for (const ev of events) {
-    const yearStr = ev.year < 0 ? `BC ${Math.abs(ev.year)}` : `${ev.year}`;
-    const sideClass = ev.side === 'korea' ? 'tl-left' : 'tl-right';
-    const highlight = ev.title.includes('★') ? ' tl-highlight' : '';
-
-    // Play button if track exists
-    let playBtn = '';
-    if (ev.trackTitle) {
-      const escaped = ev.trackTitle.replace(/'/g, "\\'");
-      playBtn = `<button class="tl-play-btn" onclick="timelinePlay('${ev.regionId}', '${escaped}')">▶ 듣기</button>`;
-    }
-
-    html += `
-      <div class="tl-item ${sideClass}${highlight}">
-        <div class="tl-year">${yearStr}</div>
-        <div class="tl-card">
-          <div class="tl-side-label">${ev.side === 'korea' ? '🇰🇷 한국' : '🌍 세계'}</div>
-          <h3 class="tl-title">${ev.title}</h3>
-          <p class="tl-desc">${ev.desc}</p>
-          ${playBtn}
+      parts.push(`
+        <div class="tl-item ${sideClass}${highlight}">
+          <div class="tl-year">${yearStr}</div>
+          <div class="tl-card">
+            <div class="tl-side-label">${ev.side === 'korea' ? '🇰🇷 한국' : '🌍 세계'}</div>
+            <h3 class="tl-title">${esc(ev.title)}</h3>
+            <p class="tl-desc">${esc(ev.desc)}</p>
+            ${playBtn}
+          </div>
         </div>
-      </div>
-    `;
-  }
-
-  container.innerHTML = html;
-  observeFadeIns();
-}
-
-async function timelinePlay(regionId, trackTitle) {
-  if (!catalog) return;
-  const region = catalog.regions.find(r => r.id === regionId);
-  if (!region) return;
-
-  // Find the track's file and basePath
-  let targetFile = null;
-  let basePath = region.basePath;
-  for (const group of region.groups) {
-    for (const track of group.tracks) {
-      if (track.title === trackTitle) {
-        targetFile = track.file;
-        break;
-      }
+      `);
     }
-    if (targetFile) break;
-  }
-  if (!targetFile) return;
 
-  // Ensure audio context
-  if (Tone.context.state !== 'running') {
-    await Tone.start();
+    container.innerHTML = parts.join('');
+    observeFadeIns();
   }
 
-  // Stop current playback
-  stopMidi();
+  /**
+   * Play a track from the timeline. Uses data attributes for robust matching.
+   * @param {HTMLElement} btn Button element with data-region and data-track
+   */
+  async function timelinePlay(btn) {
+    if (!catalog || !btn) return;
+    const regionId = btn.getAttribute('data-region');
+    const trackTitle = btn.getAttribute('data-track');
+    if (!regionId || !trackTitle) return;
 
-  // Show bottom player
-  showBottomPlayer(trackTitle, region.name);
+    const region = catalog.regions.find(r => r.id === regionId);
+    if (!region) return;
 
-  // Load and play directly (no page navigation)
-  try {
-    const url = `${basePath}${encodeURIComponent(targetFile)}`;
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
-    currentMidi = new Midi(arrayBuffer);
-    updateBottomTime(0, currentMidi.duration);
-    playMidi();
-  } catch (e) {
-    console.error('Timeline play error:', e);
+    // Find track by title (try exact, then partial)
+    let targetFile = null;
+    const basePath = region.basePath || '/static/midi/';
+    for (const group of (region.groups || [])) {
+      for (const track of (group.tracks || [])) {
+        if (track.title === trackTitle || track.file.includes(trackTitle)) {
+          targetFile = track.file;
+          break;
+        }
+      }
+      if (targetFile) break;
+    }
+    if (!targetFile) {
+      console.warn(`Timeline: track not found: ${trackTitle} in ${regionId}`);
+      return;
+    }
+
+    try {
+      if (Tone.context.state !== 'running') await Tone.start();
+      stopMidi();
+      showBottomPlayer(trackTitle, region.name);
+
+      const url = `${basePath}${encodeURIComponent(targetFile)}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const arrayBuffer = await response.arrayBuffer();
+      currentMidi = new Midi(arrayBuffer);
+      updateBottomTime(0, currentMidi.duration);
+      await startPlayback(0);
+    } catch (e) {
+      console.error('Timeline play error:', e);
+    }
   }
-}
 
-// === Init ===
-document.addEventListener('DOMContentLoaded', loadCatalog);
+  // ─── Init ───────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', loadCatalog);
+
+  // ─── Mobile Menu ─────────────────────────────────────────
+  function toggleMobileMenu() {
+    const menu = $('mobile-menu');
+    if (menu) menu.classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    const menu = $('mobile-menu');
+    if (menu) menu.classList.remove('open');
+  }
+
+  // ─── Scroll Fade-In ─────────────────────────────────────
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  function observeFadeIns() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => fadeObserver.observe(el));
+  }
+
+  // Run initial observation
+  document.addEventListener('DOMContentLoaded', observeFadeIns);
+
+  // ─── Public API (for onclick handlers in HTML) ──────────
+  window.Harmonia = {
+    showHome,
+    showRegion,
+    showTimeline,
+    togglePlay,
+    stop: stopMidi,
+    nextTrack: playNextTrack,
+    prevTrack: playPrevTrack,
+    loadTrack: loadTrackByIndex,
+    setVolume,
+    seekInPlayer,
+    seekTo: seekInPlayer,
+    filterTracks,
+    toggleSuite,
+    handleGlobalSearch,
+    searchClick: searchResultClick,
+    timelinePlay,
+    toggleMobile: toggleMobileMenu,
+    closeMobile: closeMobileMenu,
+  };
+})();

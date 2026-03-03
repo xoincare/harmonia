@@ -474,6 +474,29 @@ timeline = [
     {"year": 2003, "side": "korea", "title": "판소리 유네스코 등재", "desc": "인류무형문화유산 — 세계가 인정한 한국 음악극", "regionId": "korean", "trackTitle": None},
 ]
 
+# Resolve timeline trackTitle → trackFile + trackBasePath for robust playback
+def resolve_timeline_tracks(timeline_data, regions_data):
+    """Add trackFile and trackBasePath to timeline entries that have trackTitle."""
+    for ev in timeline_data:
+        if not ev.get("trackTitle"):
+            continue
+        region = next((r for r in regions_data if r["id"] == ev["regionId"]), None)
+        if not region:
+            continue
+        found = False
+        for group in region["groups"]:
+            for track in group["tracks"]:
+                if track["title"] == ev["trackTitle"]:
+                    ev["trackFile"] = track["file"]
+                    ev["trackBasePath"] = region["basePath"]
+                    found = True
+                    break
+            if found:
+                break
+        if not found:
+            print(f"  ⚠ Timeline track not found: '{ev['trackTitle']}' in region '{ev['regionId']}'")
+
+resolve_timeline_tracks(timeline, regions)
 catalog["timeline"] = timeline
 
 out_path = os.path.join(BASE, "catalog.json")
