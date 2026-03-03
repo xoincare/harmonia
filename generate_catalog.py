@@ -271,6 +271,7 @@ regions.append(make_region(
 
 # 10. National Anthems — properly classified
 ANTHEM_COUNTRY_MAP = {
+    "aegukga-south-korea.mid": {"country_en": "South Korea", "country_ko": "대한민국", "title_ko": "애국가"},
     "la-marseillaise.mid": {"country_en": "France", "country_ko": "프랑스", "title_ko": "라 마르세예즈"},
     "god-save-the-queen.mid": {"country_en": "United Kingdom", "country_ko": "영국", "title_ko": "갓 세이브 더 퀸"},
     "the-star-spangled-banner.mid": {"country_en": "United States", "country_ko": "미국", "title_ko": "성조기"},
@@ -298,6 +299,7 @@ ANTHEM_COUNTRY_MAP = {
 # Sub-groups for national_anthems region
 ANTHEM_SUBGROUPS = {
     "국가(國歌)": [
+        "aegukga-south-korea.mid",
         "la-marseillaise.mid", "god-save-the-queen.mid", "the-star-spangled-banner.mid",
         "deutschlandlied.mid", "advance-australia-fair.mid", "het-wilhelmus.mid",
         "osterreichische-bundeshymne.mid", "god-save-the-tsar.mid",
@@ -468,7 +470,7 @@ timeline = [
     {"year": 1870, "side": "korea", "title": "영산회상의 완성", "desc": "현악영산회상 9곡 모음곡 — 풍류의 정수", "regionId": "korean", "trackTitle": "영산회상 상령산"},
     {"year": 1880, "side": "world", "title": "라틴 아메리카 음악", "desc": "호로포·왈츠·탱고 — 라틴 리듬의 확산", "regionId": "latin_america", "trackTitle": None},
     {"year": 1899, "side": "world", "title": "래그타임 혁명", "desc": "스콧 조플린 'Maple Leaf Rag' — 미국 대중음악의 시작", "regionId": "national_anthems", "trackTitle": "Maple Leaf Rag"},
-    {"year": 1902, "side": "korea", "title": "애국가 작곡", "desc": "안익태 작곡 — 대한민국 국가", "regionId": "korean", "trackTitle": None},
+    {"year": 1935, "side": "korea", "title": "애국가 작곡", "desc": "안익태 작곡 — 대한민국 국가", "regionId": "national_anthems", "trackTitle": "Aegukga South Korea"},
     {"year": 1950, "side": "korea", "title": "국립국악원 설립", "desc": "한국 전통음악 보존·연구·공연의 중심 기관", "regionId": "korean", "trackTitle": None},
     {"year": 2001, "side": "korea", "title": "종묘제례악 유네스코 등재", "desc": "세종대왕의 보태평·정대업 — 인류무형문화유산", "regionId": "korean", "trackTitle": None},
     {"year": 2003, "side": "korea", "title": "판소리 유네스코 등재", "desc": "인류무형문화유산 — 세계가 인정한 한국 음악극", "regionId": "korean", "trackTitle": None},

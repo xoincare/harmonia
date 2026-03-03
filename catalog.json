@@ -1,5 +1,5 @@
 {
-  "totalSongs": 748,
+  "totalSongs": 749,
   "regions": [
     {
       "id": "korean",
@@ -49,9 +49,7 @@
               "title": "영산회상 하현도드리",
               "file": "영산회상 하현도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1500,
-          "history": "원곡은 불교 영산회상(靈山會上)에서 유래. 조선 후기 풍류방 음악의 정수. 상령산→중령산→세령산→가락덜이→상현도드리→하현도드리→염불도드리→타령→군악 9곡 구성."
+          ]
         },
         {
           "name": "관악영산회상 (8곡)",
@@ -89,9 +87,45 @@
               "title": "관악영산회상 타령",
               "file": "관악영산회상 타령_daegeum_piri_haegeum_ajaeng_v2.mid"
             }
-          ],
-          "year": 1500,
-          "history": "원곡은 불교 영산회상(靈山會上)에서 유래. 조선 후기 풍류방 음악의 정수. 상령산→중령산→세령산→가락덜이→상현도드리→하현도드리→염불도드리→타령→군악 9곡 구성."
+          ]
+        },
+        {
+          "name": "평조회상 (8곡)",
+          "era": "조선 후기",
+          "tracks": [
+            {
+              "title": "평조회상 가락덜이",
+              "file": "평조회상 가락덜이_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 군악",
+              "file": "평조회상 군악_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 상령산",
+              "file": "평조회상 상령산_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 상현도드리",
+              "file": "평조회상 상현도드리_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 세령산",
+              "file": "평조회상 세령산_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 염불도드리",
+              "file": "평조회상 염불도드리_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 중령산",
+              "file": "평조회상 중령산_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "평조회상 타령",
+              "file": "평조회상 타령_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            }
+          ]
         },
         {
           "name": "독립곡 (4곡)",
@@ -113,9 +147,33 @@
               "title": "여민락",
               "file": "여민락_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1600,
-          "history": "개별 연주되는 독립적인 정악 기악곡."
+          ]
+        },
+        {
+          "name": "도드리·천년만세 (5곡)",
+          "era": "조선 후기",
+          "tracks": [
+            {
+              "title": "밑도드리",
+              "file": "밑도드리_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "웃도드리",
+              "file": "웃도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "천년만세 계면가락도드리",
+              "file": "천년만세 계면가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "천년만세 양청도드리",
+              "file": "천년만세 양청도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "천년만세 우조가락도드리",
+              "file": "천년만세 우조가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+            }
+          ]
         },
         {
           "name": "취타·현악취타 (10곡)",
@@ -161,120 +219,7 @@
               "title": "현악취타 취타",
               "file": "현악취타 취타_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1600,
-          "history": "조선시대 군악 행진곡. 왕의 행차나 군사 의식에 사용. 취타(吹打)는 '불고 치다'는 뜻. 대취타와 소취타로 구분."
-        },
-        {
-          "name": "남창 반우반계 (2곡)",
-          "era": "조선 후기",
-          "tracks": [
-            {
-              "title": "남창반우반계 반엽",
-              "file": "남창반우반계 반엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "남창반우반계 편락",
-              "file": "남창반우반계 편락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
-            }
-          ],
-          "year": 1600
-        },
-        {
-          "name": "자진한잎 (7곡)",
-          "era": "조선 중기~후기",
-          "tracks": [
-            {
-              "title": "자진한잎 경풍년 변조두거",
-              "file": "자진한잎 경풍년 변조두거_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "자진한잎 경풍년 우조두거",
-              "file": "자진한잎 경풍년 우조두거_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "자진한잎 수룡음 계락",
-              "file": "자진한잎 수룡음 계락_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "자진한잎 수룡음 농",
-              "file": "자진한잎 수룡음 농_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "자진한잎 수룡음 편1",
-              "file": "자진한잎 수룡음 편1_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "자진한잎 수룡음 편2",
-              "file": "자진한잎 수룡음 편2_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "자진한잎 염양춘",
-              "file": "자진한잎 염양춘_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            }
-          ],
-          "year": 1600,
-          "history": "조선 후기 풍류 기악곡. 잔잔하고 서정적인 선율."
-        },
-        {
-          "name": "한국 민요 (3곡)",
-          "era": "전통",
-          "tracks": [
-            {
-              "title": "Arirang Flute",
-              "file": "arirang_flute.mid"
-            },
-            {
-              "title": "Arirang Flutetunes",
-              "file": "arirang_flutetunes.mid"
-            },
-            {
-              "title": "Doraji Flute",
-              "file": "doraji_flute.mid"
-            }
-          ],
-          "year": 1600,
-          "history": "한국 전통 민요를 MIDI로 변환한 곡."
-        },
-        {
-          "name": "평조회상 (8곡)",
-          "era": "조선 후기",
-          "tracks": [
-            {
-              "title": "평조회상 가락덜이",
-              "file": "평조회상 가락덜이_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 군악",
-              "file": "평조회상 군악_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 상령산",
-              "file": "평조회상 상령산_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 상현도드리",
-              "file": "평조회상 상현도드리_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 세령산",
-              "file": "평조회상 세령산_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 염불도드리",
-              "file": "평조회상 염불도드리_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 중령산",
-              "file": "평조회상 중령산_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            },
-            {
-              "title": "평조회상 타령",
-              "file": "평조회상 타령_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
-            }
-          ],
-          "year": 1700,
-          "history": "영산회상을 평조(平調)로 옮긴 것. 우조 영산회상보다 밝고 화사한 분위기."
+          ]
         },
         {
           "name": "남창 우조 가곡 (11곡)",
@@ -324,9 +269,7 @@
               "title": "남창우조 평거",
               "file": "남창우조 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1750,
-          "history": "남성이 부르는 우조(羽調) 가곡. 조선 후기 양반 사대부의 풍류 문화를 대표. 이세춘(李世春) 등 가객들이 발전시킴."
+          ]
         },
         {
           "name": "남창 계면 가곡 (13곡)",
@@ -384,9 +327,21 @@
               "title": "남창계면 평롱",
               "file": "남창계면 평롱_daegeum_piri_haegeum_gayageum_v2.mid"
             }
-          ],
-          "year": 1750,
-          "history": "남성이 부르는 계면조(界面調) 가곡. 우조보다 슬프고 애절한 선율. 초수대엽→이수대엽→삼수대엽→소용이→우롱→언롱 등 점차 기교가 복잡해지는 구조."
+          ]
+        },
+        {
+          "name": "남창 반우반계 (2곡)",
+          "era": "조선 후기",
+          "tracks": [
+            {
+              "title": "남창반우반계 반엽",
+              "file": "남창반우반계 반엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "남창반우반계 편락",
+              "file": "남창반우반계 편락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+            }
+          ]
         },
         {
           "name": "여창 우조 가곡 (5곡)",
@@ -412,9 +367,7 @@
               "title": "여창우조 평거",
               "file": "여창우조 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1750,
-          "history": "여성이 부르는 우조 가곡. 19세기 이후 기생(妓生)들이 주로 연행. 남창보다 높은 음역."
+          ]
         },
         {
           "name": "여창 계면 가곡 (7곡)",
@@ -448,9 +401,7 @@
               "title": "여창계면 평거",
               "file": "여창계면 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1750,
-          "history": "여성이 부르는 계면조 가곡. 섬세하고 애절한 표현이 특징."
+          ]
         },
         {
           "name": "여창 반우반계 (2곡)",
@@ -464,37 +415,59 @@
               "title": "여창반우반계 환계락",
               "file": "여창반우반계 환계락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1750,
-          "history": "우조와 계면조가 섞인 가곡. 환계락은 가곡 전체의 마지막을 장식하는 곡."
+          ]
         },
         {
-          "name": "도드리·천년만세 (5곡)",
-          "era": "조선 후기",
+          "name": "자진한잎 (7곡)",
+          "era": "조선 중기~후기",
           "tracks": [
             {
-              "title": "밑도드리",
-              "file": "밑도드리_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+              "title": "자진한잎 경풍년 변조두거",
+              "file": "자진한잎 경풍년 변조두거_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             },
             {
-              "title": "웃도드리",
-              "file": "웃도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+              "title": "자진한잎 경풍년 우조두거",
+              "file": "자진한잎 경풍년 우조두거_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             },
             {
-              "title": "천년만세 계면가락도드리",
-              "file": "천년만세 계면가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+              "title": "자진한잎 수룡음 계락",
+              "file": "자진한잎 수룡음 계락_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             },
             {
-              "title": "천년만세 양청도드리",
-              "file": "천년만세 양청도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+              "title": "자진한잎 수룡음 농",
+              "file": "자진한잎 수룡음 농_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             },
             {
-              "title": "천년만세 우조가락도드리",
-              "file": "천년만세 우조가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
+              "title": "자진한잎 수룡음 편1",
+              "file": "자진한잎 수룡음 편1_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "자진한잎 수룡음 편2",
+              "file": "자진한잎 수룡음 편2_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
+            },
+            {
+              "title": "자진한잎 염양춘",
+              "file": "자진한잎 염양춘_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             }
-          ],
-          "year": 1800,
-          "history": "조선 후기 풍류방 기악곡. 계면가락도드리와 양청도드리를 포함한 모음곡."
+          ]
+        },
+        {
+          "name": "한국 민요 (3곡)",
+          "era": "전통",
+          "tracks": [
+            {
+              "title": "Arirang Flute",
+              "file": "arirang_flute.mid"
+            },
+            {
+              "title": "Arirang Flutetunes",
+              "file": "arirang_flutetunes.mid"
+            },
+            {
+              "title": "Doraji Flute",
+              "file": "doraji_flute.mid"
+            }
+          ]
         }
       ]
     },
@@ -507,49 +480,19 @@
       "basePath": "/static/midi/world/ancient_greco_roman/",
       "groups": [
         {
-          "name": "기원전 5~3세기 (고전기)",
-          "era": "기원전 5~3세기 (고전기)",
-          "year": -400,
-          "tracks": [
-            {
-              "title": "Orestes Papyrus Fragment 200Bc",
-              "file": "orestes_papyrus_fragment_200BC.mid",
-              "info": "에우리피데스 오레스테스 코러스 (BC 408) — 현존 최고 그리스 비극 음악 단편"
-            }
-          ],
-          "history": "에우리피데스(Euripides, BC 480~406)의 비극 오레스테스 코러스 등. 파피루스에 기록된 고대 그리스 음악 단편들. 고대 그리스 음계(테트라코드)와 기보법 사용."
-        },
-        {
-          "name": "기원전 2~1세기 (헬레니즘)",
-          "era": "기원전 2~1세기 (헬레니즘)",
-          "year": -150,
-          "tracks": [
-            {
-              "title": "Delphic Hymn 2 Limenius 128Bc",
-              "file": "delphic_hymn_2_limenius_128BC.mid",
-              "info": "델피 아폴론 찬가 (BC 128) — 아테네인들이 델피 신전에서 연주"
-            },
-            {
-              "title": "Delphic Hymn To Apollo 128Bc",
-              "file": "delphic_hymn_to_apollo_128BC.mid",
-              "info": "델피 아폴론 찬가 (BC 128) — 아테네인들이 델피 신전에서 연주"
-            },
-            {
-              "title": "Seikilos Epitaph 200Bc",
-              "file": "seikilos_epitaph_200BC.mid",
-              "info": "세이킬로스 비문 (BC 200~100) — 세계 최고(最古) 완전한 악곡. 터키 아이딘 묘비 발견"
-            }
-          ],
-          "history": "세이킬로스 비문(Seikilos Epitaph, BC 200~100): 터키 아이딘에서 발견된 묘비에 새겨진 노래. 완전한 형태로 남은 세계 최고(最古)의 악곡. '살아있는 동안 빛나라(Hoson zes, phainou)'. 델피 찬가: 아폴론 신전에서 발견."
-        },
-        {
-          "name": "기타 고대 음악",
-          "era": "고대",
-          "year": -100,
+          "name": "고대 그리스·로마",
           "tracks": [
             {
               "title": "Byzantine Chant 6Thc",
               "file": "byzantine_chant_6thC.mid"
+            },
+            {
+              "title": "Delphic Hymn 2 Limenius 128Bc",
+              "file": "delphic_hymn_2_limenius_128BC.mid"
+            },
+            {
+              "title": "Delphic Hymn To Apollo 128Bc",
+              "file": "delphic_hymn_to_apollo_128BC.mid"
             },
             {
               "title": "Egyptian Hymn Reconstruction",
@@ -568,42 +511,38 @@
               "file": "istanpitta_italian_estampie_14thC.mid"
             },
             {
+              "title": "Mesomedes Hymn To Helios 2Ndc Ad",
+              "file": "mesomedes_hymn_to_helios_2ndC_AD.mid"
+            },
+            {
+              "title": "Mesomedes Hymn To Muse 2Ndc Ad",
+              "file": "mesomedes_hymn_to_muse_2ndC_AD.mid"
+            },
+            {
+              "title": "Mesomedes Hymn To Nemesis 2Ndc Ad",
+              "file": "mesomedes_hymn_to_nemesis_2ndC_AD.mid"
+            },
+            {
+              "title": "Orestes Papyrus Fragment 200Bc",
+              "file": "orestes_papyrus_fragment_200BC.mid"
+            },
+            {
+              "title": "Roman Triumph March Reconstruction",
+              "file": "roman_triumph_march_reconstruction.mid"
+            },
+            {
               "title": "Saltarello Italian 14Thc",
               "file": "saltarello_italian_14thC.mid"
+            },
+            {
+              "title": "Seikilos Epitaph 200Bc",
+              "file": "seikilos_epitaph_200BC.mid"
             },
             {
               "title": "Trotto Italian Dance 14Thc",
               "file": "trotto_italian_dance_14thC.mid"
             }
-          ],
-          "history": "고대 그리스·로마 시대의 다양한 음악 단편들을 현대 학자들이 복원한 것. 원본은 파피루스, 석판, 필사본 등에 기록."
-        },
-        {
-          "name": "1~3세기 (로마 제국)",
-          "era": "1~3세기 (로마 제국)",
-          "year": 150,
-          "tracks": [
-            {
-              "title": "Mesomedes Hymn To Helios 2Ndc Ad",
-              "file": "mesomedes_hymn_to_helios_2ndC_AD.mid",
-              "info": "메소메데스 (2세기) — 하드리아누스 황제 궁정 음악가"
-            },
-            {
-              "title": "Mesomedes Hymn To Muse 2Ndc Ad",
-              "file": "mesomedes_hymn_to_muse_2ndC_AD.mid",
-              "info": "메소메데스 (2세기) — 하드리아누스 황제 궁정 음악가"
-            },
-            {
-              "title": "Mesomedes Hymn To Nemesis 2Ndc Ad",
-              "file": "mesomedes_hymn_to_nemesis_2ndC_AD.mid",
-              "info": "메소메데스 (2세기) — 하드리아누스 황제 궁정 음악가"
-            },
-            {
-              "title": "Roman Triumph March Reconstruction",
-              "file": "roman_triumph_march_reconstruction.mid"
-            }
-          ],
-          "history": "메소메데스(Mesomedes, 2세기): 크레타 출신, 로마 황제 하드리아누스(Hadrian, 117~138 재위)의 궁정 음악가. '태양 찬가', '뮤즈 찬가', '네메시스 찬가' 등이 현존. 고대 그리스 음악 전통의 마지막 증거."
+          ]
         }
       ]
     },
@@ -616,61 +555,7 @@
       "basePath": "/static/midi/world/europe_medieval/",
       "groups": [
         {
-          "name": "그레고리안 성가 (6~10세기)",
-          "era": "그레고리안 성가 (6~10세기)",
-          "year": 800,
-          "tracks": [
-            {
-              "title": "Agnus Dei (C)Clark",
-              "file": "agnus_dei_(c)clark.mid"
-            }
-          ],
-          "history": "교황 그레고리오 1세(재위 590~604)에게 귀속된 단성 성가. 실제로는 8~10세기에 걸쳐 형성. 네우마(neuma) 기보법 사용. 서양 음악 기보법의 기원. 귀도 다레초(Guido d'Arezzo, 991~1033)가 4선 보표와 솔미제이션(도레미) 발명."
-        },
-        {
-          "name": "트루바두르·음유시인 (11~13세기)",
-          "era": "트루바두르·음유시인 (11~13세기)",
-          "year": 1150,
-          "tracks": [
-            {
-              "title": "Cantigas De S Maria I (C)Clark",
-              "file": "cantigas_de_s_maria_i_(c)clark.mid"
-            },
-            {
-              "title": "Cantigas De S Maria Ii (C)Clark",
-              "file": "cantigas_de_s_maria_ii_(c)clark.mid"
-            },
-            {
-              "title": "Cantigas De S Maria Iii (C)Clark",
-              "file": "cantigas_de_s_maria_iii_(c)clark.mid"
-            },
-            {
-              "title": "Ductia",
-              "file": "ductia.mid"
-            },
-            {
-              "title": "Ductia (C)Clark",
-              "file": "ductia_(c)clark.mid"
-            },
-            {
-              "title": "Estampie 1 (C)Clark",
-              "file": "estampie_1_(c)clark.mid"
-            },
-            {
-              "title": "Estampie 2 (C)Clark",
-              "file": "estampie_2_(c)clark.mid"
-            },
-            {
-              "title": "Estampie 3 (C)Clark",
-              "file": "estampie_3_(c)clark.mid"
-            }
-          ],
-          "history": "11~13세기 남프랑스 트루바두르, 북프랑스 트루베르, 독일 미네장(Minnesang)의 세속 음악. 에스탐피(estampie)·살타렐로(saltarello)·트로토(trotto) 등 중세 무곡도 이 시기. 칸티가스 데 산타 마리아(Cantigas de Santa Maria): 알폰소 10세(1221~1284)가 편찬한 400여곡의 성모 찬가집."
-        },
-        {
-          "name": "기타 중세·르네상스",
-          "era": "중세~르네상스",
-          "year": 1300,
+          "name": "유럽 중세·르네상스",
           "tracks": [
             {
               "title": "4Note",
@@ -679,6 +564,10 @@
             {
               "title": "Actus",
               "file": "actus.mid"
+            },
+            {
+              "title": "Agnus Dei (C)Clark",
+              "file": "agnus_dei_(c)clark.mid"
             },
             {
               "title": "Alfonsin",
@@ -705,6 +594,18 @@
               "file": "bonnet.mid"
             },
             {
+              "title": "Cantigas De S Maria I (C)Clark",
+              "file": "cantigas_de_s_maria_i_(c)clark.mid"
+            },
+            {
+              "title": "Cantigas De S Maria Ii (C)Clark",
+              "file": "cantigas_de_s_maria_ii_(c)clark.mid"
+            },
+            {
+              "title": "Cantigas De S Maria Iii (C)Clark",
+              "file": "cantigas_de_s_maria_iii_(c)clark.mid"
+            },
+            {
               "title": "Conductus (C)Clark",
               "file": "conductus_(c)clark.mid"
             },
@@ -729,6 +630,14 @@
               "file": "deo_gracias_anglia_(c)clark.mid"
             },
             {
+              "title": "Ductia",
+              "file": "ductia.mid"
+            },
+            {
+              "title": "Ductia (C)Clark",
+              "file": "ductia_(c)clark.mid"
+            },
+            {
               "title": "Duo (C)Clark",
               "file": "duo_(c)clark.mid"
             },
@@ -751,6 +660,18 @@
             {
               "title": "Encina4",
               "file": "encina4.mid"
+            },
+            {
+              "title": "Estampie 1 (C)Clark",
+              "file": "estampie_1_(c)clark.mid"
+            },
+            {
+              "title": "Estampie 2 (C)Clark",
+              "file": "estampie_2_(c)clark.mid"
+            },
+            {
+              "title": "Estampie 3 (C)Clark",
+              "file": "estampie_3_(c)clark.mid"
             },
             {
               "title": "Ferrabosc",
@@ -799,6 +720,10 @@
             {
               "title": "Gerv Bg7",
               "file": "gerv_bg7.mid"
+            },
+            {
+              "title": "Greensleeves (C)Clark",
+              "file": "greensleeves_(c)clark.mid"
             },
             {
               "title": "Handel 1",
@@ -1040,20 +965,7 @@
               "title": "Viv El Gran Re Don Fernando (C)Clark",
               "file": "viv_el_gran_re_don_fernando_(c)clark.mid"
             }
-          ],
-          "history": "중세~르네상스 시기의 다양한 음악. 벨루기(Bellugi)의 현대 편곡 복원본 다수 포함. 기욤 드 마쇼(Guillaume de Machaut, 1300~1377): 아르스 노바의 거장, 최초의 완전한 미사 통상문 작곡. 프란체스코 란디니(Francesco Landini, 1325~1397): 눈먼 오르가니스트, 이탈리아 트레첸토의 대표."
-        },
-        {
-          "name": "르네상스 후기 (16세기)",
-          "era": "르네상스 후기 (16세기)",
-          "year": 1550,
-          "tracks": [
-            {
-              "title": "Greensleeves (C)Clark",
-              "file": "greensleeves_(c)clark.mid"
-            }
-          ],
-          "history": "팔레스트리나(Palestrina, 1525~1594): 대위법의 완성자. 교황 마르첼루스 미사곡. 윌리엄 버드(William Byrd, 1543~1623): 엘리자베스 시대 영국 음악의 대가. 존 다울랜드(John Dowland, 1563~1626): 류트 음악과 우울한 가곡의 명인."
+          ]
         }
       ]
     },
@@ -1066,57 +978,7 @@
       "basePath": "/static/midi/world/europe_folk/",
       "groups": [
         {
-          "name": "독일 민요",
-          "era": "18~19세기",
-          "year": 1800,
-          "tracks": [
-            {
-              "title": "Deutschlandlied",
-              "file": "deutschlandlied.mid"
-            }
-          ],
-          "history": "독일 민요(Volkslied). 괴테·하이네의 시에 선율을 붙인 예술가곡과 구전 민요. '오 탄넨바움(O Tannenbaum)', '로렐라이(Loreley)' 등."
-        },
-        {
-          "name": "프랑스 민요",
-          "era": "18~19세기",
-          "year": 1800,
-          "tracks": [
-            {
-              "title": "Frere Jacques Round",
-              "file": "frere-jacques-round.mid"
-            },
-            {
-              "title": "Frere Jacques",
-              "file": "frere-jacques.mid"
-            }
-          ],
-          "history": "프랑스 민요(Chanson populaire). '형제 자크(Frère Jacques)', '아를의 여인', '종달새(Alouette)' 등. 중세 트루베르 전통에서 발전."
-        },
-        {
-          "name": "영국 민요",
-          "era": "18~19세기",
-          "year": 1800,
-          "tracks": [
-            {
-              "title": "Scarborough Fair Flute And Piano",
-              "file": "scarborough-fair-flute-and-piano.mid"
-            },
-            {
-              "title": "Scarborough Fair",
-              "file": "scarborough-fair.mid"
-            },
-            {
-              "title": "The British Grenadiers",
-              "file": "the-british-grenadiers.mid"
-            }
-          ],
-          "history": "영국·잉글랜드 전통 민요(Folk song). '스카보로 페어(Scarborough Fair)', '그린슬리브스(Greensleeves)', '바바라 앨런(Barbara Allen)' 등. 세실 샤프(Cecil Sharp, 1859~1924)가 수집·보존."
-        },
-        {
           "name": "유럽 민속음악",
-          "era": "18~19세기",
-          "year": 1800,
           "tracks": [
             {
               "title": "Maple Leaf Rag",
@@ -1207,6 +1069,10 @@
               "file": "daisy-bell.mid"
             },
             {
+              "title": "Deutschlandlied",
+              "file": "deutschlandlied.mid"
+            },
+            {
               "title": "Dont Dilly Dally On The Way",
               "file": "dont-dilly-dally-on-the-way.mid"
             },
@@ -1253,6 +1119,14 @@
             {
               "title": "Flowers Of The Forest",
               "file": "flowers-of-the-forest.mid"
+            },
+            {
+              "title": "Frere Jacques Round",
+              "file": "frere-jacques-round.mid"
+            },
+            {
+              "title": "Frere Jacques",
+              "file": "frere-jacques.mid"
             },
             {
               "title": "Frog Round Woodwind Quartet",
@@ -1539,6 +1413,14 @@
               "file": "rule-britannia.mid"
             },
             {
+              "title": "Scarborough Fair Flute And Piano",
+              "file": "scarborough-fair-flute-and-piano.mid"
+            },
+            {
+              "title": "Scarborough Fair",
+              "file": "scarborough-fair.mid"
+            },
+            {
               "title": "Scotland The Brave",
               "file": "scotland-the-brave.mid"
             },
@@ -1639,6 +1521,10 @@
               "file": "the-birch-tree.mid"
             },
             {
+              "title": "The British Grenadiers",
+              "file": "the-british-grenadiers.mid"
+            },
+            {
               "title": "The Farmers In His Den",
               "file": "the-farmers-in-his-den.mid"
             },
@@ -1734,8 +1620,7 @@
               "title": "When Johnny Comes Marching Home",
               "file": "when-johnny-comes-marching-home.mid"
             }
-          ],
-          "history": "유럽 각국의 전통 민요와 무곡. 구전으로 전해진 선율들을 18~19세기 민속음악학자들이 채보·기록."
+          ]
         }
       ]
     },
@@ -1950,9 +1835,7 @@
               "title": "Tarwath",
               "file": "tarwath.mid"
             }
-          ],
-          "year": 1600,
-          "history": "아일랜드·스코틀랜드·웨일스·브르타뉴의 켈트 문화권 전통 음악. 릴(reel), 지그(jig), 에어(air), 혼파이프(hornpipe) 등의 춤곡과 서정곡. 하프·백파이프·틴 휘슬·피들이 대표 악기. 투를로흐 오캐롤란(Turlough O'Carolan, 1670~1738)이 아일랜드 하프 음악의 거장."
+          ]
         }
       ]
     },
@@ -1965,1100 +1848,404 @@
       "basePath": "/static/midi/world/middle_east/",
       "groups": [
         {
-          "name": "마캄 Acem",
-          "era": "오스만 제국",
-          "year": 1600,
+          "name": "중동·터키 마캄",
           "tracks": [
             {
               "title": "Acem — Ilahi — Aldanma Dunya (Zekai Dede)",
               "file": "acem--ilahi--duyek--aldanma_dunya--zekai_dede.mid"
-            }
-          ],
-          "history": "마캄(Makam): 오스만 제국 궁정 음악의 핵심 선법 체계. 서양의 12음계와 달리 미분음(微分音, 콤마)을 사용하여 훨씬 섬세한 음정 구분. 155종 이상의 마캄이 존재. 이트리(Itrî, 1640~1712), 데데 에펜디(Dede Efendi, 1778~1846), 제카이 데데(Zekai Dede, 1825~1897) 등이 대표 작곡가. 일라히(ilahi)=종교 찬가, 쉐이르(seyir)=마캄 진행 시범, 페쉬레브(pesrev)=기악 전주곡."
-        },
-        {
-          "name": "마캄 Acemasiran",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Acemasiran — Aranagme — 1",
               "file": "acemasiran--aranagme--agiraksak--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Acembuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Acembuselik — Kupe — Istedik Suh-I (Ahmet Avni Konuk)",
               "file": "acembuselik--kupe--aksak--istedik_suh-i--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Acemkurdi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Acemkurdi — Agirsemai — Dur Etme (Osep Aga)",
               "file": "acemkurdi--agirsemai--agir_aksaksemai--dur_etme--osep_aga.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Acemtarab",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Acemtarab — Pesrev (Kantemiroglu)",
               "file": "acemtarab--pesrev--havi----kantemiroglu.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Araban",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Araban — Kupe — Etse (Ahmet Avni Konuk)",
               "file": "araban--kupe--musemmen--etse--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Arazbar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Arazbar — Kupe — Ol Kadar (Ahmet Avni Konuk)",
               "file": "arazbar--kupe--duyek--ol_kadar--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Arazbarbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Arazbarbuselik — Kupe — Buse Fikriyle (Ahmet Avni Konuk)",
               "file": "arazbarbuselik--kupe--aksak--buse_fikriyle--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Asiranmaye",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Asiranmaye — Kupe — Bir (Ahmet Avni Konuk)",
               "file": "asiranmaye--kupe--aksaksemai--bir--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Asiranzemzeme",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Asiranzemzeme — Pesrev",
               "file": "asiranzemzeme--pesrev--sofyan----.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Askefza",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Askefza — Pesrev (Huseyin Sadettin Arel)",
               "file": "askefza--pesrev--ayindevrirevani----huseyin_sadettin_arel.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Bahrinazik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Bahrinazik — Kupe — Mahi-Yi (Ahmet Avni Konuk)",
               "file": "bahrinazik--kupe--duyek--mahi-yi--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Bendihisar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Bendihisar — Kupe — Her Makamin (Ahmet Avni Konuk)",
               "file": "bendihisar--kupe--yuruksemai_ii--her_makamin--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Besteisfahan",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Besteisfahan — Kupe — Isfahanli Bir (Ahmet Avni Konuk)",
               "file": "besteisfahan--kupe--agirevfer--isfahanli_bir--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Bestenigar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Bestenigar — Kupe — Kim Olursa (Ahmet Avni Konuk)",
               "file": "bestenigar--kupe--agirevfer--kim_olursa--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Beyati",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Beyati — Agirsemai — Soylen Ol (Bolahenk Nuri Bey)",
               "file": "beyati--agirsemai--agir_aksaksemai--soylen_ol--bolahenk_nuri_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Beyati Araban",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Beyati Araban — Ilahi — Gonul Mazhardir (Enderunlu Hafiz Husnu Efendi)",
               "file": "beyati_araban--ilahi--duyek--gonul_mazhardir--enderunlu_hafiz_husnu_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Beyati Arabanbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Beyati Arabanbuselik — Kupe — Gel Beyati (Ahmet Avni Konuk)",
               "file": "beyati_arabanbuselik--kupe--aksak--gel_beyati--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Beyatibuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Beyatibuselik — Kupe — Bir Beyatibuselik (Ahmet Avni Konuk)",
               "file": "beyatibuselik--kupe--agiraksak--bir_beyatibuselik--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Buselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Buselik — Agirsemai — Soyle Ey Nalem (Ahmed Irsoy)",
               "file": "buselik--agirsemai--agir_aksaksemai--soyle_ey_nalem--ahmed_irsoy.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Buselikasiran",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Buselikasiran — Kupe — Buselikten (Ahmet Avni Konuk)",
               "file": "buselikasiran--kupe--aksaksemai--buselikten--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Buzurk",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Buzurk — Kupe — Sur Sal (Ahmet Avni Konuk)",
               "file": "buzurk--kupe--devrirevanihindi--sur_sal--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Canfeza",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Canfeza — Kupe — Saki-Yi (Ahmet Avni Konuk)",
               "file": "canfeza--kupe--aksaksemai--saki-yi--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Cargah",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Cargah — Ilahi — Kudumun Rahmeti (Aziz Mahmud Hudai)",
               "file": "cargah--ilahi--devrikebir--kudumun_rahmeti--aziz_mahmud_hudai.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Dilkeshaveran",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Dilkeshaveran — Agirsemai — Hal-I Ruhsarina (Kucuk Mehmet Aga)",
               "file": "dilkeshaveran--agirsemai--agir_aksaksemai--hal-i_ruhsarina--kucuk_mehmet_aga.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Dilkeside",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Dilkeside — Kupe — Dilkeside (Ahmet Avni Konuk)",
               "file": "dilkeside--kupe--yuruksemai_ii--dilkeside--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Dilkusa",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Dilkusa — Sazsemaisi (Arif Mehmet Aga)",
               "file": "dilkusa--sazsemaisi--aksaksemai----arif_mehmet_aga.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Dilnisin",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Dilnisin — Kupe — Bir (Ahmet Avni Konuk)",
               "file": "dilnisin--kupe--devrirevanihindi--bir--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Dugah",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Dugah — Ilahi — Gel Ey Salik (Dede Efendi)",
               "file": "dugah--ilahi--agircenber--gel_ey_salik--dede_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Dugah Maye",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Dugah Maye — Kupe — Bir Dugah (Ahmet Avni Konuk)",
               "file": "dugah_maye--kupe--duyek--bir_dugah--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Eski Sipihr",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Eski Sipihr — Pesrev (Dilhayat Kalfa)",
               "file": "eski_sipihr--pesrev--muhammes----dilhayat_kalfa.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Evcara",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Evcara — Kupe — Kaddi Bala (Ahmet Avni Konuk)",
               "file": "evcara--kupe--agirevfer--kaddi_bala--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Evchuzi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Evchuzi — Turku — Ben Havada",
               "file": "evchuzi--turku--aksak--ben_havada--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Evic",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Evic — Agirsemai — Ben Aglar Idim (Tanburi Ali Efendi)",
               "file": "evic--agirsemai--aksaksemai--ben_aglar_idim--tanburi_ali_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Evicbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Evicbuselik — Kupe — O Mah-I (Ahmet Avni Konuk)",
               "file": "evicbuselik--kupe--aksak--o_mah-i--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Ferahfeza",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Ferahfeza — Agirsemai — Bir Dilber-I (Dede Efendi)",
               "file": "ferahfeza--agirsemai--senginsemai--bir_dilber-i--dede_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Ferahnak",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Ferahnak — Kupe — Ol Guzel (Ahmet Avni Konuk)",
               "file": "ferahnak--kupe--agirevfer--ol_guzel--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Ferahnakasiran",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Ferahnakasiran — Pesrev (Cuneyd Kosal)",
               "file": "ferahnakasiran--pesrev--devrikebir----cuneyd_kosal.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Ferahnuma",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Ferahnuma — Sarki — Guzel Kiz (Huseyin Sadettin Arel)",
               "file": "ferahnuma--sarki--curcuna--guzel_kiz--huseyin_sadettin_arel.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Gerdaniye",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Gerdaniye — Kupe — Perde-I (Ahmet Avni Konuk)",
               "file": "gerdaniye--kupe--duyek--perde-i--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Gerdaniyebuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Gerdaniyebuselik — Kupe — Oturup Bir (Ahmet Avni Konuk)",
               "file": "gerdaniyebuselik--kupe--aksak--oturup_bir--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Gevest",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Gevest — Sazsemaisi",
               "file": "gevest--sazsemaisi--aksaksemai----.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Goncairana",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Goncairana — Kupe — Bulbul-I (Ahmet Avni Konuk)",
               "file": "goncairana--kupe--musemmen--bulbul-i--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Guldeste",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Guldeste — Sazsemaisi (Dede Salih Efendi)",
               "file": "guldeste--sazsemaisi--aksaksemai----dede_salih_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Gulizar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Gulizar — Kocekce — Nazli Nazli (Dede Efendi)",
               "file": "gulizar--kocekce--aksak--nazli_nazli--dede_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Gulsen Ivefa",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Gulsen Ivefa — Sazsemaisi (Feraizcizade Ibrahim Efendi)",
               "file": "gulsen_ivefa--sazsemaisi--aksaksemai----feraizcizade_ibrahim_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Gulzar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Gulzar — Kupe — Bak Araplar (Ahmet Avni Konuk)",
               "file": "gulzar--kupe--yuruksemai_ii--bak_araplar--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicaz",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicaz — Agirsemai — Guller Kizarir (Ibrahim Aga)",
               "file": "hicaz--agirsemai--agirsenginsemai--guller_kizarir--ibrahim_aga.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicaz Humayun",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicaz Humayun — Agirsemai — Kul Oldum (Ibrahim Aga)",
               "file": "hicaz_humayun--agirsemai--aksaksemai--kul_oldum--ibrahim_aga.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicaz Uzzal",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicaz Uzzal — Kupe — Nagme-I Uzzali (Ahmet Avni Konuk)",
               "file": "hicaz_uzzal--kupe--duyek--nagme-i_uzzali--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicaz Zemzeme",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicaz Zemzeme — Sarki — Gideyim De (Muallim Ismail Hakki Bey)",
               "file": "hicaz_zemzeme--sarki--aksak--gideyim_de--muallim_ismail_hakki_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicaz Zirgule",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicaz Zirgule — Kupe — Basladi Mecliste (Ahmet Avni Konuk)",
               "file": "hicaz_zirgule--kupe--duyek--basladi_mecliste--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicazasiran",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicazasiran — Beste — Gonlumu Viran (Zekai Dede)",
               "file": "hicazasiran--beste--cenber--gonlumu_viran--zekai_dede.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicazbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicazbuselik — Kupe — Pek Hararet (Ahmet Avni Konuk)",
               "file": "hicazbuselik--kupe--aksak--pek_hararet--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicaziussak",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicaziussak — Nefes — Onume Bir (Pir Sultan Abdal)",
               "file": "hicaziussak--nefes--bektasiraksi--onume_bir--pir_sultan_abdal.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicazkar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicazkar — Agirsemai — Benim Servi (Bolahenk Nuri Bey)",
               "file": "hicazkar--agirsemai--aksaksemai--benim_servi--bolahenk_nuri_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hicazkarkurdi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hicazkarkurdi — Seyir — 1 (Rauf Yekta)",
               "file": "hicazkarkurdi--seyir--semai--1--rauf_yekta.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hisar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hisar — Kupe — Mahitab (Ahmet Avni Konuk)",
               "file": "hisar--kupe--duyek--mahitab--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Hisarbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Hisarbuselik — Aranagme — 1",
               "file": "hisarbuselik--aranagme--turkaksagi--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Huseyni",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Huseyni — Agirsemai — Acildi Gonce-I (Komurcuzade Hafiz Mehmet Efendi)",
               "file": "huseyni--agirsemai--aksaksemai--acildi_gonce-i--komurcuzade_hafiz_mehmet_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Huseyni Gulizar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Huseyni Gulizar — Ilahi — Cun Sana (Hafiz Post)",
               "file": "huseyni_gulizar--ilahi--sofyan--cun_sana--hafiz_post.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Huseyniasiran",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Huseyniasiran — Kupe — Gel (Ahmet Avni Konuk)",
               "file": "huseyniasiran--kupe--aksaksemai--gel--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Huzi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Huzi — Ilahi — Tasti Rahmet",
               "file": "huzi--ilahi--duyek--tasti_rahmet--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Huzzam",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Huzzam — Agirsemai — Kurban Olayim (Haci Faik Bey)",
               "file": "huzzam--agirsemai--aksaksemai--kurban_olayim--haci_faik_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Huzzam Icedid",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Huzzam Icedid — Ilahi — Goster Bize (Huseyin Sadettin Arel)",
               "file": "huzzam_icedid--ilahi--duyek--goster_bize--huseyin_sadettin_arel.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Irak",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Irak — Ilahi — Uyan Ey (Iii Murat)",
               "file": "irak--ilahi--yuruksemai--uyan_ey--iii_murat.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Isfahan",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Isfahan — Aranagme — 1",
               "file": "isfahan--aranagme--aksak--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Isfahanek",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Isfahanek — Kupe — Tutiya-Yi (Ahmet Avni Konuk)",
               "file": "isfahanek--kupe--duyek--tutiya-yi--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Karcigar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Karcigar — Agirsemai — Ne Dane (Dellalzade Haci Ismail Efendi)",
               "file": "karcigar--agirsemai--aksaksemai--ne_dane--dellalzade_haci_ismail_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Kucek",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Kucek — Kupe — Bezme (Ahmet Avni Konuk)",
               "file": "kucek--kupe--duyek--bezme--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Kurdi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Kurdi — Aranagme — 1",
               "file": "kurdi--aranagme--nimsofyan--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Kurdi Gerdaniye",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Kurdi Gerdaniye — Kupe — Gordum Agaz (Ahmet Avni Konuk)",
               "file": "kurdi_gerdaniye--kupe--musemmen--gordum_agaz--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Kurdilihicazkar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Kurdilihicazkar — Aranagme — 1",
               "file": "kurdilihicazkar--aranagme--semai--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Mahur",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Mahur — Agirsemai — Cihani Lal-I (Itri)",
               "file": "mahur--agirsemai--aksaksemai--cihani_lal-i--itri.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Mahurbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Mahurbuselik — Kupe — Ey Gozu (Ahmet Avni Konuk)",
               "file": "mahurbuselik--kupe--aksak--ey_gozu--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Maveraunnehr",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Maveraunnehr — Kupe — Alem-I Elhan (Ahmet Avni Konuk)",
               "file": "maveraunnehr--kupe--devrirevanihindi--alem-i_elhan--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Muberka",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Muberka — Sazsemaisi",
               "file": "muberka--sazsemaisi--aksaksemai----.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Muhalif",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Muhalif — Pesrev (Ahmet Coban Giray)",
               "file": "muhalif--pesrev--cenber----ahmet_coban_giray.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Muhayyer",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Muhayyer — Aranagme — 1",
               "file": "muhayyer--aranagme--curcuna--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Muhayyerbuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Muhayyerbuselik — Kupe — Bir Muhayyer (Ahmet Avni Konuk)",
               "file": "muhayyerbuselik--kupe--aksak--bir_muhayyer--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Muhayyerkurdi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Muhayyerkurdi — Aranagme — 1",
               "file": "muhayyerkurdi--aranagme--nimsofyan--1--.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Muhayyersunbule",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Muhayyersunbule — Kupe — Dilberanin (Ahmet Avni Konuk)",
               "file": "muhayyersunbule--kupe--duyek--dilberanin--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Murekkep Isfahan",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Murekkep Isfahan — Sarki — Kalmadi Sabra (Udi Nevres Bey)",
               "file": "murekkep_isfahan--sarki--devrihindi--kalmadi_sabra--udi_nevres_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Mustear",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Mustear — Kupe — Kimden (Ahmet Avni Konuk)",
               "file": "mustear--kupe--darb--kimden--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Neva",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Neva — Agirsemai — Sevdi Bu Gonul (Ama Kadri Efendi)",
               "file": "neva--agirsemai--aksaksemai--sevdi_bu_gonul--ama_kadri_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Neva Kurdi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Neva Kurdi — Kupe — Bir Usul (Ahmet Avni Konuk)",
               "file": "neva_kurdi--kupe--musemmen--bir_usul--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nevabuselik",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nevabuselik — Kupe — Buse Ummidiyle (Ahmet Avni Konuk)",
               "file": "nevabuselik--kupe--aksak--buse_ummidiyle--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Neveser",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Neveser — Etud (Ozer Ozel)",
               "file": "neveser--etud--sofyan----ozer_ozel.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nevruz",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nevruz — Sarki — Esmerligi Yildiz (Muallim Ismail Hakki Bey)",
               "file": "nevruz--sarki--yuruksemai_ii--esmerligi_yildiz--muallim_ismail_hakki_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nigar",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nigar — Sazsemaisi (Tanburi Reftar Kalfa)",
               "file": "nigar--sazsemaisi--aksaksemai----tanburi_reftar_kalfa.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nihavendikebir",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nihavendikebir — Kupe — Bu Nihavend I (Ahmet Avni Konuk)",
               "file": "nihavendikebir--kupe--devrirevanihindi--bu_nihavend_i--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nihavendirumi",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nihavendirumi — Kupe — Nesesi Rumi (Ahmet Avni Konuk)",
               "file": "nihavendirumi--kupe--devrirevanihindi--nesesi_rumi--ahmet_avni_konuk.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nihavent",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nihavent — Agirsemai — Seni Hukm-U (Muallim Ismail Hakki Bey)",
               "file": "nihavent--agirsemai--aksaksemai--seni_hukm-u--muallim_ismail_hakki_bey.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nikriz",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nikriz — Agirsemai — Benim Curmum (Akin Ozkan)",
               "file": "nikriz--agirsemai--aksaksemai--benim_curmum--akin_ozkan.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nisabur",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nisabur — Beste — Renc-I Hatir (Tanburi Ali Efendi)",
               "file": "nisabur--beste--muhammes--renc-i_hatir--tanburi_ali_efendi.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nisaburek",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nisaburek — Agirsemai — Bilmem Ki (Necmi Piskin)",
               "file": "nisaburek--agirsemai--agir_aksaksemai--bilmem_ki--necmi_piskin.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nisabureyn",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nisabureyn — Pesrev (Ozan Yarman)",
               "file": "nisabureyn--pesrev--devriaryan----ozan_yarman.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Nuhuft",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Nuhuft — Beste — Ta Kim (Seyyid Nuh)",
               "file": "nuhuft--beste--darbifetih--ta_kim--seyyid_nuh.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Pencgah",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Pencgah — Seyir — 1 (Rauf Yekta)",
               "file": "pencgah--seyir--semai--1--rauf_yekta.mid"
-            }
-          ]
-        },
-        {
-          "name": "마캄 Pencgahiasl",
-          "era": "오스만 제국",
-          "year": 1600,
-          "tracks": [
+            },
             {
               "title": "Pencgahiasl — Kupe — Pencugah-I Asl (Ahmet Avni Konuk)",
               "file": "pencgahiasl--kupe--devrirevanihindi--pencugah-i_asl--ahmet_avni_konuk.mid"
@@ -3158,9 +2345,7 @@
               "title": "Bazigar",
               "file": "bazigar.mid"
             }
-          ],
-          "year": 1700,
-          "history": "인도 음악은 힌두스탄(북인도)과 카르나틱(남인도) 두 전통으로 나뉨. 라가(Raga)=선율형, 탈라(Tala)=리듬형이 기본 구조. 사만 베다(Sama Veda, BC 1000년경)가 최초의 음악 기록. 13세기 사랑가데바의 '상기타 라트나카라'가 음악이론 집대성. 즉흥 연주가 핵심으로, 알라프(alap, 느린 도입)→조르(jor, 리듬 가속)→가트(gat, 본 연주) 구조."
+          ]
         }
       ]
     },
@@ -3227,9 +2412,7 @@
               "title": "Yang Bian Cui Ma",
               "file": "Yang_Bian_Cui_Ma.mid"
             }
-          ],
-          "year": 1700,
-          "history": "중국 전통음악은 5음계(궁상각치우, 宮商角徵羽)를 기반. 고쟁(古箏, 21현 치터), 얼후(二胡, 2현 찰현악기), 비파(琵琶, 4현 발현악기), 디쯔(笛子, 횡적) 등이 대표 악기. '양춘백설(陽春白雪)', '고산유수(高山流水)', '매화삼농(梅花三弄)' 등 명곡 전승. 공자(BC 551~479)가 예악(禮樂) 사상 정립."
+          ]
         }
       ]
     },
@@ -3464,9 +2647,7 @@
               "title": "Sombraenlosmedanos",
               "file": "SombraEnLosMedanos.mid"
             }
-          ],
-          "year": 1850,
-          "history": "원주민(잉카·아즈텍·마야)·스페인 식민·아프리카 노예 문화가 융합된 음악. 케나(quena, 안데스 피리), 차랑고(charango, 소형 기타), 시쿠(siku, 팬플루트), 마라카스 등이 대표 악기. 호로포(joropo)=베네수엘라 국민 춤곡, 춤비아(cumbia)=콜롬비아, 삼바=브라질, 탱고=아르헨티나. '콘도르는 날아가고(El Cóndor Pasa)'는 1913년 다니엘 알로미아 로블레스 작곡."
+          ]
         }
       ]
     },
@@ -3474,60 +2655,20 @@
       "id": "national_anthems",
       "name": "세계 국가(國歌)·민요",
       "emoji": "🏳️",
-      "songCount": 139,
+      "songCount": 140,
       "description": "전 세계 국가(國歌), 애국가, 민요, 동요, 래그타임 등 다양한 장르의 서양 음악 모음. 나라 이름(한글/영문)으로 검색할 수 있습니다.",
       "basePath": "/static/midi/world/national_anthems/",
       "groups": [
         {
-          "name": "유럽 국가",
-          "era": "19~20세기",
-          "year": 1900,
+          "name": "국가(國歌)",
           "tracks": [
             {
-              "title": "Scotland The Brave",
-              "file": "scotland-the-brave.mid",
-              "country_en": "Scotland",
-              "country_ko": "스코틀랜드",
-              "title_ko": "용감한 스코틀랜드"
-            }
-          ],
-          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
-        },
-        {
-          "name": "아메리카 국가",
-          "era": "19~20세기",
-          "year": 1900,
-          "tracks": [
-            {
-              "title": "Hubert Parry Jerusalem",
-              "file": "hubert-parry-jerusalem.mid",
-              "country_en": "United Kingdom",
-              "country_ko": "영국",
-              "title_ko": "예루살렘"
-            }
-          ],
-          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
-        },
-        {
-          "name": "오세아니아 국가",
-          "era": "19~20세기",
-          "year": 1900,
-          "tracks": [
-            {
-              "title": "Advance Australia Fair",
-              "file": "advance-australia-fair.mid",
-              "country_en": "Australia",
-              "country_ko": "호주",
-              "title_ko": "아름다운 호주여 전진하라"
-            }
-          ],
-          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
-        },
-        {
-          "name": "기타 국가",
-          "era": "19~20세기",
-          "year": 1900,
-          "tracks": [
+              "title": "Aegukga South Korea",
+              "file": "aegukga-south-korea.mid",
+              "country_en": "South Korea",
+              "country_ko": "대한민국",
+              "title_ko": "애국가"
+            },
             {
               "title": "La Marseillaise",
               "file": "la-marseillaise.mid",
@@ -3555,6 +2696,13 @@
               "country_en": "Germany",
               "country_ko": "독일",
               "title_ko": "독일연방찬가"
+            },
+            {
+              "title": "Advance Australia Fair",
+              "file": "advance-australia-fair.mid",
+              "country_en": "Australia",
+              "country_ko": "호주",
+              "title_ko": "아름다운 호주여 전진하라"
             },
             {
               "title": "Het Wilhelmus",
@@ -3585,6 +2733,18 @@
               "title_ko": "나의 조국의 땅"
             },
             {
+              "title": "Scotland The Brave",
+              "file": "scotland-the-brave.mid",
+              "country_en": "Scotland",
+              "country_ko": "스코틀랜드",
+              "title_ko": "용감한 스코틀랜드"
+            }
+          ]
+        },
+        {
+          "name": "애국가·행진곡",
+          "tracks": [
+            {
               "title": "Rule Britannia",
               "file": "rule-britannia.mid",
               "country_en": "United Kingdom",
@@ -3604,6 +2764,13 @@
               "country_en": "United Kingdom",
               "country_ko": "영국",
               "title_ko": "희망과 영광의 땅"
+            },
+            {
+              "title": "Hubert Parry Jerusalem",
+              "file": "hubert-parry-jerusalem.mid",
+              "country_en": "United Kingdom",
+              "country_ko": "영국",
+              "title_ko": "예루살렘"
             },
             {
               "title": "I Vow To Thee My Country",
@@ -3632,7 +2799,12 @@
               "country_en": "Australia",
               "country_ko": "호주",
               "title_ko": "왈칭 마틸다"
-            },
+            }
+          ]
+        },
+        {
+          "name": "러시아 민요",
+          "tracks": [
             {
               "title": "Kalinka",
               "file": "kalinka.mid",
@@ -3660,7 +2832,12 @@
               "country_en": "Russia",
               "country_ko": "러시아",
               "title_ko": "자작나무"
-            },
+            }
+          ]
+        },
+        {
+          "name": "래그타임",
+          "tracks": [
             {
               "title": "Maple Leaf Rag",
               "file": "Maple-Leaf-Rag.mid"
@@ -3720,7 +2897,12 @@
             {
               "title": "James Scott Grace And Beauty A Classy Rag",
               "file": "james-scott-grace-and-beauty-a-classy-rag.mid"
-            },
+            }
+          ]
+        },
+        {
+          "name": "찬송가·성가",
+          "tracks": [
             {
               "title": "Amazing Grace Guitar",
               "file": "amazing-grace-guitar.mid"
@@ -3756,7 +2938,12 @@
             {
               "title": "Beethoven Symphony9 4 Ode To Joy Piano Solo",
               "file": "beethoven-symphony9-4-ode-to-joy-piano-solo.mid"
-            },
+            }
+          ]
+        },
+        {
+          "name": "영국 민요·동요",
+          "tracks": [
             {
               "title": "Baa Baa Black Sheep",
               "file": "baa-baa-black-sheep.mid"
@@ -3956,7 +3143,12 @@
             {
               "title": "Its A Long Long Way To Tipperary",
               "file": "its-a-long-long-way-to-tipperary.mid"
-            },
+            }
+          ]
+        },
+        {
+          "name": "세계 민요",
+          "tracks": [
             {
               "title": "Auld Lang Syne",
               "file": "auld-lang-syne.mid"
@@ -4104,7 +3296,12 @@
             {
               "title": "Fem Far Fire Geder Piano Harmony",
               "file": "fem-far-fire-geder-piano-harmony.mid"
-            },
+            }
+          ]
+        },
+        {
+          "name": "중세·르네상스",
+          "tracks": [
             {
               "title": "Seikilos Epitaph",
               "file": "seikilos-epitaph.mid"
@@ -4129,8 +3326,7 @@
               "title": "Sellengers Round Virginal",
               "file": "sellengers-round-virginal.mid"
             }
-          ],
-          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
+          ]
         }
       ]
     }
@@ -4139,306 +3335,322 @@
     {
       "year": -1400,
       "side": "world",
-      "title": "후리안 찬가 (BC 1400)",
-      "desc": "시리아 우가릿 출토. 현존 최고 악보. 니칼(달의 여신)에게 바친 찬가.",
+      "title": "후리안 찬가",
+      "desc": "현존 최고(最古) 악보 — 시리아 우가릿 출토",
       "regionId": "ancient_greco_roman",
       "trackTitle": "Hurrian Hymn No6 1400Bc"
     },
     {
-      "year": -408,
-      "side": "world",
-      "title": "에우리피데스 오레스테스 코러스 (BC 408)",
-      "desc": "현존 최고 그리스 비극 음악 단편. 에우리피데스 작.",
-      "regionId": "ancient_greco_roman",
-      "trackTitle": "Orestes Papyrus Fragment 200Bc"
-    },
-    {
       "year": -200,
       "side": "world",
-      "title": "세이킬로스 비문 (BC 200~100)",
-      "desc": "터키 아이딘 묘비 발견. 완전한 형태의 세계 최고 악곡. '살아있는 동안 빛나라.'",
-      "regionId": "ancient_greco_roman",
-      "trackTitle": "Seikilos Epitaph 200Bc"
+      "title": "세이킬로스 비문",
+      "desc": "현존 최고 완전한 악보 (고대 그리스)",
+      "regionId": "national_anthems",
+      "trackTitle": "Seikilos Epitaph"
     },
     {
-      "year": -128,
+      "year": 138,
       "side": "world",
-      "title": "델피 아폴론 찬가 (BC 128)",
-      "desc": "아테네인이 델피 신전에서 연주. 석판에 새긴 악보 발견.",
+      "title": "아폴론 찬가",
+      "desc": "델피 신전 석판에 새겨진 그리스 음악",
       "regionId": "ancient_greco_roman",
-      "trackTitle": "Delphic Hymn 2 Limenius 128Bc"
-    },
-    {
-      "year": 130,
-      "side": "world",
-      "title": "메소메데스 찬가 (2세기)",
-      "desc": "크레타 출신, 로마 황제 하드리아누스 궁정 음악가. 태양·뮤즈·네메시스 찬가.",
-      "regionId": "ancient_greco_roman",
-      "trackTitle": "Mesomedes Hymn To Helios 2Ndc Ad"
+      "trackTitle": "Delphic Hymn To Apollo 128Bc"
     },
     {
       "year": -57,
       "side": "korea",
-      "title": "삼국시대 시작 (BC 57)",
-      "desc": "가야금(우륵), 거문고(왕산악) 창제. 안악3호분 벽화 음악 연주 장면.",
+      "title": "삼국시대 시작",
+      "desc": "신라 건국 — 가야금·거문고의 태동",
       "regionId": "korean",
       "trackTitle": null
     },
     {
-      "year": 600,
+      "year": 551,
       "side": "korea",
-      "title": "수제천 — 정읍사 (백제)",
-      "desc": "백제 정읍사에서 유래. 현존 최고 관악곡. 국가무형문화재 제1호.",
+      "title": "가야금 전래",
+      "desc": "가야 우륵이 신라에 가야금 전수",
       "regionId": "korean",
-      "trackTitle": "수제천"
+      "trackTitle": null
     },
     {
       "year": 612,
       "side": "korea",
-      "title": "미마지의 기악 전수 (612)",
-      "desc": "백제 미마지가 일본에 기악(伎樂) 전수. 한국→일본 음악 전파의 증거.",
+      "title": "미마지의 기악",
+      "desc": "백제 미마지가 일본에 기악(伎樂) 전수",
       "regionId": "korean",
       "trackTitle": null
     },
     {
-      "year": 600,
+      "year": 590,
       "side": "world",
-      "title": "그레고리안 성가 (6~10세기)",
-      "desc": "교황 그레고리오 1세(590~604). 서양 음악 기보법의 기원.",
+      "title": "그레고리안 성가",
+      "desc": "교황 그레고리우스 1세 — 서양 기보법의 시작",
       "regionId": "europe_medieval",
-      "trackTitle": "Agnus Dei (C)Clark"
+      "trackTitle": null
     },
     {
-      "year": 1030,
+      "year": 879,
+      "side": "korea",
+      "title": "처용가",
+      "desc": "신라 헌강왕 때 창작 — 현존 최고 향가",
+      "regionId": "korean",
+      "trackTitle": null
+    },
+    {
+      "year": 1000,
       "side": "world",
-      "title": "귀도 다레초의 솔미제이션 (1030)",
-      "desc": "귀도 다레초(991~1033)가 도레미파솔라 발명. 4선 보표 창안.",
+      "title": "귀도 다레초의 기보법",
+      "desc": "4선 악보와 솔미제이션 — 서양 오선보의 기원",
       "regionId": "europe_medieval",
       "trackTitle": null
     },
     {
       "year": 1100,
-      "side": "korea",
-      "title": "보허자 전래 (고려)",
-      "desc": "송나라에서 전래된 당악. 한국에서 독자 발전하여 원곡과 전혀 다른 곡이 됨.",
-      "regionId": "korean",
-      "trackTitle": "보허자"
+      "side": "world",
+      "title": "트루바두르 음악",
+      "desc": "남프랑스 음유시인의 세속 노래",
+      "regionId": "europe_medieval",
+      "trackTitle": null
     },
     {
       "year": 1116,
       "side": "korea",
-      "title": "대성아악 수입 (1116)",
-      "desc": "고려 예종, 송나라로부터 대성아악(大晟雅樂) 수입. 악기·악보·악공 포함.",
+      "title": "대성아악 수입",
+      "desc": "고려, 송나라로부터 아악·악기·악보 전래",
       "regionId": "korean",
       "trackTitle": null
     },
     {
       "year": 1240,
       "side": "world",
-      "title": "Sumer Is Icumen In (1240)",
-      "desc": "현존 최고 영어 노래이자 최초의 라운드(돌림노래). 영국 레딩 수도원.",
-      "regionId": "europe_medieval",
-      "trackTitle": "Sumer Is Icumen In I (C)Clark"
-    },
-    {
-      "year": 1280,
-      "side": "world",
-      "title": "에스탐피 (13세기)",
-      "desc": "중세 유럽 대표 무곡. 빠른 템포의 춤곡으로 궁정에서 연주.",
-      "regionId": "europe_medieval",
-      "trackTitle": "Estampie 1 (C)Clark"
+      "title": "여름이 오면 (Sumer Is Icumen In)",
+      "desc": "현존 최고 영어 라운드 — 다성음악의 시작",
+      "regionId": "national_anthems",
+      "trackTitle": "Sumer Is Icumen In"
     },
     {
       "year": 1300,
       "side": "world",
-      "title": "아르스 노바 — 기욤 드 마쇼 (14세기)",
-      "desc": "마쇼(1300~1377): 최초의 완전한 미사 통상문 작곡. 다성음악의 혁명.",
+      "title": "아르스 노바",
+      "desc": "기욤 드 마쇼 — 복잡한 리듬과 다성음악의 혁신",
       "regionId": "europe_medieval",
       "trackTitle": null
     },
     {
-      "year": 1350,
-      "side": "world",
-      "title": "살타렐로 (14세기 이탈리아)",
-      "desc": "이탈리아 트레첸토 시대의 활기찬 춤곡. 3박자 계통.",
-      "regionId": "europe_medieval",
-      "trackTitle": null
-    },
-    {
-      "year": 1445,
+      "year": 1392,
       "side": "korea",
-      "title": "여민락 — 세종대왕 작곡 (1445)",
-      "desc": "용비어천가 선율 기반. '백성과 함께 즐긴다(與民同樂)'. 세종(1397~1450) 작곡.",
+      "title": "조선 건국",
+      "desc": "아악 정비, 궁중음악 체계화 시작",
       "regionId": "korean",
-      "trackTitle": "여민락"
+      "trackTitle": null
+    },
+    {
+      "year": 1430,
+      "side": "korea",
+      "title": "박연의 아악 정비",
+      "desc": "편경 제작, 율관 교정 — 조선 아악의 완성",
+      "regionId": "korean",
+      "trackTitle": null
     },
     {
       "year": 1447,
       "side": "korea",
-      "title": "★ 정간보 창제 (1447)",
-      "desc": "세종대왕이 창제한 동아시아 최초의 정량적 기보법. 음의 높이(율명)와 길이(정간)를 동시 표기.",
+      "title": "정간보 창제 ★",
+      "desc": "세종대왕 — 동양 최초 정량기보법. 서양 오선보보다 200년 앞서",
       "regionId": "korean",
       "trackTitle": "여민락"
     },
     {
       "year": 1450,
       "side": "korea",
-      "title": "보태평·정대업 — 종묘제례악",
-      "desc": "세종 작곡, 세조 때 종묘제례에 채택. 보태평 11곡(문덕)+정대업 15곡(무공). 유네스코 인류무형문화유산(2001).",
+      "title": "보태평·정대업",
+      "desc": "세종대왕 작곡 → 종묘제례악 (유네스코 2001)",
       "regionId": "korean",
+      "trackTitle": "영산회상 상령산"
+    },
+    {
+      "year": 1450,
+      "side": "world",
+      "title": "르네상스 음악",
+      "desc": "뒤파이·오케겜 — 합창 다성음악의 황금기",
+      "regionId": "europe_medieval",
       "trackTitle": null
     },
     {
       "year": 1493,
       "side": "korea",
-      "title": "악학궤범 편찬 (1493)",
-      "desc": "성현(成俔) 편찬. 한국 최초의 종합 음악서. 악기·악보·무보·의식 총정리.",
+      "title": "악학궤범",
+      "desc": "성현 편찬 — 한국 최초의 종합 악서",
       "regionId": "korean",
       "trackTitle": null
     },
     {
-      "year": 1560,
+      "year": 1500,
       "side": "world",
-      "title": "팔레스트리나 (16세기)",
-      "desc": "팔레스트리나(1525~1594): 대위법의 완성자. 교황 마르첼루스 미사곡.",
-      "regionId": "europe_medieval",
+      "title": "오스만 궁정음악",
+      "desc": "마캄 체계 확립 — 중동 음악의 정수",
+      "regionId": "middle_east",
       "trackTitle": null
     },
     {
       "year": 1580,
       "side": "world",
-      "title": "그린슬리브스 (16세기 영국)",
-      "desc": "영국 대표 민요. 헨리 8세 작곡설은 근거 없음. 엘리자베스 시대 유행.",
+      "title": "그린슬리브스",
+      "desc": "영국 르네상스 민요의 대표작",
+      "regionId": "national_anthems",
+      "trackTitle": "Greensleeves"
+    },
+    {
+      "year": 1600,
+      "side": "korea",
+      "title": "가곡의 발전",
+      "desc": "조선 문인들의 풍류방 음악 — 시조+노래",
+      "regionId": "korean",
+      "trackTitle": null
+    },
+    {
+      "year": 1600,
+      "side": "world",
+      "title": "바로크 시대 시작",
+      "desc": "오페라 탄생, 통주저음 — 몬테베르디",
       "regionId": "europe_medieval",
-      "trackTitle": "Greensleeves (C)Clark"
-    },
-    {
-      "year": 1640,
-      "side": "world",
-      "title": "이트리 — 오스만 궁정음악 (17세기)",
-      "desc": "이트리(Itrî, 1640~1712): 오스만 궁정 최고의 작곡가. 마캄 음악 체계의 완성.",
-      "regionId": "middle_east",
-      "trackTitle": "Hicaz — Agirsemai — Guller Kizarir (Ibrahim Aga)"
-    },
-    {
-      "year": 1670,
-      "side": "world",
-      "title": "오캐롤란 — 아일랜드 하프 (17세기)",
-      "desc": "투를로흐 오캐롤란(1670~1738): 아일랜드 하프 음악의 마지막 거장. 눈먼 하프 연주자.",
-      "regionId": "celtic",
       "trackTitle": null
     },
     {
       "year": 1700,
-      "side": "korea",
-      "title": "영산회상 완성 (조선 후기)",
-      "desc": "현악 9곡 모음곡으로 정착. 조선 후기 풍류방 음악의 정수. 상령산→군악까지.",
-      "regionId": "korean",
-      "trackTitle": "영산회상 상령산"
+      "side": "world",
+      "title": "인도 라가의 체계화",
+      "desc": "힌두스탄·카르나틱 고전음악 분화",
+      "regionId": "india",
+      "trackTitle": null
     },
     {
       "year": 1750,
       "side": "korea",
-      "title": "가곡의 전성기 (18세기)",
-      "desc": "남창·여창 가곡이 양반 풍류방에서 전성기. 이세춘 등 가객 활동.",
+      "title": "판소리 탄생",
+      "desc": "민중 속에서 탄생한 서사적 음악극 (유네스코 2003)",
       "regionId": "korean",
-      "trackTitle": "남창우조 초수대엽"
+      "trackTitle": null
     },
     {
-      "year": 1700,
+      "year": 1760,
       "side": "world",
-      "title": "인도 라가 전통 (무굴 제국)",
-      "desc": "무굴 궁정에서 라가 음악 발전. 탄센(Tansen, 16세기)이 힌두스탄 음악 완성.",
-      "regionId": "india",
-      "trackTitle": "Bahar"
-    },
-    {
-      "year": 1700,
-      "side": "world",
-      "title": "중국 전통음악 — 고산유수",
-      "desc": "명·청 시대 문인 아악. 고쟁·얼후·비파 합주. 공자의 예악사상 계승.",
-      "regionId": "asia_traditional",
-      "trackTitle": "Butterfly Lovers"
+      "title": "아일랜드 민요의 황금기",
+      "desc": "캐롤런 — 하프 음악의 수집과 보존",
+      "regionId": "celtic",
+      "trackTitle": null
     },
     {
       "year": 1792,
       "side": "world",
-      "title": "라 마르세예즈 (1792)",
-      "desc": "루제 드 릴(Rouget de Lisle) 작곡. 프랑스 혁명의 상징. 프랑스 국가.",
+      "title": "라 마르세예즈",
+      "desc": "프랑스 혁명의 국가 — 루제 드 릴 작곡",
       "regionId": "national_anthems",
       "trackTitle": "La Marseillaise"
     },
     {
       "year": 1800,
       "side": "korea",
-      "title": "취타 — 군악 행진곡 (조선)",
-      "desc": "왕의 행차·군사 의식에 사용. 취타(吹打)='불고 치다'. 대취타와 소취타.",
+      "title": "산조의 탄생",
+      "desc": "김창조 — 가야금산조 창시. 즉흥 기악 독주의 꽃",
       "regionId": "korean",
-      "trackTitle": "취타 군악"
+      "trackTitle": null
     },
     {
       "year": 1814,
       "side": "world",
-      "title": "성조기 (The Star-Spangled Banner, 1814)",
-      "desc": "프랜시스 스콧 키 작사. 존 스태포드 스미스 작곡 원곡. 미국 국가(1931 공식 채택).",
+      "title": "성조기 (The Star-Spangled Banner)",
+      "desc": "미국 국가 — 프랜시스 스콧 키 작사",
       "regionId": "national_anthems",
-      "trackTitle": null
+      "trackTitle": "The Star Spangled Banner"
     },
     {
-      "year": 1835,
+      "year": 1833,
       "side": "world",
-      "title": "라틴 아메리카 전통음악",
-      "desc": "안데스 케나·차랑고, 베네수엘라 호로포. 원주민·스페인·아프리카 문화 융합.",
-      "regionId": "latin_america",
-      "trackTitle": "Mananitapueblerina"
+      "title": "독일연방찬가 (Deutschlandlied)",
+      "desc": "하이든 선율 + 호프만 가사",
+      "regionId": "national_anthems",
+      "trackTitle": "Deutschlandlied"
+    },
+    {
+      "year": 1840,
+      "side": "world",
+      "title": "어메이징 그레이스",
+      "desc": "존 뉴턴의 찬송가 — 세계에서 가장 유명한 성가",
+      "regionId": "national_anthems",
+      "trackTitle": "Amazing Grace Piano"
+    },
+    {
+      "year": 1850,
+      "side": "world",
+      "title": "갓 세이브 더 퀸",
+      "desc": "영국 국가 — 세계 최고(最古) 국가 중 하나",
+      "regionId": "national_anthems",
+      "trackTitle": "God Save The Queen"
+    },
+    {
+      "year": 1860,
+      "side": "world",
+      "title": "중국 전통음악의 정립",
+      "desc": "고산유수·이천영월 — 고쟁·얼후의 대표곡",
+      "regionId": "asia_traditional",
+      "trackTitle": null
     },
     {
       "year": 1870,
-      "side": "world",
-      "title": "켈틱 부흥 운동 (19세기)",
-      "desc": "아일랜드·스코틀랜드 전통음악 수집·보존 운동. 게일어 연맹(1893) 설립.",
-      "regionId": "celtic",
-      "trackTitle": "Afton"
-    },
-    {
-      "year": 1897,
       "side": "korea",
-      "title": "근현대 — 이왕직아악부",
-      "desc": "일제강점기 이왕직아악부에서 궁중음악 명맥 유지. 1951년 국립국악원 설립.",
+      "title": "영산회상의 완성",
+      "desc": "현악영산회상 9곡 모음곡 — 풍류의 정수",
       "regionId": "korean",
-      "trackTitle": null
+      "trackTitle": "영산회상 상령산"
     },
     {
-      "year": 1913,
+      "year": 1880,
       "side": "world",
-      "title": "콘도르는 날아가고 (1913)",
-      "desc": "다니엘 알로미아 로블레스(페루) 작곡. 안데스 음악의 상징.",
+      "title": "라틴 아메리카 음악",
+      "desc": "호로포·왈츠·탱고 — 라틴 리듬의 확산",
       "regionId": "latin_america",
       "trackTitle": null
+    },
+    {
+      "year": 1899,
+      "side": "world",
+      "title": "래그타임 혁명",
+      "desc": "스콧 조플린 'Maple Leaf Rag' — 미국 대중음악의 시작",
+      "regionId": "national_anthems",
+      "trackTitle": "Maple Leaf Rag"
     },
     {
       "year": 1935,
       "side": "korea",
-      "title": "애국가 작곡 (1935)",
-      "desc": "안익태(1906~1965) 작곡. 대한민국 국가.",
+      "title": "애국가 작곡",
+      "desc": "안익태 작곡 — 대한민국 국가",
       "regionId": "national_anthems",
+      "trackTitle": "Aegukga South Korea"
+    },
+    {
+      "year": 1950,
+      "side": "korea",
+      "title": "국립국악원 설립",
+      "desc": "한국 전통음악 보존·연구·공연의 중심 기관",
+      "regionId": "korean",
       "trackTitle": null
     },
     {
       "year": 2001,
       "side": "korea",
-      "title": "종묘제례악 유네스코 등재 (2001)",
-      "desc": "세종이 작곡한 보태평·정대업. 유네스코 인류무형문화유산 등재.",
+      "title": "종묘제례악 유네스코 등재",
+      "desc": "세종대왕의 보태평·정대업 — 인류무형문화유산",
       "regionId": "korean",
       "trackTitle": null
     },
     {
-      "year": 2025,
+      "year": 2003,
       "side": "korea",
-      "title": "★ 정간보 → MIDI 변환 (2025)",
-      "desc": "jeongganbo-midi 프로젝트. 91곡 정악을 시김새 포함 MIDI로 세계 최초 변환.",
+      "title": "판소리 유네스코 등재",
+      "desc": "인류무형문화유산 — 세계가 인정한 한국 음악극",
       "regionId": "korean",
-      "trackTitle": "수제천"
+      "trackTitle": null
     }
   ]
 }
