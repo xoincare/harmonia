@@ -429,9 +429,9 @@ catalog = {
 # === Timeline Data (dual-track: Korea vs World) ===
 timeline = [
     # World - Ancient
-    {"year": -1400, "side": "world", "title": "후리안 찬가", "desc": "현존 최고(最古) 악보 — 시리아 우가릿 출토", "regionId": "ancient_greco_roman", "trackTitle": "Hurrian Hymn No 6"},
+    {"year": -1400, "side": "world", "title": "후리안 찬가", "desc": "현존 최고(最古) 악보 — 시리아 우가릿 출토", "regionId": "ancient_greco_roman", "trackTitle": "Hurrian Hymn No6 1400Bc"},
     {"year": -200, "side": "world", "title": "세이킬로스 비문", "desc": "현존 최고 완전한 악보 (고대 그리스)", "regionId": "national_anthems", "trackTitle": "Seikilos Epitaph"},
-    {"year": 138, "side": "world", "title": "아폴론 찬가", "desc": "델피 신전 석판에 새겨진 그리스 음악", "regionId": "ancient_greco_roman", "trackTitle": "Delphic Hymn"},
+    {"year": 138, "side": "world", "title": "아폴론 찬가", "desc": "델피 신전 석판에 새겨진 그리스 음악", "regionId": "ancient_greco_roman", "trackTitle": "Delphic Hymn To Apollo 128Bc"},
     # Korea - Ancient
     {"year": -57, "side": "korea", "title": "삼국시대 시작", "desc": "신라 건국 — 가야금·거문고의 태동", "regionId": "korean", "trackTitle": None},
     {"year": 551, "side": "korea", "title": "가야금 전래", "desc": "가야 우륵이 신라에 가야금 전수", "regionId": "korean", "trackTitle": None},
