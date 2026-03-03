@@ -43,7 +43,10 @@
     <div><span class="num">3,400+</span><span class="label">년의 음악사</span></div>
   </div>
   <div class="hero-search">
-    <input type="text" id="global-search" placeholder="21만 곡 중에서 검색 (예: Bach, Queen, Arirang)..." oninput="Harmonia.handleGlobalSearch(this.value)">
+    <div class="search-input-wrapper">
+      <input type="text" id="global-search" placeholder="21만 곡 중에서 검색 (예: Bach, Queen, Arirang)..." oninput="Harmonia.handleGlobalSearch(this.value)">
+      <button id="search-btn" onclick="Harmonia.handleGlobalSearch(document.getElementById('global-search').value)">🔍</button>
+    </div>
     <div id="search-loading" class="spinner" style="display:none"></div>
   </div>
   <div id="global-search-results" class="search-results" style="display:none"></div>
