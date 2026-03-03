@@ -50,7 +50,8 @@
               "file": "영산회상 하현도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1500
+          "year": 1500,
+          "history": "원곡은 불교 영산회상(靈山會上)에서 유래. 조선 후기 풍류방 음악의 정수. 상령산→중령산→세령산→가락덜이→상현도드리→하현도드리→염불도드리→타령→군악 9곡 구성."
         },
         {
           "name": "관악영산회상 (8곡)",
@@ -89,7 +90,8 @@
               "file": "관악영산회상 타령_daegeum_piri_haegeum_ajaeng_v2.mid"
             }
           ],
-          "year": 1500
+          "year": 1500,
+          "history": "원곡은 불교 영산회상(靈山會上)에서 유래. 조선 후기 풍류방 음악의 정수. 상령산→중령산→세령산→가락덜이→상현도드리→하현도드리→염불도드리→타령→군악 9곡 구성."
         },
         {
           "name": "독립곡 (4곡)",
@@ -112,7 +114,8 @@
               "file": "여민락_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1600
+          "year": 1600,
+          "history": "개별 연주되는 독립적인 정악 기악곡."
         },
         {
           "name": "취타·현악취타 (10곡)",
@@ -159,7 +162,8 @@
               "file": "현악취타 취타_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1600
+          "year": 1600,
+          "history": "조선시대 군악 행진곡. 왕의 행차나 군사 의식에 사용. 취타(吹打)는 '불고 치다'는 뜻. 대취타와 소취타로 구분."
         },
         {
           "name": "남창 반우반계 (2곡)",
@@ -209,7 +213,8 @@
               "file": "자진한잎 염양춘_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1600
+          "year": 1600,
+          "history": "조선 후기 풍류 기악곡. 잔잔하고 서정적인 선율."
         },
         {
           "name": "한국 민요 (3곡)",
@@ -228,7 +233,8 @@
               "file": "doraji_flute.mid"
             }
           ],
-          "year": 1600
+          "year": 1600,
+          "history": "한국 전통 민요를 MIDI로 변환한 곡."
         },
         {
           "name": "평조회상 (8곡)",
@@ -267,7 +273,8 @@
               "file": "평조회상 타령_daegeum_piri_haegeum_ajaeng_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1700
+          "year": 1700,
+          "history": "영산회상을 평조(平調)로 옮긴 것. 우조 영산회상보다 밝고 화사한 분위기."
         },
         {
           "name": "남창 우조 가곡 (11곡)",
@@ -318,7 +325,8 @@
               "file": "남창우조 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1750
+          "year": 1750,
+          "history": "남성이 부르는 우조(羽調) 가곡. 조선 후기 양반 사대부의 풍류 문화를 대표. 이세춘(李世春) 등 가객들이 발전시킴."
         },
         {
           "name": "남창 계면 가곡 (13곡)",
@@ -377,7 +385,8 @@
               "file": "남창계면 평롱_daegeum_piri_haegeum_gayageum_v2.mid"
             }
           ],
-          "year": 1750
+          "year": 1750,
+          "history": "남성이 부르는 계면조(界面調) 가곡. 우조보다 슬프고 애절한 선율. 초수대엽→이수대엽→삼수대엽→소용이→우롱→언롱 등 점차 기교가 복잡해지는 구조."
         },
         {
           "name": "여창 우조 가곡 (5곡)",
@@ -404,7 +413,8 @@
               "file": "여창우조 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1750
+          "year": 1750,
+          "history": "여성이 부르는 우조 가곡. 19세기 이후 기생(妓生)들이 주로 연행. 남창보다 높은 음역."
         },
         {
           "name": "여창 계면 가곡 (7곡)",
@@ -439,7 +449,8 @@
               "file": "여창계면 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1750
+          "year": 1750,
+          "history": "여성이 부르는 계면조 가곡. 섬세하고 애절한 표현이 특징."
         },
         {
           "name": "여창 반우반계 (2곡)",
@@ -454,7 +465,8 @@
               "file": "여창반우반계 환계락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1750
+          "year": 1750,
+          "history": "우조와 계면조가 섞인 가곡. 환계락은 가곡 전체의 마지막을 장식하는 곡."
         },
         {
           "name": "도드리·천년만세 (5곡)",
@@ -481,7 +493,8 @@
               "file": "천년만세 우조가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid"
             }
           ],
-          "year": 1800
+          "year": 1800,
+          "history": "조선 후기 풍류방 기악곡. 계면가락도드리와 양청도드리를 포함한 모음곡."
         }
       ]
     },
@@ -500,9 +513,11 @@
           "tracks": [
             {
               "title": "Orestes Papyrus Fragment 200Bc",
-              "file": "orestes_papyrus_fragment_200BC.mid"
+              "file": "orestes_papyrus_fragment_200BC.mid",
+              "info": "에우리피데스 오레스테스 코러스 (BC 408) — 현존 최고 그리스 비극 음악 단편"
             }
-          ]
+          ],
+          "history": "에우리피데스(Euripides, BC 480~406)의 비극 오레스테스 코러스 등. 파피루스에 기록된 고대 그리스 음악 단편들. 고대 그리스 음계(테트라코드)와 기보법 사용."
         },
         {
           "name": "기원전 2~1세기 (헬레니즘)",
@@ -511,17 +526,21 @@
           "tracks": [
             {
               "title": "Delphic Hymn 2 Limenius 128Bc",
-              "file": "delphic_hymn_2_limenius_128BC.mid"
+              "file": "delphic_hymn_2_limenius_128BC.mid",
+              "info": "델피 아폴론 찬가 (BC 128) — 아테네인들이 델피 신전에서 연주"
             },
             {
               "title": "Delphic Hymn To Apollo 128Bc",
-              "file": "delphic_hymn_to_apollo_128BC.mid"
+              "file": "delphic_hymn_to_apollo_128BC.mid",
+              "info": "델피 아폴론 찬가 (BC 128) — 아테네인들이 델피 신전에서 연주"
             },
             {
               "title": "Seikilos Epitaph 200Bc",
-              "file": "seikilos_epitaph_200BC.mid"
+              "file": "seikilos_epitaph_200BC.mid",
+              "info": "세이킬로스 비문 (BC 200~100) — 세계 최고(最古) 완전한 악곡. 터키 아이딘 묘비 발견"
             }
-          ]
+          ],
+          "history": "세이킬로스 비문(Seikilos Epitaph, BC 200~100): 터키 아이딘에서 발견된 묘비에 새겨진 노래. 완전한 형태로 남은 세계 최고(最古)의 악곡. '살아있는 동안 빛나라(Hoson zes, phainou)'. 델피 찬가: 아폴론 신전에서 발견."
         },
         {
           "name": "기타 고대 음악",
@@ -556,7 +575,8 @@
               "title": "Trotto Italian Dance 14Thc",
               "file": "trotto_italian_dance_14thC.mid"
             }
-          ]
+          ],
+          "history": "고대 그리스·로마 시대의 다양한 음악 단편들을 현대 학자들이 복원한 것. 원본은 파피루스, 석판, 필사본 등에 기록."
         },
         {
           "name": "1~3세기 (로마 제국)",
@@ -565,21 +585,25 @@
           "tracks": [
             {
               "title": "Mesomedes Hymn To Helios 2Ndc Ad",
-              "file": "mesomedes_hymn_to_helios_2ndC_AD.mid"
+              "file": "mesomedes_hymn_to_helios_2ndC_AD.mid",
+              "info": "메소메데스 (2세기) — 하드리아누스 황제 궁정 음악가"
             },
             {
               "title": "Mesomedes Hymn To Muse 2Ndc Ad",
-              "file": "mesomedes_hymn_to_muse_2ndC_AD.mid"
+              "file": "mesomedes_hymn_to_muse_2ndC_AD.mid",
+              "info": "메소메데스 (2세기) — 하드리아누스 황제 궁정 음악가"
             },
             {
               "title": "Mesomedes Hymn To Nemesis 2Ndc Ad",
-              "file": "mesomedes_hymn_to_nemesis_2ndC_AD.mid"
+              "file": "mesomedes_hymn_to_nemesis_2ndC_AD.mid",
+              "info": "메소메데스 (2세기) — 하드리아누스 황제 궁정 음악가"
             },
             {
               "title": "Roman Triumph March Reconstruction",
               "file": "roman_triumph_march_reconstruction.mid"
             }
-          ]
+          ],
+          "history": "메소메데스(Mesomedes, 2세기): 크레타 출신, 로마 황제 하드리아누스(Hadrian, 117~138 재위)의 궁정 음악가. '태양 찬가', '뮤즈 찬가', '네메시스 찬가' 등이 현존. 고대 그리스 음악 전통의 마지막 증거."
         }
       ]
     },
@@ -600,7 +624,8 @@
               "title": "Agnus Dei (C)Clark",
               "file": "agnus_dei_(c)clark.mid"
             }
-          ]
+          ],
+          "history": "교황 그레고리오 1세(재위 590~604)에게 귀속된 단성 성가. 실제로는 8~10세기에 걸쳐 형성. 네우마(neuma) 기보법 사용. 서양 음악 기보법의 기원. 귀도 다레초(Guido d'Arezzo, 991~1033)가 4선 보표와 솔미제이션(도레미) 발명."
         },
         {
           "name": "트루바두르·음유시인 (11~13세기)",
@@ -639,7 +664,8 @@
               "title": "Estampie 3 (C)Clark",
               "file": "estampie_3_(c)clark.mid"
             }
-          ]
+          ],
+          "history": "11~13세기 남프랑스 트루바두르, 북프랑스 트루베르, 독일 미네장(Minnesang)의 세속 음악. 에스탐피(estampie)·살타렐로(saltarello)·트로토(trotto) 등 중세 무곡도 이 시기. 칸티가스 데 산타 마리아(Cantigas de Santa Maria): 알폰소 10세(1221~1284)가 편찬한 400여곡의 성모 찬가집."
         },
         {
           "name": "기타 중세·르네상스",
@@ -1014,7 +1040,8 @@
               "title": "Viv El Gran Re Don Fernando (C)Clark",
               "file": "viv_el_gran_re_don_fernando_(c)clark.mid"
             }
-          ]
+          ],
+          "history": "중세~르네상스 시기의 다양한 음악. 벨루기(Bellugi)의 현대 편곡 복원본 다수 포함. 기욤 드 마쇼(Guillaume de Machaut, 1300~1377): 아르스 노바의 거장, 최초의 완전한 미사 통상문 작곡. 프란체스코 란디니(Francesco Landini, 1325~1397): 눈먼 오르가니스트, 이탈리아 트레첸토의 대표."
         },
         {
           "name": "르네상스 후기 (16세기)",
@@ -1025,7 +1052,8 @@
               "title": "Greensleeves (C)Clark",
               "file": "greensleeves_(c)clark.mid"
             }
-          ]
+          ],
+          "history": "팔레스트리나(Palestrina, 1525~1594): 대위법의 완성자. 교황 마르첼루스 미사곡. 윌리엄 버드(William Byrd, 1543~1623): 엘리자베스 시대 영국 음악의 대가. 존 다울랜드(John Dowland, 1563~1626): 류트 음악과 우울한 가곡의 명인."
         }
       ]
     },
@@ -1046,7 +1074,8 @@
               "title": "Deutschlandlied",
               "file": "deutschlandlied.mid"
             }
-          ]
+          ],
+          "history": "독일 민요(Volkslied). 괴테·하이네의 시에 선율을 붙인 예술가곡과 구전 민요. '오 탄넨바움(O Tannenbaum)', '로렐라이(Loreley)' 등."
         },
         {
           "name": "프랑스 민요",
@@ -1061,7 +1090,8 @@
               "title": "Frere Jacques",
               "file": "frere-jacques.mid"
             }
-          ]
+          ],
+          "history": "프랑스 민요(Chanson populaire). '형제 자크(Frère Jacques)', '아를의 여인', '종달새(Alouette)' 등. 중세 트루베르 전통에서 발전."
         },
         {
           "name": "영국 민요",
@@ -1080,7 +1110,8 @@
               "title": "The British Grenadiers",
               "file": "the-british-grenadiers.mid"
             }
-          ]
+          ],
+          "history": "영국·잉글랜드 전통 민요(Folk song). '스카보로 페어(Scarborough Fair)', '그린슬리브스(Greensleeves)', '바바라 앨런(Barbara Allen)' 등. 세실 샤프(Cecil Sharp, 1859~1924)가 수집·보존."
         },
         {
           "name": "유럽 민속음악",
@@ -1703,7 +1734,8 @@
               "title": "When Johnny Comes Marching Home",
               "file": "when-johnny-comes-marching-home.mid"
             }
-          ]
+          ],
+          "history": "유럽 각국의 전통 민요와 무곡. 구전으로 전해진 선율들을 18~19세기 민속음악학자들이 채보·기록."
         }
       ]
     },
@@ -1919,7 +1951,8 @@
               "file": "tarwath.mid"
             }
           ],
-          "year": 1600
+          "year": 1600,
+          "history": "아일랜드·스코틀랜드·웨일스·브르타뉴의 켈트 문화권 전통 음악. 릴(reel), 지그(jig), 에어(air), 혼파이프(hornpipe) 등의 춤곡과 서정곡. 하프·백파이프·틴 휘슬·피들이 대표 악기. 투를로흐 오캐롤란(Turlough O'Carolan, 1670~1738)이 아일랜드 하프 음악의 거장."
         }
       ]
     },
@@ -1940,7 +1973,8 @@
               "title": "Acem — Ilahi — Aldanma Dunya (Zekai Dede)",
               "file": "acem--ilahi--duyek--aldanma_dunya--zekai_dede.mid"
             }
-          ]
+          ],
+          "history": "마캄(Makam): 오스만 제국 궁정 음악의 핵심 선법 체계. 서양의 12음계와 달리 미분음(微分音, 콤마)을 사용하여 훨씬 섬세한 음정 구분. 155종 이상의 마캄이 존재. 이트리(Itrî, 1640~1712), 데데 에펜디(Dede Efendi, 1778~1846), 제카이 데데(Zekai Dede, 1825~1897) 등이 대표 작곡가. 일라히(ilahi)=종교 찬가, 쉐이르(seyir)=마캄 진행 시범, 페쉬레브(pesrev)=기악 전주곡."
         },
         {
           "name": "마캄 Acemasiran",
@@ -3125,7 +3159,8 @@
               "file": "bazigar.mid"
             }
           ],
-          "year": 1700
+          "year": 1700,
+          "history": "인도 음악은 힌두스탄(북인도)과 카르나틱(남인도) 두 전통으로 나뉨. 라가(Raga)=선율형, 탈라(Tala)=리듬형이 기본 구조. 사만 베다(Sama Veda, BC 1000년경)가 최초의 음악 기록. 13세기 사랑가데바의 '상기타 라트나카라'가 음악이론 집대성. 즉흥 연주가 핵심으로, 알라프(alap, 느린 도입)→조르(jor, 리듬 가속)→가트(gat, 본 연주) 구조."
         }
       ]
     },
@@ -3193,7 +3228,8 @@
               "file": "Yang_Bian_Cui_Ma.mid"
             }
           ],
-          "year": 1700
+          "year": 1700,
+          "history": "중국 전통음악은 5음계(궁상각치우, 宮商角徵羽)를 기반. 고쟁(古箏, 21현 치터), 얼후(二胡, 2현 찰현악기), 비파(琵琶, 4현 발현악기), 디쯔(笛子, 횡적) 등이 대표 악기. '양춘백설(陽春白雪)', '고산유수(高山流水)', '매화삼농(梅花三弄)' 등 명곡 전승. 공자(BC 551~479)가 예악(禮樂) 사상 정립."
         }
       ]
     },
@@ -3429,7 +3465,8 @@
               "file": "SombraEnLosMedanos.mid"
             }
           ],
-          "year": 1850
+          "year": 1850,
+          "history": "원주민(잉카·아즈텍·마야)·스페인 식민·아프리카 노예 문화가 융합된 음악. 케나(quena, 안데스 피리), 차랑고(charango, 소형 기타), 시쿠(siku, 팬플루트), 마라카스 등이 대표 악기. 호로포(joropo)=베네수엘라 국민 춤곡, 춤비아(cumbia)=콜롬비아, 삼바=브라질, 탱고=아르헨티나. '콘도르는 날아가고(El Cóndor Pasa)'는 1913년 다니엘 알로미아 로블레스 작곡."
         }
       ]
     },
@@ -3453,7 +3490,8 @@
               "country_ko": "스코틀랜드",
               "title_ko": "용감한 스코틀랜드"
             }
-          ]
+          ],
+          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
         },
         {
           "name": "아메리카 국가",
@@ -3467,7 +3505,8 @@
               "country_ko": "영국",
               "title_ko": "예루살렘"
             }
-          ]
+          ],
+          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
         },
         {
           "name": "오세아니아 국가",
@@ -3481,7 +3520,8 @@
               "country_ko": "호주",
               "title_ko": "아름다운 호주여 전진하라"
             }
-          ]
+          ],
+          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
         },
         {
           "name": "기타 국가",
@@ -4089,7 +4129,8 @@
               "title": "Sellengers Round Virginal",
               "file": "sellengers-round-virginal.mid"
             }
-          ]
+          ],
+          "history": "국가(國歌)는 18세기 후반 국민국가 형성기에 등장. 최초의 국가는 네덜란드 '빌헬무스(Wilhelmus, 1574)'. 영국 'God Save the King(1745)', 프랑스 '라 마르세예즈(La Marseillaise, 1792, 루제 드 릴 작곡)'. 대한민국 애국가는 안익태(安益泰, 1906~1965) 작곡(1935)."
         }
       ]
     }

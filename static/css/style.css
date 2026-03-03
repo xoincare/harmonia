@@ -607,3 +607,27 @@ body.player-active footer { padding-bottom: 70px; }
   .tl-left .tl-card { border-left: 3px solid var(--gold); }
   .timeline-hero h1 { font-size: 1.6rem; }
 }
+
+/* === History & Track Info === */
+.mp-history {
+  padding: 10px 16px 14px;
+  margin: 0 0 8px;
+  background: rgba(255,215,0,0.06);
+  border-left: 3px solid #ffd700;
+  color: #ccc;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  border-radius: 0 6px 6px 0;
+}
+.mp-track-info {
+  display: block;
+  font-size: 0.78rem;
+  color: #999;
+  margin-top: 2px;
+  padding-left: 20px;
+}
+.mp-track-count {
+  font-size: 0.75rem;
+  color: #888;
+  margin-left: 8px;
+}

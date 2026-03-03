@@ -126,8 +126,10 @@ function buildPlayerUI(region) {
       <div class="mp-suite-header" onclick="toggleSuite(this)">
         <span class="mp-arrow">▶</span> ${group.name}
         ${group.era ? `<span class="mp-era">${group.era}</span>` : ''}
+        <span class="mp-track-count">${group.tracks.length}곡</span>
       </div>
-      <div class="mp-suite-list" style="display:none">`;
+      <div class="mp-suite-list" style="display:none">
+        ${group.history ? `<div class="mp-history">${group.history}</div>` : ''}`;
 
     for (const track of group.tracks) {
       const encodedFile = encodeURIComponent(track.file);
@@ -137,10 +139,13 @@ function buildPlayerUI(region) {
         title: track.title,
         group: group.name,
         basePath: basePath,
+        info: track.info || '',
         index: trackIdx
       });
+      const infoHtml = track.info ? `<div class="mp-track-info">${track.info}</div>` : '';
       html += `<div class="mp-track" data-idx="${trackIdx}" data-title="${track.title.toLowerCase()}" onclick="loadTrackByIndex(${trackIdx})">
         <span class="mp-track-icon">♪</span> ${track.title}
+        ${infoHtml}
         <a href="${basePath}${encodedFile}" download class="mp-dl" title="다운로드" onclick="event.stopPropagation()">⬇</a>
       </div>`;
       trackIdx++;
@@ -203,7 +208,7 @@ async function loadTrackByIndex(idx) {
   const timeEl = document.getElementById('mp-time');
 
   titleEl.textContent = track.title;
-  subEl.textContent = track.group;
+  subEl.textContent = track.info ? `${track.group} — ${track.info}` : track.group;
   playBtn.disabled = true;
   timeEl.textContent = '로딩...';
 
