@@ -43,12 +43,53 @@
     <div><span class="num">3,400+</span><span class="label">년의 음악사</span></div>
   </div>
   <div class="hero-search">
-    <input type="text" id="global-search" placeholder="곡 이름으로 검색..." oninput="Harmonia.handleGlobalSearch(this.value)">
+    <input type="text" id="global-search" placeholder="21만 곡 중에서 검색 (예: Bach, Queen, Arirang)..." oninput="Harmonia.handleGlobalSearch(this.value)">
+    <div id="search-loading" class="spinner" style="display:none"></div>
   </div>
   <div id="global-search-results" class="search-results" style="display:none"></div>
 </section>
 
-<!-- Region Cards Grid -->
+<!-- 📺 Harmonia Music Channels (Curation) -->
+<section class="section" id="channels">
+  <h2 class="section-title">📺 테마별 음악 채널</h2>
+  <p class="section-subtitle">하모니아가 엄선한 21만 곡의 테마별 플레이리스트</p>
+  
+  <div class="channel-grid">
+    <div class="channel-card" onclick="Harmonia.showChannel('classical', '🏛️ 클래식 거장')">
+      <div class="channel-thumb" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">🏛️</div>
+      <div class="channel-info">
+        <h3>클래식 거장</h3>
+        <p>바흐부터 쇼팽까지, 인류의 유산</p>
+      </div>
+    </div>
+    
+    <div class="channel-card" onclick="Harmonia.showChannel('korean_master', '🇰🇷 한국의 소리')">
+      <div class="channel-thumb" style="background: linear-gradient(135deg, #870000 0%, #190a05 100%);">🇰🇷</div>
+      <div class="channel-info">
+        <h3>한국의 소리</h3>
+        <p>천년을 이어온 정악 마스터피스</p>
+      </div>
+    </div>
+    
+    <div class="channel-card" onclick="Harmonia.showChannel('piano_healing', '🎹 힐링 피아노')">
+      <div class="channel-thumb" style="background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);">🎹</div>
+      <div class="channel-info">
+        <h3>힐링 피아노</h3>
+        <p>지친 마음을 달래는 투명한 선율</p>
+      </div>
+    </div>
+
+    <div class="channel-card" onclick="Harmonia.showChannel('world_folk', '🌍 세계 민속음악')">
+      <div class="channel-thumb" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">🌍</div>
+      <div class="channel-info">
+        <h3>세계 민속음악</h3>
+        <p>각 나라의 정서가 담긴 전통 가락</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Region Cards Grid (Existing) -->
 <section class="section" id="regions">
   <h2 class="section-title">🌍 세계 음악 지역</h2>
   <p class="section-subtitle">각 지역을 클릭하면 음악을 들을 수 있습니다</p>

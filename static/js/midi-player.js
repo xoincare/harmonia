@@ -391,51 +391,105 @@
     return m + ':' + (s < 10 ? '0' : '') + s;
   }
 
-  // ─── Global Search ──────────────────────────────────────
-  function handleGlobalSearch(query) {
+  // ─── Global Search (210k DB version) ──────────────────
+  async function handleGlobalSearch(query) {
     const resultsEl = $('global-search-results');
-    if (!catalog || !resultsEl || !(query || '').trim()) {
+    if (!query || query.trim().length < 2) {
       if (resultsEl) resultsEl.style.display = 'none';
       return;
     }
 
-    query = query.toLowerCase().trim();
-    const results = [];
-    const MAX = 20;
+    const loader = $('search-loading');
+    if (loader) loader.style.display = 'block';
 
-    outer:
-    for (const region of catalog.regions) {
-      for (const group of (region.groups || [])) {
-        for (const track of (group.tracks || [])) {
-          const fields = [track.title, track.title_ko, track.country_en, track.country_ko].filter(Boolean);
-          if (fields.some(f => f.toLowerCase().includes(query))) {
-            const subtitle = track.country_ko ? `${track.country_ko} (${track.country_en || ''})` : '';
-            results.push({
-              title: track.title_ko ? `${track.title_ko} (${track.title})` : track.title,
-              regionName: subtitle || region.name,
-              regionId: region.id,
-              emoji: region.emoji,
-              origTitle: track.title
-            });
-            if (results.length >= MAX) break outer;
-          }
-        }
+    try {
+      const resp = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      const results = await resp.json();
+      
+      if (loader) loader.style.display = 'none';
+      
+      if (!results || results.length === 0) {
+        resultsEl.style.display = 'none';
+        return;
       }
-    }
 
-    if (results.length === 0) {
-      resultsEl.style.display = 'none';
-      return;
+      resultsEl.style.display = '';
+      resultsEl.innerHTML = results.map(r => `
+        <div class="search-result-item" onclick="Harmonia.playById(${r.id}, '${esc(r.title)}')">
+          <span class="sr-emoji">🎵</span>
+          <div class="sr-info">
+            <span class="sr-title">${esc(r.title)}</span>
+            <span class="sr-meta">${esc(r.composer || '작자 미상')} | ${esc(r.dataset)}</span>
+          </div>
+        </div>
+      `).join('');
+    } catch (e) {
+      if (loader) loader.style.display = 'none';
+      console.error('Search failed:', e);
     }
+  }
 
-    resultsEl.style.display = '';
-    resultsEl.innerHTML = results.map(r =>
-      `<div class="search-result-item" onclick="Harmonia.searchClick('${esc(r.regionId)}', '${esc(encodeURIComponent(r.origTitle))}')">
-        <span class="sr-emoji">${r.emoji}</span>
-        <span class="sr-title">${esc(r.title)}</span>
-        <span class="sr-region">${esc(r.regionName)}</span>
-      </div>`
-    ).join('');
+  /** Show songs from a specific curation channel */
+  async function showChannel(channelId, channelName) {
+    stopMidi();
+    
+    // UI 준비
+    setDisplay('home-view', 'none');
+    setDisplay('region-view', '');
+    setDisplay('timeline-view', 'none');
+
+    setText('region-emoji', '📺');
+    setText('region-name', channelName);
+    setText('region-description', `${channelName} 채널의 추천 플레이리스트입니다.`);
+    setText('player-title', `🎧 ${channelName} 플레이리스트`);
+    
+    const container = $('midi-player-app');
+    if (container) container.innerHTML = '<div class="loading-p">채널 데이터를 불러오는 중...</div>';
+
+    try {
+      const resp = await fetch(`/api/channel?id=${channelId}`);
+      const songs = await resp.json();
+      
+      allTracks = [];
+      let html = `<div class="mp-catalog">`;
+      
+      songs.forEach((track, idx) => {
+        allTracks.push({
+          id: track.id,
+          title: track.title,
+          composer: track.composer,
+          dataset: track.dataset,
+          index: idx,
+          isStreaming: true
+        });
+        
+        html += `
+          <div class="mp-track" data-idx="${idx}" onclick="Harmonia.loadStreamingTrack(${idx})">
+            <span class="mp-track-icon">▶</span>
+            <div class="mp-track-body">
+              <div class="mp-track-title">${esc(track.title)}</div>
+              <div class="mp-track-info">${esc(track.composer || '작자 미상')} | ${esc(track.dataset)}</div>
+            </div>
+          </div>`;
+      });
+      
+      html += `</div>`;
+      if (container) container.innerHTML = html;
+      window.scrollTo(0, 0);
+    } catch (e) {
+      console.error('Channel load error:', e);
+    }
+  }
+
+  async function loadStreamingTrack(idx) {
+    const track = allTracks[idx];
+    if (!track) return;
+
+    document.querySelectorAll('.mp-track.active').forEach(t => t.classList.remove('active'));
+    const el = document.querySelector(`.mp-track[data-idx="${idx}"]`);
+    if (el) el.classList.add('active');
+
+    playById(track.id, track.title);
   }
 
   function searchResultClick(regionId, encodedTitle) {
@@ -596,6 +650,9 @@
     toggleSuite,
     handleGlobalSearch,
     searchClick: searchResultClick,
+    playById,
+    showChannel,
+    loadStreamingTrack,
     timelinePlay,
     toggleMobile: toggleMobileMenu,
     closeMobile: closeMobileMenu,

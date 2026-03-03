@@ -613,7 +613,61 @@ body.player-active footer { padding-bottom: 70px; }
   .timeline-hero h1 { font-size: 1.6rem; }
 }
 
-/* === History & Track Info === */
+/* === Music Channels (YouTube Style) === */
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 2rem;
+}
+.channel-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.channel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.channel-thumb {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: white;
+}
+.channel-info {
+  padding: 15px;
+}
+.channel-info h3 {
+  margin: 0 0 5px;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+.channel-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.mp-track-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mp-track-title {
+  font-weight: 600;
+  color: #eee;
+}
+.loading-p {
+  text-align: center;
+  padding: 3rem;
+  color: var(--gold);
+}
 .mp-history {
   padding: 10px 16px 14px;
   margin: 0 0 8px;
