@@ -565,37 +565,47 @@ function buildTimeline() {
   observeFadeIns();
 }
 
-function timelinePlay(regionId, trackTitle) {
+async function timelinePlay(regionId, trackTitle) {
   if (!catalog) return;
   const region = catalog.regions.find(r => r.id === regionId);
   if (!region) return;
 
   // Find the track's file and basePath
-  let targetTrack = null;
+  let targetFile = null;
+  let basePath = region.basePath;
   for (const group of region.groups) {
     for (const track of group.tracks) {
       if (track.title === trackTitle) {
-        targetTrack = { file: track.file, title: track.title, group: group.name, basePath: region.basePath };
+        targetFile = track.file;
         break;
       }
     }
-    if (targetTrack) break;
+    if (targetFile) break;
+  }
+  if (!targetFile) return;
+
+  // Ensure audio context
+  if (Tone.context.state !== 'running') {
+    await Tone.start();
   }
 
-  if (!targetTrack) return;
+  // Stop current playback
+  stopMidi();
 
-  // Navigate to region, then find and play
-  showRegion(regionId);
-  setTimeout(() => {
-    const idx = allTracks.findIndex(t => t.title === trackTitle);
-    if (idx >= 0) {
-      loadTrackByIndex(idx);
-    } else {
-      // Fallback: direct load
-      allTracks.push({ ...targetTrack, index: allTracks.length });
-      loadTrackByIndex(allTracks.length - 1);
-    }
-  }, 300);
+  // Show bottom player
+  showBottomPlayer(trackTitle, region.name);
+
+  // Load and play directly (no page navigation)
+  try {
+    const url = `${basePath}${encodeURIComponent(targetFile)}`;
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    currentMidi = new Midi(arrayBuffer);
+    updateBottomTime(0, currentMidi.duration);
+    playMidi();
+  } catch (e) {
+    console.error('Timeline play error:', e);
+  }
 }
 
 // === Init ===
