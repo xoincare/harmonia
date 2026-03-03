@@ -106,13 +106,6 @@ class HarmoniaHandler(SimpleHTTPRequestHandler):
         rows = c.fetchall()
         conn.close()
         return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5], "license": r[6], "license_text": r[7]} for r in rows]
-        elif channel_id == 'piano_healing':
-            c.execute('SELECT id, title, composer, dataset, era, tags FROM tracks WHERE dataset = "adl-piano-midi" LIMIT 100')
-        else:
-            c.execute('SELECT id, title, composer, dataset, era, tags FROM tracks LIMIT 100')
-        rows = c.fetchall()
-        conn.close()
-        return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5]} for r in rows]
 
     def stream_midi_gcs(self, track_id):
         conn = sqlite3.connect(LOCAL_DB_CACHE)
