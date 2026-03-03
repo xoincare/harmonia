@@ -1,192 +1,97 @@
 /**
- * MIDI Player for Gugak History
+ * Harmonia — World Music MIDI Player
  * Uses Tone.js + @tonejs/midi for web-based MIDI playback
+ * Loads catalog.json for multi-region support
  */
 
-// MIDI file catalog organized by suite
-const MIDI_CATALOG = {
-  "영산회상": {
-    label: "영산회상 (현악 9곡)",
-    era: "조선 초기~후기",
-    files: [
-      { name: "상령산", file: "영산회상 상령산_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "중령산", file: "영산회상 중령산_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "세령산", file: "영산회상 세령산_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "가락덜이", file: "영산회상 가락덜이_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "상현도드리", file: "영산회상 상현도드리_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "하현도드리", file: "영산회상 하현도드리_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "염불도드리", file: "영산회상 염불도드리_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "타령", file: "영산회상 타령_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "군악", file: "영산회상 군악_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-    ]
-  },
-  "관악영산회상": {
-    label: "관악영산회상 (8곡)",
-    era: "조선 후기",
-    files: [
-      { name: "상령산", file: "관악영산회상 상령산_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "중령산", file: "관악영산회상 중령산_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "세령산", file: "관악영산회상 세령산_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "가락덜이", file: "관악영산회상 가락덜이_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "상현도드리", file: "관악영산회상 상현도드리_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "염불도드리", file: "관악영산회상 염불도드리_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "타령", file: "관악영산회상 타령_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "군악", file: "관악영산회상 군악_daegeum_piri_haegeum_ajaeng_v2.mid" },
-    ]
-  },
-  "평조회상": {
-    label: "평조회상 (8곡)",
-    era: "조선 후기",
-    files: [
-      { name: "상령산", file: "평조회상 상령산_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "중령산", file: "평조회상 중령산_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "세령산", file: "평조회상 세령산_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "가락덜이", file: "평조회상 가락덜이_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "상현도드리", file: "평조회상 상현도드리_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "염불도드리", file: "평조회상 염불도드리_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "타령", file: "평조회상 타령_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "군악", file: "평조회상 군악_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-    ]
-  },
-  "독립곡": {
-    label: "독립곡 (4곡)",
-    era: "백제~조선 세종",
-    files: [
-      { name: "수제천 壽齊天", file: "수제천_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "여민락 與民樂", file: "여민락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "동동 動動", file: "동동_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "보허자 步虛子", file: "보허자_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "도드리": {
-    label: "도드리·천년만세 (5곡)",
-    era: "조선 후기",
-    files: [
-      { name: "밑도드리", file: "밑도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "웃도드리", file: "웃도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "우조가락도드리", file: "천년만세 우조가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "양청도드리", file: "천년만세 양청도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "계면가락도드리", file: "천년만세 계면가락도드리_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "취타": {
-    label: "취타·현악취타 (10곡)",
-    era: "조선 초기~후기",
-    files: [
-      { name: "취타 취타", file: "취타 취타_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "취타 길군악", file: "취타 길군악_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "취타 길타령", file: "취타 길타령_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "취타 별우조타령", file: "취타 별우조타령_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "취타 군악", file: "취타 군악_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "현악 취타", file: "현악취타 취타_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "현악 길군악", file: "현악취타 길군악_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "현악 길타령", file: "현악취타 길타령_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "현악 별우조타령", file: "현악취타 별우조타령_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-      { name: "현악 군악", file: "현악취타 군악_gayageum_geomungo_daegeum_piri_haegeum_ajaeng_v2.mid" },
-    ]
-  },
-  "남창우조": {
-    label: "남창 우조 가곡 (11곡)",
-    era: "조선 중기~후기",
-    files: [
-      { name: "초수대엽", file: "남창우조 초수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "이수대엽", file: "남창우조 이수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "삼수대엽", file: "남창우조 삼수대엽_daegeum_piri_haegeum_gayageum_v2.mid" },
-      { name: "평거", file: "남창우조 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "두거", file: "남창우조 두거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "중거", file: "남창우조 중거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "우락", file: "남창우조 우락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "우롱", file: "남창우조 우롱_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "우편", file: "남창우조 우편_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "언락", file: "남창우조 언락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "소용이", file: "남창우조 소용이_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "남창계면": {
-    label: "남창 계면 가곡 (13곡)",
-    era: "조선 중기~후기",
-    files: [
-      { name: "초수대엽", file: "남창계면 초수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "이수대엽", file: "남창계면 이수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "삼수대엽", file: "남창계면 삼수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "평거", file: "남창계면 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "두거", file: "남창계면 두거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "중거", file: "남창계면 중거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "계락", file: "남창계면 계락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "언롱", file: "남창계면 언롱_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "언편", file: "남창계면 언편_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "편수대엽", file: "남창계면 편수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "태평가", file: "남창계면 태평가_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "소용이", file: "남창계면 소용이_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "평롱", file: "남창계면 평롱_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "남창반우반계": {
-    label: "남창 반우반계 (2곡)",
-    era: "조선 후기",
-    files: [
-      { name: "반엽", file: "남창반우반계 반엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "편락", file: "남창반우반계 편락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "여창우조": {
-    label: "여창 우조 가곡 (5곡)",
-    era: "조선 후기",
-    files: [
-      { name: "이수대엽", file: "여창우조 이수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "중거", file: "여창우조 중거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "평거", file: "여창우조 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "두거", file: "여창우조 두거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "우락", file: "여창우조 우락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "여창계면": {
-    label: "여창 계면 가곡 (7곡)",
-    era: "조선 후기",
-    files: [
-      { name: "이수대엽", file: "여창계면 이수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "중거", file: "여창계면 중거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "평거", file: "여창계면 평거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "두거", file: "여창계면 두거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "계락", file: "여창계면 계락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "편수대엽", file: "여창계면 편수대엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "태평가", file: "여창계면 태평가_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "여창반우반계": {
-    label: "여창 반우반계 (2곡)",
-    era: "조선 후기",
-    files: [
-      { name: "반엽", file: "여창반우반계 반엽_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "환계락", file: "여창반우반계 환계락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-  "자진한잎": {
-    label: "자진한잎 (7곡)",
-    era: "조선 중기~후기",
-    files: [
-      { name: "염양춘", file: "자진한잎 염양춘_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "수룡음 농", file: "자진한잎 수룡음 농_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "수룡음 편1", file: "자진한잎 수룡음 편1_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "수룡음 편2", file: "자진한잎 수룡음 편2_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "수룡음 계락", file: "자진한잎 수룡음 계락_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "경풍년 우조두거", file: "자진한잎 경풍년 우조두거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-      { name: "경풍년 변조두거", file: "자진한잎 경풍년 변조두거_daegeum_piri_haegeum_gayageum_geomungo_v2.mid" },
-    ]
-  },
-};
-
+let catalog = null;
+let currentRegion = null;
 let synths = [];
 let currentMidi = null;
 let isPlaying = false;
 let startTime = 0;
 let progressInterval = null;
+let currentTrackEl = null;
+let allTracks = []; // flat list for next/prev
+let currentTrackIndex = -1;
+let volumeDb = -8;
 
-function buildPlayerUI() {
+// === Catalog Loading ===
+async function loadCatalog() {
+  const resp = await fetch('/catalog.json');
+  catalog = await resp.json();
+  document.getElementById('hero-total').textContent = catalog.totalSongs.toLocaleString();
+  buildRegionGrid();
+}
+
+// === Region Grid (Home) ===
+function buildRegionGrid() {
+  const grid = document.getElementById('region-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (const region of catalog.regions) {
+    const card = document.createElement('div');
+    card.className = 'region-card fade-in';
+    card.onclick = () => showRegion(region.id);
+    card.innerHTML = `
+      <span class="rc-emoji">${region.emoji}</span>
+      <div class="rc-name">${region.name}</div>
+      <div class="rc-count">${region.songCount}곡</div>
+      <div class="rc-desc">${region.description.substring(0, 100)}...</div>
+    `;
+    grid.appendChild(card);
+  }
+  observeFadeIns();
+}
+
+// === Navigation ===
+function showHome() {
+  document.getElementById('home-view').style.display = '';
+  document.getElementById('region-view').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+function showRegion(regionId) {
+  if (!catalog) return;
+  const region = catalog.regions.find(r => r.id === regionId);
+  if (!region) return;
+  currentRegion = region;
+
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('region-view').style.display = '';
+
+  // Set hero
+  document.getElementById('region-emoji').textContent = region.emoji;
+  document.getElementById('region-name').textContent = region.name;
+  document.getElementById('region-song-count').textContent = `${region.songCount}곡`;
+  document.getElementById('region-description').textContent = region.description;
+
+  // Korean-specific content
+  const koreanContent = document.getElementById('korean-content');
+  if (regionId === 'korean') {
+    koreanContent.style.display = '';
+  } else {
+    koreanContent.style.display = 'none';
+  }
+
+  // Player title
+  document.getElementById('player-title').textContent = `🎧 ${region.emoji} ${region.name} MIDI 플레이어`;
+  document.getElementById('player-subtitle').textContent =
+    `${region.songCount}곡 — 곡을 클릭하면 브라우저에서 바로 재생됩니다`;
+
+  // Build player
+  buildPlayerUI(region);
+
+  window.scrollTo(0, 0);
+  observeFadeIns();
+}
+
+// === Player UI ===
+function buildPlayerUI(region) {
   const container = document.getElementById('midi-player-app');
   if (!container) return;
 
-  // Build suite selector
+  allTracks = [];
   let html = `
     <div class="mp-controls">
       <div class="mp-now-playing">
@@ -194,38 +99,53 @@ function buildPlayerUI() {
         <div class="mp-sub" id="mp-sub"></div>
       </div>
       <div class="mp-buttons">
-        <button id="mp-play" class="mp-btn" disabled>▶ 재생</button>
-        <button id="mp-stop" class="mp-btn" disabled>⏹ 정지</button>
-        <div class="mp-progress-wrap">
+        <button id="mp-prev" class="mp-btn" onclick="playPrevTrack()">⏮</button>
+        <button id="mp-play" class="mp-btn" disabled onclick="togglePlay()">▶ 재생</button>
+        <button id="mp-stop" class="mp-btn" onclick="stopMidi()">⏹</button>
+        <button id="mp-next" class="mp-btn" onclick="playNextTrack()">⏭</button>
+        <div class="mp-progress-wrap" onclick="seekInPlayer(event)">
           <div class="mp-progress" id="mp-progress"></div>
         </div>
         <span class="mp-time" id="mp-time">0:00</span>
       </div>
     </div>
+    <div class="mp-search">
+      <input type="text" placeholder="이 지역에서 검색..." oninput="filterTracks(this.value)">
+    </div>
     <div class="mp-catalog">
   `;
 
-  for (const [key, suite] of Object.entries(MIDI_CATALOG)) {
+  let trackIdx = 0;
+  for (const group of region.groups) {
+    const groupTrackStart = trackIdx;
     html += `<div class="mp-suite">
       <div class="mp-suite-header" onclick="toggleSuite(this)">
-        <span class="mp-arrow">▶</span> ${suite.label} <span class="mp-era">${suite.era}</span>
+        <span class="mp-arrow">▶</span> ${group.name}
+        ${group.era ? `<span class="mp-era">${group.era}</span>` : ''}
       </div>
       <div class="mp-suite-list" style="display:none">`;
-    for (const track of suite.files) {
-      const encoded = encodeURIComponent(track.file);
-      html += `<div class="mp-track" data-file="${encoded}" onclick="loadTrack(this, '${encoded}', '${track.name}', '${suite.label}')">
-        <span class="mp-track-icon">♪</span> ${track.name}
-        <a href="/static/midi/${encoded}" download class="mp-dl" title="다운로드" onclick="event.stopPropagation()">⬇</a>
+
+    for (const track of group.tracks) {
+      const encodedFile = encodeURIComponent(track.file);
+      const basePath = region.basePath;
+      allTracks.push({
+        file: track.file,
+        title: track.title,
+        group: group.name,
+        basePath: basePath,
+        index: trackIdx
+      });
+      html += `<div class="mp-track" data-idx="${trackIdx}" data-title="${track.title.toLowerCase()}" onclick="loadTrackByIndex(${trackIdx})">
+        <span class="mp-track-icon">♪</span> ${track.title}
+        <a href="${basePath}${encodedFile}" download class="mp-dl" title="다운로드" onclick="event.stopPropagation()">⬇</a>
       </div>`;
+      trackIdx++;
     }
     html += `</div></div>`;
   }
 
   html += `</div>`;
   container.innerHTML = html;
-
-  document.getElementById('mp-play').addEventListener('click', togglePlay);
-  document.getElementById('mp-stop').addEventListener('click', stopMidi);
 }
 
 function toggleSuite(el) {
@@ -240,33 +160,70 @@ function toggleSuite(el) {
   }
 }
 
-async function loadTrack(el, encodedFile, name, suiteName) {
-  // Highlight
+function filterTracks(query) {
+  query = query.toLowerCase().trim();
+  document.querySelectorAll('.mp-track').forEach(el => {
+    const title = el.getAttribute('data-title') || '';
+    el.classList.toggle('hidden', query && !title.includes(query));
+  });
+}
+
+// === Track Loading ===
+async function loadTrackByIndex(idx) {
+  if (idx < 0 || idx >= allTracks.length) return;
+  currentTrackIndex = idx;
+  const track = allTracks[idx];
+
+  // Highlight active track
   document.querySelectorAll('.mp-track.active').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
+  const el = document.querySelector(`.mp-track[data-idx="${idx}"]`);
+  if (el) {
+    el.classList.add('active');
+    currentTrackEl = el;
+    // Expand parent suite if collapsed
+    const suiteList = el.closest('.mp-suite-list');
+    if (suiteList && suiteList.style.display === 'none') {
+      suiteList.style.display = 'block';
+      const arrow = suiteList.previousElementSibling.querySelector('.mp-arrow');
+      if (arrow) arrow.textContent = '▼';
+    }
+    // Scroll into view
+    el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
 
   stopMidi();
-  document.getElementById('mp-title').textContent = name;
-  document.getElementById('mp-sub').textContent = suiteName;
-  document.getElementById('mp-play').disabled = true;
-  document.getElementById('mp-time').textContent = '로딩...';
+
+  const titleEl = document.getElementById('mp-title');
+  const subEl = document.getElementById('mp-sub');
+  const playBtn = document.getElementById('mp-play');
+  const timeEl = document.getElementById('mp-time');
+
+  titleEl.textContent = track.title;
+  subEl.textContent = track.group;
+  playBtn.disabled = true;
+  timeEl.textContent = '로딩...';
+
+  // Update bottom player
+  showBottomPlayer(track.title, currentRegion ? currentRegion.name : '');
 
   try {
-    const url = `/static/midi/${encodedFile}`;
+    const url = `${track.basePath}${encodeURIComponent(track.file)}`;
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
     currentMidi = new Midi(arrayBuffer);
-    document.getElementById('mp-play').disabled = false;
+    playBtn.disabled = false;
     const dur = currentMidi.duration;
-    document.getElementById('mp-time').textContent = formatTime(0) + ' / ' + formatTime(dur);
+    timeEl.textContent = formatTime(0) + ' / ' + formatTime(dur);
+    updateBottomTime(0, dur);
     // Auto-play
-    togglePlay();
+    playMidi();
   } catch (e) {
-    document.getElementById('mp-time').textContent = '로딩 실패';
+    timeEl.textContent = '로딩 실패';
     console.error(e);
   }
 }
 
+// === Playback ===
 function togglePlay() {
   if (!currentMidi) return;
   if (isPlaying) {
@@ -278,8 +235,7 @@ function togglePlay() {
 
 function playMidi() {
   if (!currentMidi) return;
-  
-  // Stop previous
+
   synths.forEach(s => s.dispose());
   synths = [];
 
@@ -291,7 +247,7 @@ function playMidi() {
       envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 },
       oscillator: { type: 'triangle8' }
     }).toDestination();
-    synth.volume.value = -8;
+    synth.volume.value = volumeDb;
     synths.push(synth);
 
     track.notes.forEach(note => {
@@ -305,20 +261,28 @@ function playMidi() {
   });
 
   isPlaying = true;
-  document.getElementById('mp-play').textContent = '⏸ 일시정지';
-  
+  updatePlayButton(true);
+  Tone.Transport.start();
+
   const totalDur = currentMidi.duration;
   progressInterval = setInterval(() => {
     const elapsed = Tone.now() - startTime;
     const pct = Math.min(elapsed / totalDur * 100, 100);
-    document.getElementById('mp-progress').style.width = pct + '%';
-    document.getElementById('mp-time').textContent = formatTime(elapsed) + ' / ' + formatTime(totalDur);
+
+    const mpProg = document.getElementById('mp-progress');
+    const mpTime = document.getElementById('mp-time');
+    if (mpProg) mpProg.style.width = pct + '%';
+    if (mpTime) mpTime.textContent = formatTime(elapsed) + ' / ' + formatTime(totalDur);
+
+    updateBottomProgress(pct);
+    updateBottomTime(elapsed, totalDur);
+
     if (elapsed >= totalDur) {
       stopMidi();
+      // Auto-next
+      playNextTrack();
     }
   }, 200);
-
-  Tone.Transport.start();
 }
 
 function pauseMidi() {
@@ -326,7 +290,7 @@ function pauseMidi() {
   synths = [];
   isPlaying = false;
   clearInterval(progressInterval);
-  document.getElementById('mp-play').textContent = '▶ 재생';
+  updatePlayButton(false);
 }
 
 function stopMidi() {
@@ -334,13 +298,132 @@ function stopMidi() {
   synths = [];
   isPlaying = false;
   clearInterval(progressInterval);
-  document.getElementById('mp-play').textContent = '▶ 재생';
-  document.getElementById('mp-progress').style.width = '0%';
-  if (currentMidi) {
-    document.getElementById('mp-time').textContent = '0:00 / ' + formatTime(currentMidi.duration);
+  updatePlayButton(false);
+
+  const mpProg = document.getElementById('mp-progress');
+  const mpTime = document.getElementById('mp-time');
+  const mpPlay = document.getElementById('mp-play');
+  if (mpProg) mpProg.style.width = '0%';
+  if (currentMidi && mpTime) {
+    mpTime.textContent = '0:00 / ' + formatTime(currentMidi.duration);
   }
-  document.getElementById('mp-stop').disabled = false;
-  document.getElementById('mp-play').disabled = !currentMidi;
+  if (mpPlay) mpPlay.disabled = !currentMidi;
+
+  updateBottomProgress(0);
+  if (currentMidi) updateBottomTime(0, currentMidi.duration);
+}
+
+function playNextTrack() {
+  if (allTracks.length === 0) return;
+  const next = (currentTrackIndex + 1) % allTracks.length;
+  loadTrackByIndex(next);
+}
+
+function playPrevTrack() {
+  if (allTracks.length === 0) return;
+  const prev = currentTrackIndex <= 0 ? allTracks.length - 1 : currentTrackIndex - 1;
+  loadTrackByIndex(prev);
+}
+
+function setVolume(val) {
+  volumeDb = (val / 100) * 24 - 24; // 0→-24dB, 100→0dB
+  synths.forEach(s => { s.volume.value = volumeDb; });
+}
+
+function seekInPlayer(e) {
+  if (!currentMidi) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  // Restart at that position (simple approach: restart entire playback)
+  const seekTime = pct * currentMidi.duration;
+  if (isPlaying) {
+    stopMidi();
+    // Replay from offset
+    playMidiFromOffset(seekTime);
+  }
+}
+
+function seekTo(e) {
+  seekInPlayer(e);
+}
+
+function playMidiFromOffset(offset) {
+  if (!currentMidi) return;
+
+  synths.forEach(s => s.dispose());
+  synths = [];
+
+  const now = Tone.now() + 0.1;
+  startTime = now - offset;
+
+  currentMidi.tracks.forEach(track => {
+    const synth = new Tone.PolySynth(Tone.Synth, {
+      envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.8 },
+      oscillator: { type: 'triangle8' }
+    }).toDestination();
+    synth.volume.value = volumeDb;
+    synths.push(synth);
+
+    track.notes.forEach(note => {
+      if (note.time >= offset) {
+        synth.triggerAttackRelease(
+          note.name,
+          note.duration,
+          note.time - offset + now,
+          note.velocity
+        );
+      }
+    });
+  });
+
+  isPlaying = true;
+  updatePlayButton(true);
+  Tone.Transport.start();
+
+  const totalDur = currentMidi.duration;
+  progressInterval = setInterval(() => {
+    const elapsed = Tone.now() - startTime;
+    const pct = Math.min(elapsed / totalDur * 100, 100);
+
+    const mpProg = document.getElementById('mp-progress');
+    const mpTime = document.getElementById('mp-time');
+    if (mpProg) mpProg.style.width = pct + '%';
+    if (mpTime) mpTime.textContent = formatTime(elapsed) + ' / ' + formatTime(totalDur);
+
+    updateBottomProgress(pct);
+    updateBottomTime(elapsed, totalDur);
+
+    if (elapsed >= totalDur) {
+      stopMidi();
+      playNextTrack();
+    }
+  }, 200);
+}
+
+// === UI Updates ===
+function updatePlayButton(playing) {
+  const mpPlay = document.getElementById('mp-play');
+  const bpPlay = document.getElementById('bp-play');
+  if (mpPlay) mpPlay.textContent = playing ? '⏸ 일시정지' : '▶ 재생';
+  if (bpPlay) bpPlay.textContent = playing ? '⏸' : '▶';
+}
+
+function showBottomPlayer(title, regionName) {
+  const bar = document.getElementById('bottom-player');
+  bar.style.display = 'flex';
+  document.body.classList.add('player-active');
+  document.getElementById('bp-title').textContent = title;
+  document.getElementById('bp-region').textContent = regionName;
+}
+
+function updateBottomProgress(pct) {
+  const el = document.getElementById('bp-progress');
+  if (el) el.style.width = pct + '%';
+}
+
+function updateBottomTime(elapsed, total) {
+  const el = document.getElementById('bp-time');
+  if (el) el.textContent = formatTime(elapsed);
 }
 
 function formatTime(seconds) {
@@ -349,5 +432,75 @@ function formatTime(seconds) {
   return m + ':' + (s < 10 ? '0' : '') + s;
 }
 
-// Init when DOM ready
-document.addEventListener('DOMContentLoaded', buildPlayerUI);
+// === Global Search ===
+function handleGlobalSearch(query) {
+  const resultsEl = document.getElementById('global-search-results');
+  if (!catalog || !query.trim()) {
+    resultsEl.style.display = 'none';
+    return;
+  }
+
+  query = query.toLowerCase().trim();
+  const results = [];
+
+  for (const region of catalog.regions) {
+    for (const group of region.groups) {
+      for (const track of group.tracks) {
+        if (track.title.toLowerCase().includes(query)) {
+          results.push({
+            title: track.title,
+            regionName: region.name,
+            regionId: region.id,
+            emoji: region.emoji,
+            file: track.file,
+            group: group.name
+          });
+        }
+        if (results.length >= 20) break;
+      }
+      if (results.length >= 20) break;
+    }
+    if (results.length >= 20) break;
+  }
+
+  if (results.length === 0) {
+    resultsEl.style.display = 'none';
+    return;
+  }
+
+  resultsEl.style.display = '';
+  resultsEl.innerHTML = results.map((r, i) =>
+    `<div class="search-result-item" onclick="searchResultClick('${r.regionId}', '${encodeURIComponent(r.title)}')">
+      <span class="sr-emoji">${r.emoji}</span>
+      <span class="sr-title">${r.title}</span>
+      <span class="sr-region">${r.regionName}</span>
+    </div>`
+  ).join('');
+}
+
+function searchResultClick(regionId, encodedTitle) {
+  const title = decodeURIComponent(encodedTitle);
+  document.getElementById('global-search-results').style.display = 'none';
+  document.getElementById('global-search').value = '';
+
+  // Navigate to region then find and play track
+  showRegion(regionId);
+
+  // Find track index
+  const idx = allTracks.findIndex(t => t.title === title);
+  if (idx >= 0) {
+    setTimeout(() => loadTrackByIndex(idx), 100);
+  }
+}
+
+// Close search results when clicking outside
+document.addEventListener('click', (e) => {
+  const searchArea = document.querySelector('.hero-search');
+  const results = document.getElementById('global-search-results');
+  if (searchArea && results && !searchArea.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+
+// === Init ===
+document.addEventListener('DOMContentLoaded', loadCatalog);

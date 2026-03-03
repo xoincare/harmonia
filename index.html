@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>국악의 역사 — 천년의 소리</title>
-  <meta name="description" content="한국 전통음악의 역사를 시대별로 쉽게 알아보세요. 정간보, 궁중정악, 종묘제례악 등 국악의 모든 것.">
+  <title>하모니아 Harmonia — 세계 음악의 역사</title>
+  <meta name="description" content="고대 그리스부터 동아시아까지, 세계 음악을 듣고 배우세요. 745곡 MIDI 웹 플레이어. Harmonia = 그리스 신화의 조화의 여신.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
@@ -13,364 +13,408 @@
 
 <!-- Navigation -->
 <nav class="nav">
-  <a href="#" class="nav-logo">🎵 국악의 역사</a>
+  <a href="#" class="nav-logo" onclick="showHome(); return false;">🎵 Harmonia</a>
   <ul class="nav-links">
-    <li><a href="#history">역사</a></li>
-    <li><a href="#jeongganbo">정간보</a></li>
-    <li><a href="#instruments">악기</a></li>
-    <li><a href="#listen">감상/재생</a></li>
-    <li><a href="#jongmyo">종묘제례악</a></li>
-    <li><a href="#opensource">오픈소스</a></li>
+    <li><a href="#" onclick="showHome(); return false;">홈</a></li>
+    <li><a href="#" onclick="showRegion('korean'); return false;">한국</a></li>
+    <li><a href="#regions" onclick="showHome(); return false;">세계음악</a></li>
   </ul>
+  <button class="nav-menu-btn" onclick="toggleMobileMenu()" aria-label="메뉴">☰</button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showHome(); closeMobileMenu(); return false;">🏠 홈</a>
+  <a href="#" onclick="showRegion('korean'); closeMobileMenu(); return false;">🇰🇷 한국 전통음악</a>
+  <a href="#" onclick="showHome(); closeMobileMenu(); return false;">🌍 세계음악</a>
+</div>
+
+<!-- Home View -->
+<div id="home-view">
 
 <!-- Hero -->
 <section class="hero">
-  <h1>🇰🇷 <span>국악</span>의 역사</h1>
-  <p>삼국시대부터 현대까지, 천년을 이어온 한국 전통음악의 여정.<br>누구나 쉽게 듣고, 배우고, 느낄 수 있습니다.</p>
+  <h1>🎵 <span>Harmonia</span></h1>
+  <p class="hero-tagline">하모니아 — 세계 음악의 역사</p>
+  <p class="hero-desc">고대 그리스부터 동아시아까지, 세계 음악을 듣고 배우세요</p>
   <div class="hero-stat">
-    <div><span class="num">1,500+</span><span class="label">년의 역사</span></div>
-    <div><span class="num">91</span><span class="label">곡 MIDI 변환</span></div>
-    <div><span class="num">1447</span><span class="label">년 정간보 창제</span></div>
+    <div><span class="num" id="hero-total">748</span><span class="label">곡 MIDI</span></div>
+    <div><span class="num">10</span><span class="label">개 지역</span></div>
+    <div><span class="num">3,400+</span><span class="label">년의 음악사</span></div>
   </div>
+  <div class="hero-search">
+    <input type="text" id="global-search" placeholder="곡 이름으로 검색..." oninput="handleGlobalSearch(this.value)">
+  </div>
+  <div id="global-search-results" class="search-results" style="display:none"></div>
 </section>
 
-<!-- 역사 타임라인 -->
-<section class="section" id="history">
-  <h2 class="section-title">📜 국악의 역사</h2>
-  <p class="section-subtitle">삼국시대부터 현대까지, 한국음악의 흐름을 따라가봅니다</p>
-  
-  <div class="timeline">
-    <div class="timeline-item fade-in">
-      <span class="timeline-era">삼국시대 (57 BC ~ 668)</span>
-      <h3>국악의 태동</h3>
-      <p><strong>고구려</strong>: 거문고(玄琴)가 왕산악에 의해 창제. 안악3호분 벽화에 음악 연주 장면 등장.<br>
-      <strong>백제</strong>: 일본에 음악을 전파. 미마지(味摩之)가 기악(伎樂)을 전수.<br>
-      <strong>신라</strong>: 가야금(伽倻琴)이 가야의 우륵에 의해 전래. 향가(鄕歌)와 처용무(處容舞) 등장.</p>
-    </div>
-    
-    <div class="timeline-item fade-in">
-      <span class="timeline-era">통일신라 (668 ~ 935)</span>
-      <h3>삼현삼죽과 궁중음악</h3>
-      <p>가야금·거문고·향비파(삼현)와 대금·중금·소금(삼죽)이 확립. 범패(梵唄, 불교음악)가 전래되어 한국화됨. 879년 처용가 창작 — 훗날 세종대 봉황음의 곡조가 됨.</p>
-    </div>
-    
-    <div class="timeline-item fade-in">
-      <span class="timeline-era">고려 (918 ~ 1392)</span>
-      <h3>아악의 수입과 당악의 융합</h3>
-      <p>1116년 송나라로부터 <strong>대성아악(大晟雅樂)</strong> 수입 — 악기·악보·악공 포함. 당악(唐樂)과 향악(鄕樂)이 공존. 동동(動動), 만전춘별사 등 고려가요 탄생. 태평소, 해금 등 새 악기 도입.</p>
-    </div>
-    
-    <div class="timeline-item fade-in">
-      <span class="timeline-era" style="background:var(--accent)">조선 전기 (1392 ~ 1592) ★</span>
-      <h3>세종대왕과 음악의 황금기</h3>
-      <p>🏆 <strong>1447년 정간보(井間譜) 창제</strong> — 동양 최초의 유량악보(有量樂譜). 음의 높이(율명)와 길이(정간)를 동시 표기.<br>
-      박연(朴堧)의 아악 정비, 편경 제작. 보태평·정대업 작곡 (→ 종묘제례악). 여민락·치화평·취풍형·발상·봉황음 등 신악 창제.<br>
-      <strong>악학궤범(1493)</strong> 편찬 — 한국 최초의 종합 악서.</p>
-    </div>
-    
-    <div class="timeline-item fade-in">
-      <span class="timeline-era">조선 후기 (1592 ~ 1897)</span>
-      <h3>민속악의 발전</h3>
-      <p>임진왜란 후 궁중음악 쇠퇴, <strong>민속음악</strong>이 발전. 판소리(18세기), 산조(19세기), 시나위, 잡가 등장. 가곡(歌曲)이 문인 사이에서 유행. 풍류방(風流房) 문화 확산. 정악과 민속악의 이원화 구조 정착.</p>
-    </div>
-    
-    <div class="timeline-item fade-in">
-      <span class="timeline-era">근현대 (1897 ~ 현재)</span>
-      <h3>보존과 창작</h3>
-      <p>일제강점기 이왕직아악부(李王職雅樂部)에서 명맥 유지. 1951년 국립국악원 설립. 종묘제례악 유네스코 인류무형문화유산 등재(2001). 판소리 등재(2003). 창작국악, 퓨전국악, K-국악의 시대.</p>
-    </div>
-  </div>
+<!-- Region Cards Grid -->
+<section class="section" id="regions">
+  <h2 class="section-title">🌍 세계 음악 지역</h2>
+  <p class="section-subtitle">각 지역을 클릭하면 음악을 들을 수 있습니다</p>
+  <div class="region-grid" id="region-grid"></div>
 </section>
 
-<!-- 정간보 -->
-<section class="section-bg" id="jeongganbo">
-  <div class="section">
-    <h2 class="section-title">井 정간보란?</h2>
-    <p class="section-subtitle">세종대왕이 1447년 창안한 한국 고유의 악보 — 서양 오선보보다 약 200년 앞선 정량 기보법</p>
-    
-    <div class="jgb-demo fade-in">
-      <h3 style="text-align:center;margin-bottom:1rem">정간보 읽는 법</h3>
-      <p style="text-align:center;color:#666;margin-bottom:1.5rem">
-        위에서 아래로, 오른쪽에서 왼쪽으로 읽습니다.<br>
-        칸(정간) 안의 한자 = <strong>율명(음높이)</strong>, 빈칸 = <strong>이전 음 연장</strong>
-      </p>
-      
-      <div class="jgb-grid">
-        <div class="jgb-cell filled">黃</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell filled">太</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell filled">仲</div>
-        <div class="jgb-cell filled">林</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell filled">南</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell empty">―</div>
-        <div class="jgb-cell filled">潢</div>
-        <div class="jgb-cell filled">汰</div>
-        <div class="jgb-cell filled">南</div>
-        <div class="jgb-cell filled">林</div>
-      </div>
-      
-      <table style="width:100%;max-width:600px;margin:1.5rem auto;border-collapse:collapse;font-size:0.9rem">
-        <tr style="background:var(--primary);color:#fff">
-          <th style="padding:0.5rem">율명</th><th>한자</th><th>서양음</th><th>설명</th>
-        </tr>
-        <tr><td style="padding:0.4rem;border:1px solid #ddd"><strong>황종</strong></td><td>黃</td><td>Eb</td><td>기본음 (궁)</td></tr>
-        <tr><td style="padding:0.4rem;border:1px solid #ddd"><strong>태주</strong></td><td>太</td><td>F</td><td></td></tr>
-        <tr><td style="padding:0.4rem;border:1px solid #ddd"><strong>중려</strong></td><td>仲</td><td>Ab</td><td></td></tr>
-        <tr><td style="padding:0.4rem;border:1px solid #ddd"><strong>임종</strong></td><td>林</td><td>Bb</td><td></td></tr>
-        <tr><td style="padding:0.4rem;border:1px solid #ddd"><strong>남려</strong></td><td>南</td><td>C</td><td></td></tr>
-        <tr><td style="padding:0.4rem;border:1px solid #ddd"><strong>청황종</strong></td><td>潢</td><td>Eb (↑)</td><td>한 옥타브 위</td></tr>
-      </table>
-    </div>
+</div><!-- /home-view -->
 
-    <!-- 정간보 관련 영상 -->
-    <div class="card-grid">
-      <div class="card fade-in">
-        <div class="card-youtube">
-          <iframe src="https://www.youtube.com/embed/GO4JbjYdzsQ" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <h3>절대음감 세종대왕, 조선의 음악을 만들다</h3>
-          <p>EBS 역사채널e — 아악 정비, 편경 제작, 신악 창제, 정간보 창안의 과정</p>
-          <span class="card-tag">EBS</span><span class="card-tag">세종대왕</span>
-        </div>
-      </div>
-      <div class="card fade-in">
-        <div class="card-youtube">
-          <iframe src="https://www.youtube.com/embed/HcePYBOcwGU" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="card-body">
-          <h3>대왕, 세종 — 정간보 창안의 비밀</h3>
-          <p>EBS 역사채널e — 훈민정음 외에도 위대한 업적을 이룬 세종대왕</p>
-          <span class="card-tag">EBS</span><span class="card-tag">정간보</span>
-        </div>
-      </div>
+<!-- Region Detail View (hidden by default) -->
+<div id="region-view" style="display:none">
+  <section class="region-hero" id="region-hero">
+    <button class="back-btn" onclick="showHome()">← 전체 목록</button>
+    <div class="region-hero-content">
+      <span class="region-emoji" id="region-emoji"></span>
+      <h1 id="region-name"></h1>
+      <p id="region-song-count"></p>
     </div>
+  </section>
+
+  <section class="section" id="region-description-section">
+    <p class="region-description" id="region-description"></p>
+  </section>
+
+  <!-- Korean-specific content (hidden for other regions) -->
+  <div id="korean-content" style="display:none">
+
+    <!-- 역사 타임라인 -->
+    <section class="section" id="history">
+      <h2 class="section-title">📜 국악의 역사</h2>
+      <p class="section-subtitle">삼국시대부터 현대까지, 한국음악의 흐름을 따라가봅니다</p>
+      <div class="timeline">
+        <div class="timeline-item fade-in">
+          <span class="timeline-era">삼국시대 (57 BC ~ 668)</span>
+          <h3>국악의 태동</h3>
+          <p><strong>고구려</strong>: 거문고(玄琴)가 왕산악에 의해 창제. 안악3호분 벽화에 음악 연주 장면 등장.<br>
+          <strong>백제</strong>: 일본에 음악을 전파. 미마지(味摩之)가 기악(伎樂)을 전수.<br>
+          <strong>신라</strong>: 가야금(伽倻琴)이 가야의 우륵에 의해 전래. 향가(鄕歌)와 처용무(處容舞) 등장.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <span class="timeline-era">통일신라 (668 ~ 935)</span>
+          <h3>삼현삼죽과 궁중음악</h3>
+          <p>가야금·거문고·향비파(삼현)와 대금·중금·소금(삼죽)이 확립. 범패(梵唄, 불교음악)가 전래되어 한국화됨. 879년 처용가 창작 — 훗날 세종대 봉황음의 곡조가 됨.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <span class="timeline-era">고려 (918 ~ 1392)</span>
+          <h3>아악의 수입과 당악의 융합</h3>
+          <p>1116년 송나라로부터 <strong>대성아악(大晟雅樂)</strong> 수입 — 악기·악보·악공 포함. 당악(唐樂)과 향악(鄕樂)이 공존. 동동(動動), 만전춘별사 등 고려가요 탄생. 태평소, 해금 등 새 악기 도입.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <span class="timeline-era era-highlight">조선 전기 (1392 ~ 1592) ★</span>
+          <h3>세종대왕과 음악의 황금기</h3>
+          <p>🏆 <strong>1447년 정간보(井間譜) 창제</strong> — 동양 최초의 유량악보(有量樂譜). 음의 높이(율명)와 길이(정간)를 동시 표기.<br>
+          박연(朴堧)의 아악 정비, 편경 제작. 보태평·정대업 작곡 (→ 종묘제례악). 여민락·치화평·취풍형·발상·봉황음 등 신악 창제.<br>
+          <strong>악학궤범(1493)</strong> 편찬 — 한국 최초의 종합 악서.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <span class="timeline-era">조선 후기 (1592 ~ 1897)</span>
+          <h3>민속악의 발전</h3>
+          <p>임진왜란 후 궁중음악 쇠퇴, <strong>민속음악</strong>이 발전. 판소리(18세기), 산조(19세기), 시나위, 잡가 등장. 가곡(歌曲)이 문인 사이에서 유행. 풍류방(風流房) 문화 확산. 정악과 민속악의 이원화 구조 정착.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <span class="timeline-era">근현대 (1897 ~ 현재)</span>
+          <h3>보존과 창작</h3>
+          <p>일제강점기 이왕직아악부(李王職雅樂部)에서 명맥 유지. 1951년 국립국악원 설립. 종묘제례악 유네스코 인류무형문화유산 등재(2001). 판소리 등재(2003). 창작국악, 퓨전국악, K-국악의 시대.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 정간보 -->
+    <section class="section-alt" id="jeongganbo">
+      <div class="section">
+        <h2 class="section-title">井 정간보란?</h2>
+        <p class="section-subtitle">세종대왕이 1447년 창안한 한국 고유의 악보 — 서양 오선보보다 약 200년 앞선 정량 기보법</p>
+        <div class="jgb-demo fade-in">
+          <h3 style="text-align:center;margin-bottom:1rem">정간보 읽는 법</h3>
+          <p style="text-align:center;color:var(--text-muted);margin-bottom:1.5rem">
+            위에서 아래로, 오른쪽에서 왼쪽으로 읽습니다.<br>
+            칸(정간) 안의 한자 = <strong>율명(음높이)</strong>, 빈칸 = <strong>이전 음 연장</strong>
+          </p>
+          <div class="jgb-grid">
+            <div class="jgb-cell filled">黃</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell filled">太</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell filled">仲</div>
+            <div class="jgb-cell filled">林</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell filled">南</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell empty">―</div>
+            <div class="jgb-cell filled">潢</div>
+            <div class="jgb-cell filled">汰</div>
+            <div class="jgb-cell filled">南</div>
+            <div class="jgb-cell filled">林</div>
+          </div>
+          <table class="yulname-table">
+            <tr><th>율명</th><th>한자</th><th>서양음</th><th>설명</th></tr>
+            <tr><td><strong>황종</strong></td><td>黃</td><td>Eb</td><td>기본음 (궁)</td></tr>
+            <tr><td><strong>태주</strong></td><td>太</td><td>F</td><td></td></tr>
+            <tr><td><strong>중려</strong></td><td>仲</td><td>Ab</td><td></td></tr>
+            <tr><td><strong>임종</strong></td><td>林</td><td>Bb</td><td></td></tr>
+            <tr><td><strong>남려</strong></td><td>南</td><td>C</td><td></td></tr>
+            <tr><td><strong>청황종</strong></td><td>潢</td><td>Eb (↑)</td><td>한 옥타브 위</td></tr>
+          </table>
+        </div>
+
+        <!-- 정간보 관련 영상 -->
+        <div class="card-grid">
+          <div class="card fade-in">
+            <div class="card-youtube">
+              <iframe src="https://www.youtube.com/embed/GO4JbjYdzsQ" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>절대음감 세종대왕, 조선의 음악을 만들다</h3>
+              <p>EBS 역사채널e — 아악 정비, 편경 제작, 신악 창제, 정간보 창안의 과정</p>
+              <span class="card-tag">EBS</span><span class="card-tag">세종대왕</span>
+            </div>
+          </div>
+          <div class="card fade-in">
+            <div class="card-youtube">
+              <iframe src="https://www.youtube.com/embed/HcePYBOcwGU" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>대왕, 세종 — 정간보 창안의 비밀</h3>
+              <p>EBS 역사채널e — 훈민정음 외에도 위대한 업적을 이룬 세종대왕</p>
+              <span class="card-tag">EBS</span><span class="card-tag">정간보</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 악기 -->
+    <section class="section" id="instruments">
+      <h2 class="section-title">🎻 한국 전통악기</h2>
+      <p class="section-subtitle">궁중정악에서 사용되는 주요 악기들</p>
+      <div class="instrument-grid">
+        <div class="instrument-card fade-in">
+          <div class="instrument-emoji">🪈</div>
+          <h4>대금</h4><span class="hanja">大笒 · Daegeum</span>
+          <p>가로로 부는 대나무 피리. 정악과 산조 모두에 사용. 청(靑)이라는 진동막이 특징.</p>
+        </div>
+        <div class="instrument-card fade-in">
+          <div class="instrument-emoji">🎵</div>
+          <h4>피리</h4><span class="hanja">觱篥 · Piri</span>
+          <p>세로로 부는 겹리드 관악기. 향피리·당피리·세피리 3종. 관현 합주의 주선율 담당.</p>
+        </div>
+        <div class="instrument-card fade-in">
+          <div class="instrument-emoji">🎻</div>
+          <h4>해금</h4><span class="hanja">奚琴 · Haegeum</span>
+          <p>2현 찰현악기. 말총 활로 연주. 정악·민속악·창작곡 모두에서 핵심 역할.</p>
+        </div>
+        <div class="instrument-card fade-in">
+          <div class="instrument-emoji">🎸</div>
+          <h4>가야금</h4><span class="hanja">伽倻琴 · Gayageum</span>
+          <p>12현(정악) 또는 25현(산조). 가야국 우륵이 전래. 한국 대표 현악기.</p>
+        </div>
+        <div class="instrument-card fade-in">
+          <div class="instrument-emoji">🎸</div>
+          <h4>거문고</h4><span class="hanja">玄琴 · Geomungo</span>
+          <p>6현 발현악기. 고구려 왕산악이 창제. '백악지장(百樂之長)' 풍류의 으뜸 악기.</p>
+        </div>
+        <div class="instrument-card fade-in">
+          <div class="instrument-emoji">🎻</div>
+          <h4>아쟁</h4><span class="hanja">牙箏 · Ajaeng</span>
+          <p>7현 찰현악기. 개나리 활대로 줄을 마찰. 깊고 웅장한 저음. 관악 합주에 사용.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 감상 영상 -->
+    <section class="section-alt" id="korean-videos">
+      <div class="section">
+        <h2 class="section-title" style="color:var(--gold)">🎬 대표 영상</h2>
+        <div class="card-grid">
+          <div class="card fade-in">
+            <div class="card-youtube">
+              <iframe src="https://www.youtube.com/embed/2FMwcwDwLJo" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>수제천 (壽齊天)</h3>
+              <p>백제 정읍사에서 유래한 한국 최고(最古) 관악합주곡. 천년의 선율.</p>
+            </div>
+          </div>
+          <div class="card fade-in">
+            <div class="card-youtube">
+              <iframe src="https://www.youtube.com/embed/YHSz_5GXon4" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>영산회상</h3>
+              <p>풍류방 음악의 정수. 상령산부터 군악까지 9곡으로 구성된 모음곡.</p>
+            </div>
+          </div>
+          <div class="card fade-in">
+            <div class="card-youtube">
+              <iframe src="https://www.youtube.com/embed/JCHJkfACfoo" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>여민락 (與民樂)</h3>
+              <p>세종대왕 작곡. '백성과 함께 즐기다'. 128분, 14,052 notes의 대작.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 종묘제례악 -->
+    <section class="section" id="jongmyo">
+      <h2 class="section-title">🏛️ 종묘제례악</h2>
+      <p class="section-subtitle">2001년 유네스코 인류무형문화유산 등재 — 세종대왕이 작곡한 보태평·정대업</p>
+      <div class="card-grid">
+        <div class="card fade-in">
+          <div class="card-youtube">
+            <iframe src="https://www.youtube.com/embed/aMXYE9bpCp8" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <h3>종묘제례악 — 보태평 (文德)</h3>
+            <p>조종의 문덕(文德)을 찬양하는 11곡. 희문·기명·귀인·형광 등. 세종 때 작곡, 세조 때 종묘제례에 채택.</p>
+            <span class="card-tag">유네스코</span><span class="card-tag">종묘제례악</span>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <div class="card-youtube">
+            <iframe src="https://www.youtube.com/embed/xmIUJh7VXCA" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <h3>종묘제례악 — 정대업 (武功)</h3>
+            <p>조종의 무공(武功)을 찬양하는 15곡. 소무·독경·선위 등. 매년 5월 종묘대제에서 연주.</p>
+            <span class="card-tag">유네스코</span><span class="card-tag">종묘제례악</span>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <div class="card-youtube">
+            <iframe src="https://www.youtube.com/embed/d01ztr876oM" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <h3>봉래의 복원 — 치화평 (2014)</h3>
+            <p>국립국악원 2014년 복원공연. 세종실록악보에 기록된 치화평을 580년 만에 소리로 복원.</p>
+            <span class="card-tag">복원공연</span><span class="card-tag">국립국악원</span>
+          </div>
+        </div>
+        <div class="card fade-in">
+          <div class="card-youtube">
+            <iframe src="https://www.youtube.com/embed/1lMKoiUU-80" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="card-body">
+            <h3>봉래의 복원 — 취풍형 (2014)</h3>
+            <p>용비어천가를 노래한 궁중 악무. 세종실록악보 권145에 기록.</p>
+            <span class="card-tag">복원공연</span><span class="card-tag">세종실록악보</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box fade-in">
+        <h3>🔥 아직 소리로 복원되지 않은 곡들</h3>
+        <p>세종실록악보(권136-147)에 기록되어 있지만, <strong>전 세계 어디에도 음원이 없는</strong> 전폐(全廢) 악곡들:</p>
+        <ul>
+          <li><strong>발상지무(發祥之舞)</strong> — 권139, 11곡(희광·순우·창부·영경·신계·현휴·정희·강보·응명·가서·화성)</li>
+          <li><strong>봉황음(鳳凰吟)</strong> — 권146, 처용가 곡조에 새 가사를 붙인 궁중 송축가</li>
+          <li><strong>만전춘(滿殿春)</strong> — 권146, 고려시대부터 전승된 노래</li>
+        </ul>
+        <p class="info-note">
+          이 곡들의 정간보에는 율명(음높이)이 기록되어 있어, 디지털화하면 세계 최초 소리 복원이 가능합니다.
+          <a href="https://github.com/xoincare/jeongganbo-midi/tree/main/sejong_sillok_akbo" target="_blank">→ 복원 프로젝트 보기</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- 오픈소스 -->
+    <section class="section-alt" id="opensource">
+      <div class="section">
+        <h2 class="section-title">💻 오픈소스 프로젝트</h2>
+        <p class="section-subtitle">국악의 디지털화를 위해 공개된 프로젝트들</p>
+        <div class="ref-grid">
+          <div class="ref-card fade-in">
+            <h4>⭐ xoincare/jeongganbo-midi</h4>
+            <p>정간보 → MIDI 변환기. 91곡 한국 궁중정악 MIDI + 시김새(장식음) Pitch Bend + 음악 특성 Heatmap 분석.</p>
+            <a href="https://github.com/xoincare/jeongganbo-midi" target="_blank">GitHub →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>depth221/Jeongganbo-editor</h4>
+            <p>정간보 편집기 (Python). 정간보를 GUI로 작성·편집할 수 있는 오픈소스 도구.</p>
+            <a href="https://github.com/depth221/Jeongganbo-editor" target="_blank">GitHub →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>MALerLab/jeongganbo-omr</h4>
+            <p>정간보 OMR(광학 음악 인식). 딥러닝 기반 정간보 이미지 → 율명 텍스트 자동 변환.</p>
+            <a href="https://github.com/MALerLab/jeongganbo-omr" target="_blank">GitHub →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>danbinaerinHan/Jeongganbo_dataset</h4>
+            <p>91곡 정간보 텍스트 데이터셋 + MusicXML. 정간보 디지털 아카이브.</p>
+            <a href="https://github.com/danbinaerinHan/Jeongganbo_dataset" target="_blank">GitHub →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>MALerLab/jeongganbo-png</h4>
+            <p>국립국악원 정악보 6권(1,808페이지) 스캔 이미지. OMR 학습 데이터.</p>
+            <a href="https://github.com/MALerLab/jeongganbo-png" target="_blank">GitHub →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>yule-cal/jeongganbo-converter</h4>
+            <p>정간보 → 서양 오선보 + 오디오 변환 웹앱 (Flask).</p>
+            <a href="https://github.com/yule-cal/jeongganbo-converter" target="_blank">GitHub →</a>
+          </div>
+        </div>
+
+        <h3 style="margin-top:3rem;margin-bottom:1rem;color:var(--gold)">📚 참고자료</h3>
+        <div class="ref-grid">
+          <div class="ref-card fade-in">
+            <h4>국립국악원</h4>
+            <p>대한민국 국악 보존·연구·공연의 중심 기관. 정악보 발간.</p>
+            <a href="https://www.gugak.go.kr" target="_blank">gugak.go.kr →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>국악아카이브</h4>
+            <p>국립국악원 디지털 아카이브. 음원·영상·악보 열람.</p>
+            <a href="https://archive.gugak.go.kr" target="_blank">archive.gugak.go.kr →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>조선왕조실록</h4>
+            <p>세종실록악보(권136-147) 원문 열람. 국사편찬위원회.</p>
+            <a href="https://sillok.history.go.kr" target="_blank">sillok.history.go.kr →</a>
+          </div>
+          <div class="ref-card fade-in">
+            <h4>문숙희 『조선 궁중음악의 실체와 복원』</h4>
+            <p>2025년 출간. 정간보 리듬 해독법 + 발상·봉황음·만전춘 복원 악보. (민속원, 592쪽)</p>
+            <a href="https://www.yes24.com/product/goods/141739659" target="_blank">예스24 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /korean-content -->
+
+  <!-- MIDI Player (shown for all regions) -->
+  <section class="player-section" id="player-section">
+    <div class="section">
+      <h2 class="section-title" id="player-title" style="color:var(--gold)">🎧 MIDI 플레이어</h2>
+      <p class="section-subtitle" id="player-subtitle" style="color:var(--text-muted)">곡을 클릭하면 브라우저에서 바로 재생됩니다</p>
+      <div id="midi-player-app"></div>
+    </div>
+  </section>
+</div><!-- /region-view -->
+
+<!-- Persistent Bottom Player Bar -->
+<div class="bottom-player" id="bottom-player" style="display:none">
+  <div class="bp-info">
+    <span class="bp-title" id="bp-title">—</span>
+    <span class="bp-region" id="bp-region"></span>
   </div>
-</section>
-
-<!-- 악기 -->
-<section class="section" id="instruments">
-  <h2 class="section-title">🎻 한국 전통악기</h2>
-  <p class="section-subtitle">궁중정악에서 사용되는 주요 악기들</p>
-  
-  <div class="instrument-grid">
-    <div class="instrument-card fade-in">
-      <div class="instrument-emoji">🪈</div>
-      <h4>대금</h4><span class="hanja">大笒 · Daegeum</span>
-      <p>가로로 부는 대나무 피리. 정악과 산조 모두에 사용. 청(靑)이라는 진동막이 특징.</p>
-    </div>
-    <div class="instrument-card fade-in">
-      <div class="instrument-emoji">🎵</div>
-      <h4>피리</h4><span class="hanja">觱篥 · Piri</span>
-      <p>세로로 부는 겹리드 관악기. 향피리·당피리·세피리 3종. 관현 합주의 주선율 담당.</p>
-    </div>
-    <div class="instrument-card fade-in">
-      <div class="instrument-emoji">🎻</div>
-      <h4>해금</h4><span class="hanja">奚琴 · Haegeum</span>
-      <p>2현 찰현악기. 말총 활로 연주. 정악·민속악·창작곡 모두에서 핵심 역할.</p>
-    </div>
-    <div class="instrument-card fade-in">
-      <div class="instrument-emoji">🎸</div>
-      <h4>가야금</h4><span class="hanja">伽倻琴 · Gayageum</span>
-      <p>12현(정악) 또는 25현(산조). 가야국 우륵이 전래. 한국 대표 현악기.</p>
-    </div>
-    <div class="instrument-card fade-in">
-      <div class="instrument-emoji">🎸</div>
-      <h4>거문고</h4><span class="hanja">玄琴 · Geomungo</span>
-      <p>6현 발현악기. 고구려 왕산악이 창제. '백악지장(百樂之長)' 풍류의 으뜸 악기.</p>
-    </div>
-    <div class="instrument-card fade-in">
-      <div class="instrument-emoji">🎻</div>
-      <h4>아쟁</h4><span class="hanja">牙箏 · Ajaeng</span>
-      <p>7현 찰현악기. 개나리 활대로 줄을 마찰. 깊고 웅장한 저음. 관악 합주에 사용.</p>
-    </div>
+  <div class="bp-controls">
+    <button class="bp-btn" id="bp-prev" onclick="playPrevTrack()" title="이전">⏮</button>
+    <button class="bp-btn bp-play" id="bp-play" onclick="togglePlay()">▶</button>
+    <button class="bp-btn" id="bp-next" onclick="playNextTrack()" title="다음">⏭</button>
   </div>
-</section>
-
-<!-- 감상 -->
-<section class="midi-section" id="listen">
-  <div class="section" style="color:#fff">
-    <h2 class="section-title" style="color:#fff">🎧 국악 감상</h2>
-    <p class="section-subtitle" style="color:rgba(255,255,255,0.7)">정간보에서 변환된 91곡의 한국 궁중정악과 대표 영상</p>
-    
-    <div class="card-grid" style="margin-bottom:2rem">
-      <div class="card fade-in" style="background:rgba(255,255,255,0.1);border:none">
-        <div class="card-youtube">
-          <iframe src="https://www.youtube.com/embed/2FMwcwDwLJo" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="card-body" style="color:#fff">
-          <h3 style="color:var(--gold)">수제천 (壽齊天)</h3>
-          <p style="color:rgba(255,255,255,0.8)">백제 정읍사에서 유래한 한국 최고(最古) 관악합주곡. 천년의 선율.</p>
-        </div>
-      </div>
-      <div class="card fade-in" style="background:rgba(255,255,255,0.1);border:none">
-        <div class="card-youtube">
-          <iframe src="https://www.youtube.com/embed/YHSz_5GXon4" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="card-body" style="color:#fff">
-          <h3 style="color:var(--gold)">영산회상</h3>
-          <p style="color:rgba(255,255,255,0.8)">풍류방 음악의 정수. 상령산부터 군악까지 9곡으로 구성된 모음곡.</p>
-        </div>
-      </div>
-      <div class="card fade-in" style="background:rgba(255,255,255,0.1);border:none">
-        <div class="card-youtube">
-          <iframe src="https://www.youtube.com/embed/JCHJkfACfoo" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="card-body" style="color:#fff">
-          <h3 style="color:var(--gold)">여민락 (與民樂)</h3>
-          <p style="color:rgba(255,255,255,0.8)">세종대왕 작곡. '백성과 함께 즐기다'. 128분, 14,052 notes의 대작.</p>
-        </div>
-      </div>
-    </div>
-
-    <h3 style="text-align:center;margin-bottom:1rem;color:var(--gold)">🎧 91곡 정악 MIDI 플레이어</h3>
-    <p style="text-align:center;margin-bottom:1.5rem;color:rgba(255,255,255,0.6);font-size:0.9rem">
-      곡을 클릭하면 브라우저에서 바로 재생됩니다. ⬇ 버튼으로 MIDI 파일 다운로드도 가능합니다.
-    </p>
-    <div id="midi-player-app"></div>
-    <p style="text-align:center;margin-top:1.5rem;opacity:0.7">
-      <a href="https://github.com/xoincare/jeongganbo-midi" style="color:var(--gold)" target="_blank">📥 GitHub에서 전곡 MIDI 다운로드</a>
-    </p>
+  <div class="bp-progress-wrap" onclick="seekTo(event)">
+    <div class="bp-progress" id="bp-progress"></div>
   </div>
-</section>
-
-<!-- 종묘제례악 -->
-<section class="section" id="jongmyo">
-  <h2 class="section-title">🏛️ 종묘제례악</h2>
-  <p class="section-subtitle">2001년 유네스코 인류무형문화유산 등재 — 세종대왕이 작곡한 보태평·정대업</p>
-  
-  <div class="card-grid">
-    <div class="card fade-in">
-      <div class="card-youtube">
-        <iframe src="https://www.youtube.com/embed/aMXYE9bpCp8" loading="lazy" allowfullscreen></iframe>
-      </div>
-      <div class="card-body">
-        <h3>종묘제례악 — 보태평 (文德)</h3>
-        <p>조종의 문덕(文德)을 찬양하는 11곡. 희문·기명·귀인·형광 등. 세종 때 작곡, 세조 때 종묘제례에 채택.</p>
-        <span class="card-tag">유네스코</span><span class="card-tag">종묘제례악</span>
-      </div>
-    </div>
-    <div class="card fade-in">
-      <div class="card-youtube">
-        <iframe src="https://www.youtube.com/embed/xmIUJh7VXCA" loading="lazy" allowfullscreen></iframe>
-      </div>
-      <div class="card-body">
-        <h3>종묘제례악 — 정대업 (武功)</h3>
-        <p>조종의 무공(武功)을 찬양하는 15곡. 소무·독경·선위 등. 매년 5월 종묘대제에서 연주.</p>
-        <span class="card-tag">유네스코</span><span class="card-tag">종묘제례악</span>
-      </div>
-    </div>
-    <div class="card fade-in">
-      <div class="card-youtube">
-        <iframe src="https://www.youtube.com/embed/d01ztr876oM" loading="lazy" allowfullscreen></iframe>
-      </div>
-      <div class="card-body">
-        <h3>봉래의 복원 — 치화평 (2014)</h3>
-        <p>국립국악원 2014년 복원공연. 세종실록악보에 기록된 치화평을 580년 만에 소리로 복원.</p>
-        <span class="card-tag">복원공연</span><span class="card-tag">국립국악원</span>
-      </div>
-    </div>
-    <div class="card fade-in">
-      <div class="card-youtube">
-        <iframe src="https://www.youtube.com/embed/1lMKoiUU-80" loading="lazy" allowfullscreen></iframe>
-      </div>
-      <div class="card-body">
-        <h3>봉래의 복원 — 취풍형 (2014)</h3>
-        <p>용비어천가를 노래한 궁중 악무. 세종실록악보 권145에 기록.</p>
-        <span class="card-tag">복원공연</span><span class="card-tag">세종실록악보</span>
-      </div>
-    </div>
+  <span class="bp-time" id="bp-time">0:00</span>
+  <div class="bp-volume">
+    <input type="range" min="0" max="100" value="70" class="bp-volume-slider" id="bp-volume" oninput="setVolume(this.value)">
   </div>
-  
-  <div style="background:#fff3e0;border-radius:12px;padding:1.5rem;margin-top:2rem" class="fade-in">
-    <h3>🔥 아직 소리로 복원되지 않은 곡들</h3>
-    <p style="margin:0.5rem 0">세종실록악보(권136-147)에 기록되어 있지만, <strong>전 세계 어디에도 음원이 없는</strong> 전폐(全廢) 악곡들:</p>
-    <ul style="padding-left:1.5rem;color:#555">
-      <li><strong>발상지무(發祥之舞)</strong> — 권139, 11곡(희광·순우·창부·영경·신계·현휴·정희·강보·응명·가서·화성)</li>
-      <li><strong>봉황음(鳳凰吟)</strong> — 권146, 처용가 곡조에 새 가사를 붙인 궁중 송축가</li>
-      <li><strong>만전춘(滿殿春)</strong> — 권146, 고려시대부터 전승된 노래</li>
-    </ul>
-    <p style="margin-top:0.5rem;font-size:0.9rem;color:#888">
-      이 곡들의 정간보에는 율명(음높이)이 기록되어 있어, 디지털화하면 세계 최초 소리 복원이 가능합니다.
-      <a href="https://github.com/xoincare/jeongganbo-midi/tree/main/sejong_sillok_akbo" target="_blank" style="color:var(--accent)">→ 복원 프로젝트 보기</a>
-    </p>
-  </div>
-</section>
-
-<!-- 오픈소스 & 참고자료 -->
-<section class="section-bg" id="opensource">
-  <div class="section">
-    <h2 class="section-title">💻 오픈소스 프로젝트</h2>
-    <p class="section-subtitle">국악의 디지털화를 위해 공개된 프로젝트들</p>
-    
-    <div class="ref-grid">
-      <div class="ref-card fade-in">
-        <h4>⭐ xoincare/jeongganbo-midi</h4>
-        <p>정간보 → MIDI 변환기. 91곡 한국 궁중정악 MIDI + 시김새(장식음) Pitch Bend + 음악 특성 Heatmap 분석.</p>
-        <a href="https://github.com/xoincare/jeongganbo-midi" target="_blank">GitHub →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>depth221/Jeongganbo-editor</h4>
-        <p>정간보 편집기 (Python). 정간보를 GUI로 작성·편집할 수 있는 오픈소스 도구.</p>
-        <a href="https://github.com/depth221/Jeongganbo-editor" target="_blank">GitHub →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>MALerLab/jeongganbo-omr</h4>
-        <p>정간보 OMR(광학 음악 인식). 딥러닝 기반 정간보 이미지 → 율명 텍스트 자동 변환.</p>
-        <a href="https://github.com/MALerLab/jeongganbo-omr" target="_blank">GitHub →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>danbinaerinHan/Jeongganbo_dataset</h4>
-        <p>91곡 정간보 텍스트 데이터셋 + MusicXML. 정간보 디지털 아카이브.</p>
-        <a href="https://github.com/danbinaerinHan/Jeongganbo_dataset" target="_blank">GitHub →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>MALerLab/jeongganbo-png</h4>
-        <p>국립국악원 정악보 6권(1,808페이지) 스캔 이미지. OMR 학습 데이터.</p>
-        <a href="https://github.com/MALerLab/jeongganbo-png" target="_blank">GitHub →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>yule-cal/jeongganbo-converter</h4>
-        <p>정간보 → 서양 오선보 + 오디오 변환 웹앱 (Flask).</p>
-        <a href="https://github.com/yule-cal/jeongganbo-converter" target="_blank">GitHub →</a>
-      </div>
-    </div>
-
-    <h3 style="margin-top:3rem;margin-bottom:1rem;color:var(--primary)">📚 참고자료</h3>
-    <div class="ref-grid">
-      <div class="ref-card fade-in">
-        <h4>국립국악원</h4>
-        <p>대한민국 국악 보존·연구·공연의 중심 기관. 정악보 발간.</p>
-        <a href="https://www.gugak.go.kr" target="_blank">gugak.go.kr →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>국악아카이브</h4>
-        <p>국립국악원 디지털 아카이브. 음원·영상·악보 열람.</p>
-        <a href="https://archive.gugak.go.kr" target="_blank">archive.gugak.go.kr →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>조선왕조실록</h4>
-        <p>세종실록악보(권136-147) 원문 열람. 국사편찬위원회.</p>
-        <a href="https://sillok.history.go.kr" target="_blank">sillok.history.go.kr →</a>
-      </div>
-      <div class="ref-card fade-in">
-        <h4>문숙희 『조선 궁중음악의 실체와 복원』</h4>
-        <p>2025년 출간. 정간보 리듬 해독법 + 발상·봉황음·만전춘 복원 악보. (민속원, 592쪽)</p>
-        <a href="https://www.yes24.com/product/goods/141739659" target="_blank">예스24 →</a>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
-  <p>🎵 국악의 역사 — 천년의 소리</p>
+  <p>🎵 하모니아 Harmonia — 세계 음악의 역사</p>
   <p style="margin-top:0.5rem">
     Built with ❤️ by <a href="https://github.com/xoincare/jeongganbo-midi">jeongganbo-midi</a> project |
     <a href="https://github.com/xoincare">GitHub</a>
@@ -386,18 +430,18 @@
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+function observeFadeIns() {
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+}
+observeFadeIns();
 
-// Active nav link
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY + 100;
-  sections.forEach(s => {
-    const top = s.offsetTop, h = s.offsetHeight, id = s.getAttribute('id');
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if (link) { link.classList.toggle('active', scrollY >= top && scrollY < top + h); }
-  });
-});
+// Mobile menu
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
 </script>
 </body>
 </html>
