@@ -16,9 +16,11 @@ LOCAL_DB_CACHE = '/tmp/harmonia.db'
 
 class HarmoniaHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
-        self.storage_client = storage.Client()
-        self.bucket = self.storage_client.bucket(BUCKET_NAME)
-        self.ensure_db_ready()
+        try:
+            self.storage_client = storage.Client()
+            self.ensure_db_ready()
+        except Exception as e:
+            print(f"🚨 Initialization Error: {e}")
         super().__init__(*args, **kwargs)
 
     def ensure_db_ready(self):
