@@ -1,4 +1,2 @@
+psycopg2-binary
 google-cloud-storage
-google-api-core
-requests
-urllib3

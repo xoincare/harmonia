@@ -1,144 +1,125 @@
 """
-Harmonia Backend v3.0 (GCS Cloud-Native)
-- SQLite DB on GCS (Cached locally)
-- MIDI Streaming directly from GCS
-- Fallback to local files
+Harmonia Backend v4.0 (Cloud SQL + GCS)
+- PostgreSQL (Cloud SQL) 기반 21만 곡 검색
+- GCS 기반 MIDI 스트리밍
 """
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-import os, json, sqlite3, urllib.parse
-from google.cloud import storage
-from google.api_core import exceptions
+import os, json, urllib.parse
 
 PORT = int(os.environ.get('PORT', 8080))
 BUCKET_NAME = os.environ.get('GCS_BUCKET', 'harmonia-midi')
-DB_FILE = 'harmonia.db'
-LOCAL_DB_CACHE = '/tmp/harmonia.db'
+
+# Cloud SQL 접속 정보 (환경변수 우선, 없으면 기본값)
+DB_HOST = os.environ.get('DB_HOST', '/cloudsql/harmonia-489109:asia-northeast3:harmonia-db')
+DB_USER = os.environ.get('DB_USER', 'postgres')
+DB_PASS = os.environ.get('DB_PASS', '')
+DB_NAME = os.environ.get('DB_NAME', 'postgres')
+
+def get_db():
+    import psycopg2
+    # Cloud Run에서는 Unix socket, 외부에서는 TCP
+    if DB_HOST.startswith('/cloudsql/'):
+        return psycopg2.connect(host=DB_HOST, user=DB_USER, password=DB_PASS, dbname=DB_NAME)
+    else:
+        return psycopg2.connect(host=DB_HOST, user=DB_USER, password=DB_PASS, dbname=DB_NAME, port=5432)
 
 class HarmoniaHandler(SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        try:
-            self.storage_client = storage.Client()
-            self.ensure_db_ready()
-        except Exception as e:
-            print(f"🚨 Initialization Error: {e}")
-        super().__init__(*args, **kwargs)
-
-    def ensure_db_ready(self):
-        """Ensure DB is available locally"""
-        # 1. 빌드 시 포함된 로컬 DB 확인
-        if os.path.exists(DB_FILE):
-            import shutil
-            shutil.copy2(DB_FILE, LOCAL_DB_CACHE)
-            print(f"✅ Using bundled local DB: {DB_FILE}")
-            return
-
-        # 2. 로컬에 없으면 GCS에서 시도 (백업용)
-        if not os.path.exists(LOCAL_DB_CACHE):
-            try:
-                bucket_name = os.environ.get('GCS_BUCKET', 'harmonia-midi')
-                blob = self.storage_client.bucket(bucket_name).blob(DB_FILE)
-                blob.download_to_filename(LOCAL_DB_CACHE)
-                print(f"✅ DB downloaded from GCS: gs://{bucket_name}/{DB_FILE}")
-            except Exception as e:
-                print(f"🚨 DB Error: {e}")
-                # 빈 DB 생성 (크래시 방지)
-                conn = sqlite3.connect(LOCAL_DB_CACHE)
-                conn.execute("CREATE TABLE IF NOT EXISTS tracks (id INTEGER PRIMARY KEY)")
-                conn.close()
-
     def do_GET(self):
-        # 1. API: Search
+        # API: Search
         if self.path.startswith('/api/search'):
             query = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query).get('q', [''])[0]
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            results = self.search_db(query)
-            self.wfile.write(json.dumps(results).encode())
+            self.json_response(self.search_db(query))
             return
 
-        # 2. API: Get Channel
+        # API: Channel
         if self.path.startswith('/api/channel'):
             channel_id = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query).get('id', [''])[0]
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            results = self.get_channel_songs(channel_id)
-            self.wfile.write(json.dumps(results).encode())
+            self.json_response(self.get_channel_songs(channel_id))
             return
 
-        # 3. API: Stream MIDI (Redirect or Proxy GCS)
+        # API: Stream MIDI from GCS (redirect to public URL)
         if self.path.startswith('/api/stream'):
             track_id = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query).get('id', [''])[0]
-            self.stream_midi_gcs(track_id)
+            self.stream_midi(track_id)
+            return
+
+        # API: Health check
+        if self.path == '/health':
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(b'OK')
             return
 
         if self.path == '/' or self.path == '':
             self.path = '/index.html'
         return super().do_GET()
 
+    def json_response(self, data):
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+        self.wfile.write(json.dumps(data, ensure_ascii=False).encode())
+
     def search_db(self, query):
         if len(query) < 2: return []
-        conn = sqlite3.connect(LOCAL_DB_CACHE)
-        c = conn.cursor()
-        q = f"%{query}%"
-        c.execute('''SELECT id, title, composer, dataset, era, tags, license_type, license_summary 
-                     FROM tracks 
-                     WHERE title LIKE ? OR composer LIKE ? OR tags LIKE ?
-                     LIMIT 100''', (q, q, q))
-        rows = c.fetchall()
-        conn.close()
-        return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5], "license": r[6], "license_text": r[7]} for r in rows]
+        try:
+            conn = get_db()
+            cur = conn.cursor()
+            q = f"%{query}%"
+            cur.execute("""SELECT id, title, composer, dataset, era, tags, license_type, license_summary 
+                          FROM tracks 
+                          WHERE title ILIKE %s OR composer ILIKE %s OR tags ILIKE %s
+                          LIMIT 100""", (q, q, q))
+            rows = cur.fetchall()
+            conn.close()
+            return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5], "license": r[6], "license_text": r[7]} for r in rows]
+        except Exception as e:
+            print(f"Search error: {e}")
+            return []
 
     def get_channel_songs(self, channel_id):
-        conn = sqlite3.connect(LOCAL_DB_CACHE)
-        c = conn.cursor()
-        if channel_id == 'classical':
-            c.execute('SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = "mutopia_midi" ORDER BY title LIMIT 100')
-        elif channel_id == 'korean_master':
-            c.execute('SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = "korean_jeongganbo" ORDER BY title LIMIT 100')
-        elif channel_id == 'piano_healing':
-            c.execute('SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = "adl-piano-midi" ORDER BY title LIMIT 100')
-        else:
-            c.execute('SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks ORDER BY RANDOM() LIMIT 100')
-        rows = c.fetchall()
-        conn.close()
-        return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5], "license": r[6], "license_text": r[7]} for r in rows]
-        elif channel_id == 'piano_healing':
-            c.execute('SELECT id, title, composer, dataset, era, tags FROM tracks WHERE dataset = "adl-piano-midi" LIMIT 100')
-        else:
-            c.execute('SELECT id, title, composer, dataset, era, tags FROM tracks LIMIT 100')
-        rows = c.fetchall()
-        conn.close()
-        return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5]} for r in rows]
+        try:
+            conn = get_db()
+            cur = conn.cursor()
+            if channel_id == 'classical':
+                cur.execute("SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = 'mutopia_midi' ORDER BY title LIMIT 100")
+            elif channel_id == 'korean_master':
+                cur.execute("SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = 'korean_jeongganbo' ORDER BY title LIMIT 100")
+            elif channel_id == 'piano_healing':
+                cur.execute("SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = 'adl-piano-midi' ORDER BY title LIMIT 100")
+            elif channel_id == 'world_folk':
+                cur.execute("SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks WHERE dataset = 'historical_world' ORDER BY title LIMIT 100")
+            else:
+                cur.execute("SELECT id, title, composer, dataset, era, tags, license_type, license_summary FROM tracks ORDER BY RANDOM() LIMIT 100")
+            rows = cur.fetchall()
+            conn.close()
+            return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5], "license": r[6], "license_text": r[7]} for r in rows]
+        except Exception as e:
+            print(f"Channel error: {e}")
+            return []
 
-    def stream_midi_gcs(self, track_id):
-        conn = sqlite3.connect(LOCAL_DB_CACHE)
-        c = conn.cursor()
-        c.execute('SELECT path FROM tracks WHERE id = ?', (track_id,))
-        row = c.fetchone()
-        conn.close()
-        
-        if row:
-            gcs_path = row[0]
-            blob = self.bucket.blob(f"datasets/{gcs_path}")
-            try:
-                # Sign URL for temporary access (1 hour)
-                signed_url = blob.generate_signed_url(version="v4", expiration=3600, method="GET")
-                self.send_response(302) # Redirect to GCS
-                self.send_header('Location', signed_url)
+    def stream_midi(self, track_id):
+        try:
+            conn = get_db()
+            cur = conn.cursor()
+            cur.execute('SELECT path FROM tracks WHERE id = %s', (track_id,))
+            row = cur.fetchone()
+            conn.close()
+            
+            if row:
+                # GCS 공개 URL로 리다이렉트
+                gcs_url = f"https://storage.googleapis.com/{BUCKET_NAME}/datasets/{row[0]}"
+                self.send_response(302)
+                self.send_header('Location', gcs_url)
                 self.end_headers()
-            except Exception:
-                # Fallback: Proxy streaming if signing fails
-                self.send_response(200)
-                self.send_header('Content-Type', 'audio/midi')
-                self.end_headers()
-                blob.download_to_file(self.wfile)
-        else:
-            self.send_error(404)
+            else:
+                self.send_error(404)
+        except Exception as e:
+            print(f"Stream error: {e}")
+            self.send_error(500)
 
 if __name__ == '__main__':
-    print(f"🎵 Harmonia GCS-Ready Server on port {PORT}")
+    print(f"🎵 Harmonia v4.0 (Cloud SQL + GCS) on port {PORT}")
     HTTPServer(('0.0.0.0', PORT), HarmoniaHandler).serve_forever()

@@ -5,3 +5,4 @@ __pycache__/
 *.swo
 node_modules/
 .env
+harmonia.db
