@@ -76,8 +76,10 @@ class HarmoniaHandler(SimpleHTTPRequestHandler):
             conn.close()
             return [{"id": r[0], "title": r[1], "composer": r[2], "dataset": r[3], "era": r[4], "tags": r[5], "license": r[6], "license_text": r[7]} for r in rows]
         except Exception as e:
-            print(f"Search error: {e}")
-            return []
+            import traceback
+            print(f"🚨 Search error: {e}")
+            traceback.print_exc()
+            return [{"error": str(e)}]
 
     def get_channel_songs(self, channel_id):
         try:
